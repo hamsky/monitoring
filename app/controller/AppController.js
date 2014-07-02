@@ -9,7 +9,7 @@ Ext.define('monitoring.controller.AppController', {
         'WorkAreaView@monitoring.view.ui'
     ],
     init: function() {
-      //  console.log('lll');
+        //  console.log('lll');
         this.control({
             'actionsList': {
                 itemclick: this.OnItemClick
@@ -19,7 +19,7 @@ Ext.define('monitoring.controller.AppController', {
         });
     },
     OnItemClick: function(tree, record, item, index, e, options) {
-console.log('itemclick');
+        console.log('itemclick');
     }
 });
 
