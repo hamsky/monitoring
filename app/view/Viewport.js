@@ -13,10 +13,7 @@ Ext.define('monitoring.view.Viewport', {
             layout: 'fit',
             stateful: true,
             split: true,
-            border:true,
-//            style: {
-//        border: '2px inset #B8B8B8'
-//    },
+            border: true,
             collapsible: true,
             items: [
                 {xtype: 'actionlist'}
