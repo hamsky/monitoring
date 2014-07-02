@@ -30,7 +30,7 @@ Ext.define('monitoring.view.Viewport', {
         },
         {
             region: 'center',
-            title: '_',
+            title: ' ',
             html: 'center'
         }
 
