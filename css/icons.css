@@ -1,0 +1,110 @@
+.t_users {
+    background: url('icons/group.png') no-repeat center center !important;
+}
+
+.t_settings {
+    background: url('icons/cog.png') no-repeat center center !important;
+}
+
+.t_stat {
+    background: url('icons/chart_bar.png') no-repeat center center !important;
+}
+
+.t_services {
+    background: url('icons/folder_table.png') no-repeat center center !important;
+}
+
+.t_email {
+    background: url('icons/mailbox.png') no-repeat center center !important;
+}
+
+.t_email-i {
+    background: url('icons/email.png') no-repeat center center !important;
+}
+
+.t_email-o {
+    background: url('icons/email_go.png') no-repeat center center !important;
+}
+
+.userAdd {
+    background: url('icons/user_add.png') no-repeat center center !important;
+}
+
+.userEdit {
+    background: url('icons/user_edit.png') no-repeat center center !important;
+}
+
+.addResp {
+    background: url('icons/vcard_add.png') no-repeat center center !important;
+}
+
+.add {
+    background: url('icons/add.png') no-repeat center center !important;
+}
+
+.accept {
+    background: url('icons/accept.png') no-repeat center center !important;
+}
+
+.cancel {
+    background: url('icons/cancel.png') no-repeat center center !important;
+}
+
+.key {
+    background: url('icons/key.png') no-repeat center center !important;
+}
+
+.enter{
+    background: url('icons/key_go.png') no-repeat center center !important;
+}
+
+.page_white_add{
+    background: url('icons/page_white_add.png') no-repeat center center !important;
+}
+
+
+.date_add{
+    background: url('icons/date_add.png') no-repeat center center !important; 
+}
+
+
+.logout{
+    background: url('icons/door_out.png') no-repeat center center !important;   
+}
+
+.delete{
+    background: url('icons/delete.png') no-repeat center center !important;   
+}
+
+.table_go{
+    background: url('icons/table_go.png') no-repeat center center !important;   
+}
+
+.report_add{
+    background: url('icons/report_add.png') no-repeat center center !important;   
+}
+
+
+.book{
+    background: url('icons/book.png') no-repeat center center !important;   
+}
+
+.table{
+    background: url('icons/table.png') no-repeat center center !important;   
+}
+
+.save{
+    background: url('icons/disk.png') no-repeat center center !important;   
+}
+
+.date_magnify{
+    background: url('icons/date_magnify.png') no-repeat center center !important;   
+}
+
+.chart_bar{
+    background: url('icons/chart_bar.png') no-repeat center center !important;    
+}
+
+.report{
+    background: url('icons/report.png') no-repeat center center !important;    
+}
