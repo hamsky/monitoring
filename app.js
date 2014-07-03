@@ -10,6 +10,6 @@ Ext.application({
         'AppController'
     ],
     launch: function() {
-        console.log('qwerty');
+        console.log('qwerty lol');
     }
 });
