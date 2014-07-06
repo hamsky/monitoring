@@ -1,4 +1,4 @@
 Ext.define('monitoring.view.ui.WorkAreaView', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.tab.Panel',
     alias: 'widget.workarea'
 });
