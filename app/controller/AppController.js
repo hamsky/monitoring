@@ -9,9 +9,8 @@ Ext.define('monitoring.controller.AppController', {
         'WorkAreaView@monitoring.view.ui'
     ],
     init: function() {
-        //  console.log('lll');
         this.control({
-            'actionsList': {
+            'actionlist': {
                 itemclick: this.OnItemClick
             }
 
