@@ -6,7 +6,8 @@ Ext.define('monitoring.controller.AppController', {
     views: [
         'ActionsListView@monitoring.view.ui',
         'HeaderView@monitoring.view.ui',
-        'WorkAreaView@monitoring.view.ui'
+        'WorkAreaView@monitoring.view.ui',
+        'Subdivisions@monitoring.view.tabs'
     ],
     init: function() {
         this.control({
@@ -42,7 +43,6 @@ Ext.define('monitoring.controller.AppController', {
                         {xtype: 'panel'}
                         //wgt
                     ]
-
                 }).show();
 
             }
