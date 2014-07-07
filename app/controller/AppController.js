@@ -40,7 +40,7 @@ Ext.define('monitoring.controller.AppController', {
                     closable: 'true',
                     layout: 'fit',
                     items: [
-                        {xtype: 'panel'}
+                        {xtype: 'subdivisions'}
                         //wgt
                     ]
                 }).show();

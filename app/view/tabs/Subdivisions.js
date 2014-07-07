@@ -2,21 +2,22 @@ Ext.define('monitoring.view.tabs.Subdivisions', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.subdivisions',
     layout: {
-        type: 'border'
+        type: 'vbox',
+        align: 'stretch',
+        pack: 'start'
     },
     items: [
         {
-            region: 'north',
-            items: [
-                {xtype: 'toolbar'}
-            ]
+            xtype: 'toolbar',
+            height:30,
+            border:false
+        
         },
         {
-            region: 'center',
-            items: [{xtype: 'panel'}]
+            xtype: 'panel',
+            border:false
         }
     ]
-
 
 });
 
