@@ -27,11 +27,16 @@ Ext.define('monitoring.view.Viewport', {
         },
         {
             region: 'center',
-            items:[
-                {xtype:'workarea'}
+            items: [
+                {
+                    xtype: 'workarea',
+                      viewConfig: {
+                                forceFit: true
+                            },
+                            autoHeight: false,
+                            layout: 'fit'
+                }
             ]
-//            title: ' ',
-//            html: 'center'
         }
 
     ]

@@ -1,7 +1,8 @@
 Ext.define('monitoring.controller.AppController', {
     extend: 'Ext.app.Controller',
     stores: [
-        'ActionStore@monitoring.store'
+        'ActionStore@monitoring.store',
+        'SubdivisionsStore@monitoring.store'
     ],
     views: [
         'ActionsListView@monitoring.view.ui',
@@ -39,11 +40,23 @@ Ext.define('monitoring.controller.AppController', {
                     iconCls: record.data.iconCls,
                     closable: 'true',
                     layout: 'fit',
+                    height: '100%',
                     items: [
-                        {xtype: 'subdivisions'}
+                        {
+                            xtype: 'subdivisions',
+                            viewConfig: {
+                                forceFit: true
+                            },
+                            autoHeight: false,
+                            layout: 'fit'
+                        
+                        }
                         //wgt
                     ]
                 }).show();
+
+
+
 
             }
 

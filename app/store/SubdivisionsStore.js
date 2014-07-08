@@ -1,13 +1,15 @@
 Ext.define('monitoring.store.SubdivisionsStore', {
     extend: 'Ext.data.Store',
-    model: 'Subdivisions',
-    pageSize: 10,
+    model: 'monitoring.model.Subdivisions',
+    pageSize: 25,
+    autoLoad:true,
+    storeId:'subdivStore',
     proxy: {
         type: 'ajax',
-        url: 'monitoring/actions/csubdiv.php', //!!
+        url: 'app/php/actions/getsubdiv.php', 
         reader: {
             type: 'json',
-            root: 'subdivisions'
+             rootProperty:'subdivisions'
         }
     }
 });

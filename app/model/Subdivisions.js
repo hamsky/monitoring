@@ -7,7 +7,7 @@ Ext.define('monitoring.model.Subdivisions', {
         },
         {
             type: 'string',
-            name: 'subdivs'
+            name: 'subdiv'
         }
     ]
 });

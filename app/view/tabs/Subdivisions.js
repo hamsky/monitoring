@@ -1,23 +1,28 @@
 Ext.define('monitoring.view.tabs.Subdivisions', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.grid.Panel',
     alias: 'widget.subdivisions',
-    layout: {
-        type: 'vbox',
-        align: 'stretch',
-        pack: 'start'
+    store: 'SubdivisionsStore',
+    frame: false,
+    viewConfig: {
+        forceFit: true
     },
-    items: [
+    autoHeight: false,
+    layout: 'fit',
+    initComponent: function() {
+        this.columns = [
+            {xtype: 'rownumberer'},
+            {header: 'Подразделения', dataIndex: 'subdiv', flex: 90 / 100}
+        ];
+        this.callParent(arguments);
+    },
+    tbar: [
         {
-            xtype: 'toolbar',
-            height:30,
-            border:false
-        
-        },
-        {
-            xtype: 'panel',
-            border:false
+            xtype: 'button',
+            tooltip: 'Добавить новое подразделение',
+            iconCls: 'page_white_add'
         }
     ]
+
 
 });
 
