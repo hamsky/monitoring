@@ -2,13 +2,16 @@ Ext.define('monitoring.controller.AppController', {
     extend: 'Ext.app.Controller',
     stores: [
         'ActionStore@monitoring.store',
-        'SubdivisionsStore@monitoring.store'
+        'SubdivisionsStore@monitoring.store',
+        'SubdivServStore@monitoring.store'
+
     ],
     views: [
         'ActionsListView@monitoring.view.ui',
         'HeaderView@monitoring.view.ui',
         'WorkAreaView@monitoring.view.ui',
-        'Subdivisions@monitoring.view.tabs'
+        'Subdivisions@monitoring.view.tabs',
+        'Services@monitoring.view.tabs'
     ],
     models: [
         'Subdivisions@monitoring.model'
@@ -17,6 +20,9 @@ Ext.define('monitoring.controller.AppController', {
         this.control({
             'actionlist': {
                 itemclick: this.OnItemClick
+            },
+            '#subdivAdd': {
+                click: this.subdivOnClick
             }
 
 
@@ -43,7 +49,7 @@ Ext.define('monitoring.controller.AppController', {
                     closable: 'true',
                     items: [
                         {
-                            xtype: 'subdivisions'
+                            xtype: 'services'//'subdivisions'
                         }
                         //wgt
                     ]
@@ -53,7 +59,83 @@ Ext.define('monitoring.controller.AppController', {
         }
 ///
         console.log(tabPanel);
+    },
+    subdivOnClick: function() {
+        Ext.create('Ext.window.Window', {
+            title: 'Добавить подразделение',
+            width: 450,
+            layout: 'fit',
+            modal: true,
+            border: false,
+            items: [
+                new Ext.widget('form', {
+                    frame: false,
+                    url: 'app/php/actions/addsubdiv.php',
+                    bodyPadding: 10,
+                    bodyBorder: false,
+                    defaults: {
+                        anchor: '100%'
+                    },
+                    fieldDefaults: {
+                        labelAlign: 'left'
+                    },
+                    items: [
+                        {
+                            xtype: 'hidden',
+                            name: 'org',
+                            value: -1
+
+                        },
+                        {
+                            xtype: 'textfield',
+                            name: 'subdiv',
+                            fieldLabel: 'Подразделение',
+                            allowBlank: false
+                        }
+                    ],
+                    dockedItems: [
+                        {
+                            xtype: 'toolbar',
+                            dock: 'bottom',
+                            items: [
+                                {
+                                    xtype: 'tbfill'
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'close',
+                                    iconCls: 'cancel',
+                                    text: "Закрыть",
+                                    handler: function() {
+                                        this.up('window').close();
+                                    }
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'submit',
+                                    formBind: true,
+                                    iconCls: 'accept',
+                                    text: "Добавить",
+                                    listeners: {
+                                        click: function() {
+                                            var form = this.up('form').getForm();
+                                            form.submit({
+                                                success: function(form, action) {
+                                                    Ext.ComponentQuery.query('#subdivGrid')[0].getStore().reload();
+                                                    form.reset();
+                                                }
+                                            });
+                                        }
+                                    }
+
+                                }
+                            ]}]
+                })
+            ]
+        }).show();
     }
+
+
 });
 
 
