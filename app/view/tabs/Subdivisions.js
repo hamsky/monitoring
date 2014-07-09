@@ -3,11 +3,6 @@ Ext.define('monitoring.view.tabs.Subdivisions', {
     alias: 'widget.subdivisions',
     store: 'SubdivisionsStore',
     frame: false,
-    viewConfig: {
-        forceFit: true
-    },
-    autoHeight: false,
-    layout: 'fit',
     initComponent: function() {
         this.columns = [
             {xtype: 'rownumberer'},
@@ -21,8 +16,13 @@ Ext.define('monitoring.view.tabs.Subdivisions', {
             tooltip: 'Добавить новое подразделение',
             iconCls: 'page_white_add'
         }
-    ]
-
-
+    ],
+    bbar: {
+        xtype: 'pagingtoolbar',
+        store: 'SubdivisionsStore',
+        displayInfo: true,
+        displayMsg: 'Показано  {0} - {1} из {2}',
+        emptyMsg: "Нет данных для отображения"
+    }
 });
 

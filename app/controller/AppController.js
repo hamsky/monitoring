@@ -10,6 +10,9 @@ Ext.define('monitoring.controller.AppController', {
         'WorkAreaView@monitoring.view.ui',
         'Subdivisions@monitoring.view.tabs'
     ],
+    models: [
+        'Subdivisions@monitoring.model'
+    ],
     init: function() {
         this.control({
             'actionlist': {
@@ -28,36 +31,23 @@ Ext.define('monitoring.controller.AppController', {
             tabPanel.items.each(function(tab) {
                 if (nodeText === tab.title) {
                     existTab = true;
-
                 }
             });
-
             if (!existTab) {
                 console.log(record.data.hrefTarget);
                 // var wgt = Ext.create(record.data.hrefTarget);
                 tabPanel.add({
                     title: nodeText,
                     iconCls: record.data.iconCls,
-                    closable: 'true',
                     layout: 'fit',
-                    height: '100%',
+                    closable: 'true',
                     items: [
                         {
-                            xtype: 'subdivisions',
-                            viewConfig: {
-                                forceFit: true
-                            },
-                            autoHeight: false,
-                            layout: 'fit'
-                        
+                            xtype: 'subdivisions'
                         }
                         //wgt
                     ]
                 }).show();
-
-
-
-
             }
 
         }
