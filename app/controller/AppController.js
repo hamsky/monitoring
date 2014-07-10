@@ -11,7 +11,8 @@ Ext.define('monitoring.controller.AppController', {
         'HeaderView@monitoring.view.ui',
         'WorkAreaView@monitoring.view.ui',
         'Subdivisions@monitoring.view.tabs',
-        'Services@monitoring.view.tabs'
+        'Services@monitoring.view.tabs',
+        'LoginFormView@monitoring.view.ui'
     ],
     models: [
         'Subdivisions@monitoring.model'
@@ -49,7 +50,7 @@ Ext.define('monitoring.controller.AppController', {
                     closable: 'true',
                     items: [
                         {
-                            xtype: 'services'//'subdivisions'
+                            xtype: 'loginform'//'services'//'subdivisions'
                         }
                         //wgt
                     ]
