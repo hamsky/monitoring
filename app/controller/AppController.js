@@ -12,10 +12,12 @@ Ext.define('monitoring.controller.AppController', {
         'WorkAreaView@monitoring.view.ui',
         'Subdivisions@monitoring.view.tabs',
         'Services@monitoring.view.tabs',
-        'LoginFormView@monitoring.view.ui'
+        'LoginFormView@monitoring.view.ui',
+        'RegFormView@monitoring.view.ui'
     ],
     models: [
-        'Subdivisions@monitoring.model'
+        'Subdivisions@monitoring.model',
+        'OrgInfo@monitoring.model'
     ],
     init: function() {
         this.control({
@@ -50,7 +52,7 @@ Ext.define('monitoring.controller.AppController', {
                     closable: 'true',
                     items: [
                         {
-                            xtype: 'loginform'//'services'//'subdivisions'
+                            xtype: 'regfrm'//'loginform'//'services'//'subdivisions'
                         }
                         //wgt
                     ]
