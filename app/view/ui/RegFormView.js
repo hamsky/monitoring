@@ -1,6 +1,6 @@
 Ext.define('monitoring.view.ui.RegFormView', {
     extend: 'Ext.window.Window',
-    alias:'widget.regfrm',
+    alias: 'widget.regfrm',
     autoShow: true,
     closable: true,
     title: "Регистрация",
@@ -10,7 +10,7 @@ Ext.define('monitoring.view.ui.RegFormView', {
     iconCls: 'userAdd',
     items: [
         {
-            xtype:'form', 
+            xtype: 'form',
             frame: false,
             url: 'app/php/actions/reg.php',
             width: 350,
@@ -105,13 +105,13 @@ Ext.define('monitoring.view.ui.RegFormView', {
 
 
         }
-    ],
-    listeners: {
-        close: function() {
-
-            console.log(this.down('form').remove());
-        }
-    }
+    ]//   ,
+//    listeners: {
+//        close: function() {
+//
+//                   //    console.log(this.down('form').remove());
+//        }
+//    }
 
 });
 

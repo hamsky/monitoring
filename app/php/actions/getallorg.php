@@ -1,6 +1,6 @@
 <?php
 
-require '../inc/dbc.php';
+require '../db/dbc.php';
 
 $query = "SELECT iogv.id, iogv.iogv, iogv.manage FROM iogv";
 $result = mysql_query($query);

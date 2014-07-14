@@ -3,7 +3,8 @@ Ext.define('monitoring.controller.AppController', {
     stores: [
         'ActionStore@monitoring.store',
         'SubdivisionsStore@monitoring.store',
-        'SubdivServStore@monitoring.store'
+        'SubdivServStore@monitoring.store',
+        'OrgInfoStore@monitoring.store'
 
     ],
     views: [
