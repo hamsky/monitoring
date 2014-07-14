@@ -53,7 +53,7 @@ Ext.define('monitoring.controller.AppController', {
                     closable: 'true',
                     items: [
                         {
-                            xtype: 'regfrm'//'loginform'//'services'//'subdivisions'
+                            xtype:'loginform' //'regfrm'//'loginform'//'services'//'subdivisions'
                         }
                         //wgt
                     ]

@@ -47,7 +47,7 @@ Ext.define('monitoring.view.ui.LoginFormView', {
                             listeners: {
                                 render: function(component) {
                                     component.getEl().on('click', function(e) {
-                                        Ext.create("monitoring.js.regfrm");
+                                        Ext.create("monitoring.view.ui.RegFormView");
                                     });
                                 }
                             }
