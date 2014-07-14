@@ -3,8 +3,7 @@ Ext.define('monitoring.controller.AppController', {
     stores: [
         'ActionStore@monitoring.store',
         'SubdivisionsStore@monitoring.store',
-        'SubdivServStore@monitoring.store',
-        'OrgInfoStore@monitoring.store'
+        'SubdivServStore@monitoring.store'
 
     ],
     views: [
@@ -12,13 +11,10 @@ Ext.define('monitoring.controller.AppController', {
         'HeaderView@monitoring.view.ui',
         'WorkAreaView@monitoring.view.ui',
         'Subdivisions@monitoring.view.tabs',
-        'Services@monitoring.view.tabs',
-        'LoginFormView@monitoring.view.ui',
-        'RegFormView@monitoring.view.ui'
+        'Services@monitoring.view.tabs'
     ],
     models: [
-        'Subdivisions@monitoring.model',
-        'OrgInfo@monitoring.model'
+        'Subdivisions@monitoring.model'
     ],
     init: function() {
         this.control({

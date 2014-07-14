@@ -1,4 +1,4 @@
-Ext.define('monitoring.view.ui.LoginFormView', {
+Ext.define('js.monapp.LoginFormView', {
     extend: 'Ext.window.Window',
     alias:'widget.loginform',
     autoShow: true,
@@ -47,7 +47,7 @@ Ext.define('monitoring.view.ui.LoginFormView', {
                             listeners: {
                                 render: function(component) {
                                     component.getEl().on('click', function(e) {
-                                        Ext.create("monitoring.view.ui.RegFormView");
+                                        Ext.create("js.monapp.RegFormView");
                                     });
                                 }
                             }

@@ -1,4 +1,4 @@
-Ext.define('monitoring.view.ui.RegFormView', {
+Ext.define('js.monapp.RegFormView', {
     extend: 'Ext.window.Window',
     alias: 'widget.regfrm',
     autoShow: true,

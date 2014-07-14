@@ -1,6 +1,6 @@
-Ext.define('monitoring.store.OrgInfoStore',{
-    extend:'Ext.data.Store',
-        model: 'monitoring.model.OrgInfo',
+Ext.define('js.monapp.OrgInfoStore', {
+    extend: 'Ext.data.Store',
+    model: 'js.monapp.OrgInfo',
     proxy: {
         type: 'ajax',
         url: 'app/php/actions/getallorg.php',
