@@ -49,7 +49,7 @@ Ext.define('js.monapp.RegFormView', {
                 }, {
                     xtype: 'combobox',
                     name: 'iogvs',
-                    store: 'OrgInfoStore',
+                    store: Ext.create('js.monapp.OrgInfoStore'),
                     displayField: 'iogv',
                     valueField: 'id',
                     fieldLabel: 'Организация',
