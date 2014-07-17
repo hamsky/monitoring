@@ -41,7 +41,6 @@ Ext.define('monitoring.controller.AppController', {
             });
             if (!existTab) {
                 console.log(record.data.hrefTarget);
-                // var wgt = Ext.create(record.data.hrefTarget);
                 tabPanel.add({
                     title: nodeText,
                     iconCls: record.data.iconCls,
@@ -49,9 +48,8 @@ Ext.define('monitoring.controller.AppController', {
                     closable: 'true',
                     items: [
                         {
-                            xtype:'loginform' //'regfrm'//'loginform'//'services'//'subdivisions'
+                            xtype: record.data.hrefTarget
                         }
-                        //wgt
                     ]
                 }).show();
             }

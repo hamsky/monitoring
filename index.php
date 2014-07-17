@@ -1,3 +1,8 @@
+<?php
+session_start();
+require 'inc/functions.php';
+checkLoggedIn();
+?>
 <!DOCTYPE html>
 <html>
     <head>
