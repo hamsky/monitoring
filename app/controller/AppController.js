@@ -11,10 +11,13 @@ Ext.define('monitoring.controller.AppController', {
         'HeaderView@monitoring.view.ui',
         'WorkAreaView@monitoring.view.ui',
         'Subdivisions@monitoring.view.tabs',
-        'Services@monitoring.view.tabs'
+        'Services@monitoring.view.tabs',
+        'Settings@monitoring.view.tabs',
+        'OrgType@monitoring.view.tabs'
     ],
     models: [
-        'Subdivisions@monitoring.model'
+        'Subdivisions@monitoring.model',
+        'OrgType@monitoring.model'
     ],
     init: function() {
         this.control({
@@ -23,7 +26,11 @@ Ext.define('monitoring.controller.AppController', {
             },
             '#subdivAdd': {
                 click: this.subdivOnClick
+            },
+            '#logout': {
+                click: this.logoutClick
             }
+
 
 
         });
@@ -131,6 +138,15 @@ Ext.define('monitoring.controller.AppController', {
                 })
             ]
         }).show();
+    },
+    logoutClick: function() {
+        Ext.Ajax.request({
+            url: 'inc/functions.php',
+            params: {action: 'logout'},
+            success: function() {
+                location.reload();
+            }
+        });
     }
 
 

@@ -1,9 +1,9 @@
 <?php
 
 session_start();
-require '../db/dbc.php';
+require '../../../inc/dbc.php';
 
-$iogv = 1;
+$iogv = $_SESSION['iogv'];
 
 
 $query = "SELECT iogv_service.id, iogv.iogv, services.service, orgsubdiv.name FROM iogv_service, iogv, services,orgsubdiv WHERE services.id = iogv_service.service AND iogv.id =$iogv AND iogv_service.iogv =$iogv AND orgsubdiv.id=iogv_service.subdivId";

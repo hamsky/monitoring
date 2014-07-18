@@ -1,4 +1,4 @@
 Ext.define('monitoring.view.tabs.Settings', {
- extend:'',
+ extend:'Ext.grid.property.Grid',
  alias:'widget.usettings'
 });

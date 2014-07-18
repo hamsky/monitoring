@@ -1,14 +1,14 @@
 Ext.define('monitoring.view.ui.HeaderView', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.mheader',
-    border:true,
+    border: true,
 //    style: {
 //        border: '1px inset #336699'
 //    },
     height: 50,
     items: [{
             xtype: 'label',
-            //  id: 'org_name',
+            itemId: 'org_name',
             text: ' ',
             style: {
                 float: 'left',
@@ -23,21 +23,11 @@ Ext.define('monitoring.view.ui.HeaderView', {
             xtype: 'button',
             text: 'Выход',
             iconCls: 'logout',
+            itemId: 'logout',
             style: {
                 float: 'right',
                 margin: '13px 5px 0 0'
-            },
-            handler: function() {
-//                Ext.Ajax.request({
-//                    url: 'app/php/functions.php',
-//                    params: {action: 'logout'},
-//                    success: function() {
-//                        location.reload();
-//                    }
-//                });
-
             }
-
         }
     ]
 

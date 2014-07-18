@@ -1,7 +1,8 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 session_start();
-require '../app/php/db/dbc.php';
+include 'dbc.php';
 $action = $_POST['action'];
 $username = $_POST['username'];
 $email = $_POST['email'];

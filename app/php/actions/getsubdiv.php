@@ -2,9 +2,9 @@
 
 session_start();
 
-require '../db/dbc.php';
+require '../../../inc/dbc.php';
 
-$_SESSION['iogv'] = 1;
+//$_SESSION['iogv'] = 1;
 
 $query = "SELECT id, name FROM orgsubdiv WHERE orgId=" . $_SESSION['iogv'];
 

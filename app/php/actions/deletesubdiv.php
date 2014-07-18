@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require '../db/dbc.php';
+require '../../../inc/dbc.php';
 $info = $_POST['subdivisions'];
 $data = json_decode(stripslashes($info));
 $id = $data[0]->id;

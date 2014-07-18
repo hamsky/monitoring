@@ -2,7 +2,7 @@
 
 session_start();
 
-require '../db/dbc.php';
+require '../../../inc/dbc.php';
 
 $iogv = ($_POST['org'] < 0) ? $_SESSION['iogv'] : $_POST['org'];
 $subdiv = $_POST['subdiv'];

@@ -1,13 +1,13 @@
 Ext.define('monitoring.store.OrgTypeStore', {
     extend: 'Ext.data.Store',
-    model: 'OrgType',
+    model: 'monitoring.model.OrgType',
     pageSize: 50,
     proxy: {
         type: 'ajax',
-        url: 'monitoring/actions/getiogv.php',//!!
+        url: 'app/php/actions/getorgtype.php',
         reader: {
             type: 'json',
-            root: 'iogvs'
+            root: 'orgtypes'
         }
     }
 });
