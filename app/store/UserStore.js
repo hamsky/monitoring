@@ -2,8 +2,8 @@ Ext.define('monitoring.store.UserStore', {
     extend: 'Ext.data.Store',
     model: 'monitoring.model.Users',
     fields: ['id', 'login', 'password', 'email', 'enabled', 'org', 'ulevel'],
-    //pageSize: 30,
-    autoload: true,
+    pageSize: 30,
+    autoLoad: true,
     proxy: {
         type: 'ajax',
         reader: {
