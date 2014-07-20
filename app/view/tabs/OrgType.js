@@ -1,7 +1,7 @@
-Ext.create('monitoring.view.OrgType', {
+Ext.define('monitoring.view.tabs.OrgType', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.orgtype',
-    store: 'OrgTypeStorem',
+    store: 'OrgTypeStore',
     itemId: 'orgTypeGrid',
     initComponent: function() {
         this.columns = [
@@ -34,7 +34,15 @@ Ext.create('monitoring.view.OrgType', {
         ];
 
         this.callParent(arguments);
-    }
+    },
+    tbar: [
+        {
+            xtype: 'button',
+            tooltip: 'Добавить новый тип ведомства',
+            iconCls: 'page_white_add',
+            itemId: 'addOrgType'
+        }
+    ]
 });
 
 

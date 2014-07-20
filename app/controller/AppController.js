@@ -3,7 +3,11 @@ Ext.define('monitoring.controller.AppController', {
     stores: [
         'ActionStore@monitoring.store',
         'SubdivisionsStore@monitoring.store',
-        'SubdivServStore@monitoring.store'
+        'SubdivServStore@monitoring.store',
+        'OrgTypeStore@monitoring.store',
+        'OrgStore@monitoring.store',
+        'UserTypeStore@monitoring.store',
+        'UserStore@monitoring.store'
 
     ],
     views: [
@@ -13,13 +17,20 @@ Ext.define('monitoring.controller.AppController', {
         'Subdivisions@monitoring.view.tabs',
         'Services@monitoring.view.tabs',
         'Settings@monitoring.view.tabs',
-        'OrgType@monitoring.view.tabs'
+        'OrgType@monitoring.view.tabs',
+        'Users@monitoring.view.tabs'
     ],
     models: [
         'Subdivisions@monitoring.model',
-        'OrgType@monitoring.model'
+        'OrgType@monitoring.model',
+        'Users@monitoring.model',
+        'Org@monitoring.model',
+        'UserType@monitoring.model',
+        'SubdivServ@monitoring.model'
     ],
     init: function() {
+
+
         this.control({
             'actionlist': {
                 itemclick: this.OnItemClick

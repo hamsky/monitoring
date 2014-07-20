@@ -1,4 +1,4 @@
-Ext.define('js.monapp.OrgInfo', {
+Ext.define('monitoring.model.Org', {
     extend: 'Ext.data.Model',
     fields: [
         {
@@ -7,11 +7,7 @@ Ext.define('js.monapp.OrgInfo', {
         },
         {
             type: 'string',
-            name: 'iogv'
-        },
-        {
-            type: 'string',
-            name: 'manage'
+            name: 'org'
         }
     ]
 });
