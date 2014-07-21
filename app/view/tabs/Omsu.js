@@ -1,8 +1,8 @@
-Ext.define('monitoring.view.tabs.Services', {
+Ext.define('monitoring.view.tabs.Omsu', {
     extend: 'Ext.grid.Panel',
-    alias: 'widget.services',
-    store: 'SubdivServStore',
-    itemId: 'servGrid',
+    alias: 'widget.omsu',
+    store: 'OmsuStore',
+    itemId: 'omsuGrid',
     plugins: [
         Ext.create('Ext.grid.plugin.RowEditing', {
             clicksToEdit: 2,
@@ -13,25 +13,29 @@ Ext.define('monitoring.view.tabs.Services', {
         this.columns = [
             {xtype: 'rownumberer'},
             {
-                header: 'Услуга',
-                dataIndex: 'service',
-                flex: 60 / 100,
+                header: 'ОМСУ',
+                dataIndex: 'iogv',
                 editor: {
-                    xtype: 'textfield',
-                    readOnly: true
-                }
+                    xtype: 'textfield'
+                },
+                flex: 60 / 100
+            }, {
+                header: 'Руководитель',
+                dataIndex: 'manage',
+                editor: {
+                    xtype: 'textfield'
+                },
+                flex: 20 / 100
             },
             {
-                header: 'Подразделение предоставляющее услугу',
-                dataIndex: 'subdiv',
-                flex: 25 / 100,
+                header: 'Тип',
+                dataIndex: 'type',
+                flex: 5 / 100,
                 editor: {
                     xtype: 'combo',
-                    store: 'SubdivisionsStore',
-                    displayField: 'subdiv',
-                    valueField: 'id',
-                    pageSize: 10
-
+                    store: 'OrgTypeStore',
+                    displayField: 'name',
+                    valueField: 'id'
                 }
             },
             {
@@ -46,12 +50,10 @@ Ext.define('monitoring.view.tabs.Services', {
                             var rec = grid.getStore().getAt(rowIndex);
                             grid.store.remove(rec);
                             grid.store.sync();
-                            grid.store.reload();
                         }
                     }]
 
             }
-
 
         ];
         this.callParent(arguments);
@@ -59,31 +61,17 @@ Ext.define('monitoring.view.tabs.Services', {
     tbar: [
         {
             xtype: 'button',
-            tooltip: 'Отчитаться',
-            text: 'Отчитаться',
-            iconCls: 'date_add',
-            itemId: 'addReport'
-        },
-        {
-            xtype: 'button',
-            tooltip: 'Отчёты',
-            text: 'Отчёты',
-            iconCls: 'date_magnify',
-            itemId: 'viewReports'
-        },
-        {
-            xtype: 'button',
-            iconCls: 'add',
-            text: 'Добавить услугу',
-            tooltip: 'Добавить услугу',
-            itemId: 'addService'
+            tooltip: 'Добавить ОМСУ',
+            iconCls: 'page_white_add',
+            itemId: 'omsuAdd'
         }
     ],
     bbar: {
         xtype: 'pagingtoolbar',
-        store: 'SubdivServStore',
+        store: 'OmsuStore',
         displayInfo: true,
         displayMsg: 'Показано  {0} - {1} из {2}',
         emptyMsg: "Нет данных для отображения"
     }
 });
+

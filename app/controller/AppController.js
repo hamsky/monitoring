@@ -7,7 +7,9 @@ Ext.define('monitoring.controller.AppController', {
         'OrgTypeStore@monitoring.store',
         'OrgStore@monitoring.store',
         'UserTypeStore@monitoring.store',
-        'UserStore@monitoring.store'
+        'UserStore@monitoring.store',
+        'AllServStore@monitoring.store',
+        'OmsuStore@monitoring.store'
 
     ],
     views: [
@@ -18,7 +20,9 @@ Ext.define('monitoring.controller.AppController', {
         'Services@monitoring.view.tabs',
         'Settings@monitoring.view.tabs',
         'OrgType@monitoring.view.tabs',
-        'Users@monitoring.view.tabs'
+        'Users@monitoring.view.tabs',
+        'AllServices@monitoring.view.tabs',
+        'Omsu@monitoring.view.tabs'
     ],
     models: [
         'Subdivisions@monitoring.model',
@@ -26,7 +30,8 @@ Ext.define('monitoring.controller.AppController', {
         'Users@monitoring.model',
         'Org@monitoring.model',
         'UserType@monitoring.model',
-        'SubdivServ@monitoring.model'
+        'SubdivServ@monitoring.model',
+        'AllServices@monitoring.model'
     ],
     init: function() {
 

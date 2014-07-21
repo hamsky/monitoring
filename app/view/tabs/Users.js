@@ -90,7 +90,22 @@ Ext.define('monitoring.view.tabs.Users', {
 
         ];
         this.callParent(arguments);
-    }
+    },
+    bbar: {
+        xtype: 'pagingtoolbar',
+        store: 'UserStore',
+        displayInfo: true,
+        displayMsg: 'Показано  {0} - {1} из {2}',
+        emptyMsg: "Нет данных для отображения"
+    },
+    tbar: [
+        {
+            xtype: 'button',
+            tooltip: 'Добавить нового пользователя',
+            iconCls: 'userAdd',
+            itemId: 'userAdd'
+        }
+    ]
 });
 
 
