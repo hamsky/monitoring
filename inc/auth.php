@@ -4,6 +4,9 @@ session_start();
 
 require 'dbc.php';
 
+
+
+
 $login = $_POST['login'];
 $passw = MD5($_POST['password']);
 
@@ -25,8 +28,8 @@ while ($row = mysql_fetch_array($rs)) {
             $rs3 = mysql_query($qiogv);
             $row3 = mysql_fetch_array($rs3);
             $_SESSION['iogv_name'] = $row3['iogv'];
+            echo "{success:true, text:'Вход осуществлён успешно'}";
         }
-        echo "{success:true, text:'Вход осуществлён успешно'}";
     }
 }
 

@@ -9,7 +9,8 @@ Ext.define('monitoring.controller.AppController', {
         'UserTypeStore@monitoring.store',
         'UserStore@monitoring.store',
         'AllServStore@monitoring.store',
-        'OmsuStore@monitoring.store'
+        'OmsuStore@monitoring.store',
+        'IogvStore@monitoring.store'
 
     ],
     views: [
@@ -22,7 +23,8 @@ Ext.define('monitoring.controller.AppController', {
         'OrgType@monitoring.view.tabs',
         'Users@monitoring.view.tabs',
         'AllServices@monitoring.view.tabs',
-        'Omsu@monitoring.view.tabs'
+        'Omsu@monitoring.view.tabs',
+        'Iogv@monitoring.view.tabs'
     ],
     models: [
         'Subdivisions@monitoring.model',
