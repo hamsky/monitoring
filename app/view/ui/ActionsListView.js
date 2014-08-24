@@ -4,6 +4,7 @@ Ext.define('monitoring.view.ui.ActionsListView', {
     store: 'ActionStore',
     rootVisible: false,
     border: false,
-    layout: 'fit'
+    layout: 'fit',
+    autoWidth:true
 });
 

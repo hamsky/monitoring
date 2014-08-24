@@ -11,12 +11,40 @@ Ext.define('monitoring.view.Viewport', {
             minWidth: 250,
             width: 250,
             layout: 'fit',
-            stateful: true,
+            // stateful: true,
             split: true,
             border: true,
             collapsible: true,
             items: [
-                {xtype: 'actionlist'}
+                {
+                    //  xtype: 'actionlist'
+                    xtype: 'panel',
+                    itemId: 'accord',
+                    layout: {
+                        type:'accordion',
+                        autoWidth: true,
+                        animate: true,
+                        autoScroll: true
+                    },
+                    items: [
+                        {
+                            xtype: 'actionlist',
+                            //iconCls: 'monlogo',
+                            title: '<b>Мониторинг</b>'   
+                        }/*, 
+                        {
+                            xtype: 'panel',
+                            title: '<b>Сообщения</b>',
+                            html: 'Автор предлагает вам, шутки ради забавные разговоры…'
+                        }, 
+                        {
+                            xtype: 'panel',
+                            title: '<b>Информация</b>',
+                            html: 'Я думаю, Дарья, что ты несправедлива к современному искусству…'
+                        }*/
+                    ]
+                            //
+                }
             ]
         },
         {
@@ -27,7 +55,7 @@ Ext.define('monitoring.view.Viewport', {
         },
         {
             region: 'center',
-            layout:'fit',
+            layout: 'fit',
             items: [
                 {
                     xtype: 'workarea'

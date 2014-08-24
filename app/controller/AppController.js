@@ -10,7 +10,8 @@ Ext.define('monitoring.controller.AppController', {
         'UserStore@monitoring.store',
         'AllServStore@monitoring.store',
         'OmsuStore@monitoring.store',
-        'IogvStore@monitoring.store'
+        'IogvStore@monitoring.store',
+        'AllSubdivStore@monitoring.store'
 
     ],
     views: [
@@ -24,7 +25,9 @@ Ext.define('monitoring.controller.AppController', {
         'Users@monitoring.view.tabs',
         'AllServices@monitoring.view.tabs',
         'Omsu@monitoring.view.tabs',
-        'Iogv@monitoring.view.tabs'
+        'Iogv@monitoring.view.tabs',
+        'AllSubdivisions@monitoring.view.tabs',
+        'Viewport@monitoring.view'
     ],
     models: [
         'Subdivisions@monitoring.model',
@@ -36,8 +39,7 @@ Ext.define('monitoring.controller.AppController', {
         'AllServices@monitoring.model'
     ],
     init: function() {
-
-
+      
         this.control({
             'actionlist': {
                 itemclick: this.OnItemClick
@@ -81,6 +83,11 @@ Ext.define('monitoring.controller.AppController', {
 
         }
 ///
+  var acc = Ext.ComponentQuery.query('#accord')[0];
+        acc.add([{title: 'sss', html: 'dddd'}]);
+        console .log(acc);
+
+
         console.log(tabPanel);
     },
     subdivOnClick: function() {

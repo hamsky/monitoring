@@ -108,3 +108,9 @@
 .report{
     background: url('icons/report.png') no-repeat center center !important;    
 }
+
+.monlogo{
+   background-image: url('icons/chart_curve.png')  !important;  
+}
+
+

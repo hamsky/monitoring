@@ -11,6 +11,6 @@ Ext.application({
     ],
     launch: function() {
         console.log('Application started');
-      // var i= Ext.create('monitoring.store.OmsuStore').load();
+      //  var i = Ext.create('monitoring.view.tabs.AllSubdivisions');
     }
 });
