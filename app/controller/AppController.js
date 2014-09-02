@@ -85,7 +85,7 @@ Ext.define('monitoring.controller.AppController', {
 ///
   var acc = Ext.ComponentQuery.query('#accord')[0];
         acc.add([{title: 'sss', html: 'dddd'}]);
-        console .log(acc);
+        console.log(acc);
 
 
         console.log(tabPanel);

@@ -26,6 +26,10 @@
     background: url('icons/email_go.png') no-repeat center center !important;
 }
 
+.smev {
+  background: url('icons/docs.png') no-repeat center center !important;
+}
+
 .userAdd {
     background: url('icons/user_add.png') no-repeat center center !important;
 }
