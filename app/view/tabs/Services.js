@@ -76,7 +76,7 @@ Ext.define('monitoring.view.tabs.Services', {
             iconCls: 'add',
             text: 'Добавить услугу',
             tooltip: 'Добавить услугу',
-            itemId: 'addService'
+            itemId: 'addServiceU'
         }
     ],
     bbar: {

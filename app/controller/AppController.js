@@ -39,7 +39,7 @@ Ext.define('monitoring.controller.AppController', {
         'AllServices@monitoring.model'
     ],
     init: function() {
-      
+
         this.control({
             'actionlist': {
                 itemclick: this.OnItemClick
@@ -49,6 +49,15 @@ Ext.define('monitoring.controller.AppController', {
             },
             '#logout': {
                 click: this.logoutClick
+            },
+            '#addReport': {
+                click: this.addReportClick
+            },
+            '#viewReports': {
+                click: this.viewReportsClick
+            },
+            '#addServiceU':{
+                click:this.addServiceUClick
             }
 
 
@@ -83,7 +92,7 @@ Ext.define('monitoring.controller.AppController', {
 
         }
 ///
-  var acc = Ext.ComponentQuery.query('#accord')[0];
+        var acc = Ext.ComponentQuery.query('#accord')[0];
         acc.add([{title: 'sss', html: 'dddd'}]);
         console.log(acc);
 
@@ -172,9 +181,17 @@ Ext.define('monitoring.controller.AppController', {
                 location.reload();
             }
         });
+    },
+    addReportClick: function() {
+        alert('addReport');
+    },
+    viewReportsClick:function(){
+       alert('viewReports'); 
+    },
+    addServiceUClick:function(){
+             alert('adduservice');   
     }
-
-
+    
 });
 
 
