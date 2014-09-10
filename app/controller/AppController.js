@@ -189,7 +189,80 @@ Ext.define('monitoring.controller.AppController', {
        alert('viewReports'); 
     },
     addServiceUClick:function(){
-             alert('adduservice');   
+                 Ext.create('Ext.window.Window', {
+                                title: 'Добавить услугу',
+                                width: 550,
+                                layout: 'fit',
+                                modal: true,
+                                border: false,
+                                items: [
+                                    new Ext.widget('form', {
+                                        frame: false,
+                                        url: 'inc/functions.php',
+                                        bodyPadding: 10,
+                                        bodyBorder: false,
+                                        defaults: {
+                                            anchor: '100%'
+                                        },
+                                        fieldDefaults: {
+                                            labelAlign: 'left'
+                                        },
+                                        items: [{
+                                                xtype: 'hidden',
+                                                name: 'action',
+                                                value: 'addservice'
+                                            },
+                                            {
+                                                xtype: 'textarea',
+                                                name: 'servicename',
+                                                fieldLabel: 'Наименование',
+                                                height: 130,
+                                                allowBlank: false
+
+                                            }],
+                                        dockedItems: [
+                                            {
+                                                xtype: 'toolbar',
+                                                dock: 'bottom',
+                                                items: [
+                                                    {
+                                                        xtype: 'tbfill'
+                                                    },
+                                                    {
+                                                        xtype: 'button',
+                                                        itemId: 'close',
+                                                        iconCls: 'cancel',
+                                                        text: "Закрыть",
+                                                        handler: function() {
+                                                            this.up('.window').close();
+                                                        }
+                                                    },
+                                                    {
+                                                        xtype: 'button',
+                                                        itemId: 'submit',
+                                                        formBind: true,
+                                                        iconCls: 'accept',
+                                                        text: "Добавить",
+                                                        listeners: {
+                                                            click: function() {
+                                                                var form = this.up('form').getForm();
+                                                                form.submit({
+                                                                    scope: outer_scope,
+                                                                    success: function(form, action) {
+                                                                        this.grid.getStore().reload();
+                                                                        form.reset();
+                                                                    }
+                                                                });
+                                                            }
+                                                        }
+
+                                                    }
+                                                ]}]
+                                    })
+
+                                ]
+
+                            }).show();
     }
     
 });
