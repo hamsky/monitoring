@@ -2,9 +2,6 @@ Ext.define('monitoring.view.ui.HeaderView', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.mheader',
     border: true,
-//    style: {
-//        border: '1px inset #336699'
-//    },
     height: 50,
     items: [{
             xtype: 'label',
