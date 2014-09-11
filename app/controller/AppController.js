@@ -11,7 +11,8 @@ Ext.define('monitoring.controller.AppController', {
         'AllServStore@monitoring.store',
         'OmsuStore@monitoring.store',
         'IogvStore@monitoring.store',
-        'AllSubdivStore@monitoring.store'
+        'AllSubdivStore@monitoring.store',
+        'ServicesStore@monitoring.store'
 
     ],
     views: [
@@ -56,8 +57,8 @@ Ext.define('monitoring.controller.AppController', {
             '#viewReports': {
                 click: this.viewReportsClick
             },
-            '#addServiceU':{
-                click:this.addServiceUClick
+            '#addServiceU': {
+                click: this.addServiceUClick
             }
 
 
@@ -93,7 +94,7 @@ Ext.define('monitoring.controller.AppController', {
         }
 ///
         var acc = Ext.ComponentQuery.query('#accord')[0];
-        acc.add([{title: 'sss', html: 'dddd'}]);
+        acc.add([{title: 'Информация', html: 'dddd'}]);
         console.log(acc);
 
 
@@ -185,86 +186,100 @@ Ext.define('monitoring.controller.AppController', {
     addReportClick: function() {
         alert('addReport');
     },
-    viewReportsClick:function(){
-       alert('viewReports'); 
+    viewReportsClick: function() {
+        alert('viewReports');
     },
-    addServiceUClick:function(){
-                 Ext.create('Ext.window.Window', {
-                                title: 'Добавить услугу',
-                                width: 550,
-                                layout: 'fit',
-                                modal: true,
-                                border: false,
-                                items: [
-                                    new Ext.widget('form', {
-                                        frame: false,
-                                        url: 'inc/functions.php',
-                                        bodyPadding: 10,
-                                        bodyBorder: false,
-                                        defaults: {
-                                            anchor: '100%'
-                                        },
-                                        fieldDefaults: {
-                                            labelAlign: 'left'
-                                        },
-                                        items: [{
-                                                xtype: 'hidden',
-                                                name: 'action',
-                                                value: 'addservice'
-                                            },
-                                            {
-                                                xtype: 'textarea',
-                                                name: 'servicename',
-                                                fieldLabel: 'Наименование',
-                                                height: 130,
-                                                allowBlank: false
+    addServiceUClick: function() {
+        var sm = Ext.create('Ext.selection.CheckboxModel');
 
-                                            }],
-                                        dockedItems: [
-                                            {
-                                                xtype: 'toolbar',
-                                                dock: 'bottom',
-                                                items: [
-                                                    {
-                                                        xtype: 'tbfill'
-                                                    },
-                                                    {
-                                                        xtype: 'button',
-                                                        itemId: 'close',
-                                                        iconCls: 'cancel',
-                                                        text: "Закрыть",
-                                                        handler: function() {
-                                                            this.up('.window').close();
-                                                        }
-                                                    },
-                                                    {
-                                                        xtype: 'button',
-                                                        itemId: 'submit',
-                                                        formBind: true,
-                                                        iconCls: 'accept',
-                                                        text: "Добавить",
-                                                        listeners: {
-                                                            click: function() {
-                                                                var form = this.up('form').getForm();
-                                                                form.submit({
-                                                                    scope: outer_scope,
-                                                                    success: function(form, action) {
-                                                                        this.grid.getStore().reload();
-                                                                        form.reset();
-                                                                    }
-                                                                });
-                                                            }
-                                                        }
+        Ext.create('Ext.window.Window', {
+            title: 'Добавить услуги для ИОГВ',
+            width: 750,
+            height: 400,
+            layout: 'fit',
+            modal: true,
+            border: false,
+            frame: false,
+            items: [
+                ///
+                Ext.create('Ext.grid.Panel', {
+                    store: 'ServicesStore',
+                    selModel: sm,
+                    layout: 'fit',
+                    itemId: 'srvAddGrid',
+                    columns: [
+                        {
+                            header: 'Услуга',
+                            dataIndex: 'service',
+                            editor: {
+                                xtype: 'textfield'
+                            },
+                            flex: 1
+                        }
 
-                                                    }
-                                                ]}]
-                                    })
+                    ],
+                    bbar: Ext.create('Ext.PagingToolbar', {
+                        store: 'ServicesStore',
+                        displayInfo: true,
+                        displayMsg: 'Показано  {0} - {1} из {2}',
+                        emptyMsg: "Нет данных для отображения",
+                        listeners: {
+                            change: function(pagingToolBar, changeEvent) {
+                                var pz = this.store.pageSize;
+                                var pg = this.store.currentPage;
+                                var tc = this.store.getTotalCount();
+                                //   console.log(pg * pz - (pz - 1));
+                            }
 
-                                ]
+                        }
 
-                            }).show();
+                    })
+
+                })
+
+
+                        ///
+            ],
+            dockedItems: [
+                Ext.create('Ext.toolbar.Toolbar', {
+                    items: [
+                        {
+                            text: 'Сохранить',
+                            iconCls: 'save',
+                            handler: function() {
+                                var json = Ext.JSON.encode(sm.getSelection().map(function(e) {
+                                    return e.data;
+                                }));
+                                Ext.Ajax.request({
+                                    url: 'app/php/actions/addsrviogv.php',
+                                    dataType: "json",
+                                    params: {
+                                        services: json
+                                    },
+                                    method: 'POST',
+                                    success: function(response, options) {
+                                        Ext.ComponentQuery.query('#srvAddGrid')[0].getStore().reload();
+                                        Ext.ComponentQuery.query('#servGrid')[0].getStore().reload();
+                                    }
+                                });
+                            }
+                        },
+                        {
+                            text: 'Закрыть',
+                            iconCls: 'cancel',
+                            handler: function() {
+                                this.up('.window').close();
+
+                            }
+                        }
+                    ]
+                })
+            ]
+        }).show();
+
+        //eof 
     }
-    
+
 });
 
 
