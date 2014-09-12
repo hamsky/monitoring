@@ -57,7 +57,7 @@ Ext.define('js.monapp.RegFormView', {
                     listConfig: {
                         getInnerTpl: function() {
                             return '<b>{iogv}</b>' +
-                                    '<div class="rate">Руководитель: {manage}</div>';
+                                   '<div class="rate">Руководитель: {manage}</div>';
                         }
                     }
                 }

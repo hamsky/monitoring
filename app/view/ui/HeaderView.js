@@ -5,7 +5,7 @@ Ext.define('monitoring.view.ui.HeaderView', {
     height: 50,
     items: [{
             xtype: 'label',
-            itemId: 'org_name',
+            itemId: 'orgName',
             text: ' ',
             style: {
                 float: 'left',

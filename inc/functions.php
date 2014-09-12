@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 session_start();
@@ -14,6 +15,9 @@ switch ($action) {
     case'logout':
         logout();
         echo "{success:true}";
+        break;
+    case 'getorgname':
+        echo "{success:true,name:'" . $_SESSION['iogv_name'] . "'}";
         break;
     case'registration':
         $request = "INSERT INTO users( login,password, email,org,ulevel) VALUES('$username',MD5('$password'),'$email','$iogv',2)";

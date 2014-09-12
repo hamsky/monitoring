@@ -41,6 +41,24 @@ Ext.define('monitoring.controller.AppController', {
     ],
     init: function() {
 
+ 
+     Ext.Ajax.request({
+        url: 'inc/functions.php',
+        method: 'POST',
+        params: {action: 'getorgname'},
+        success: function(result, request) {
+            var json = Ext.decode(result.responseText);
+            
+            //Ext.ComponentQuery.query('#orgName')[0].setText('<b>' + json.name + '</b>', false);
+            
+        }, 
+        failure: function(result, request) {
+
+        }
+    });
+ 
+ 
+
         this.control({
             'actionlist': {
                 itemclick: this.OnItemClick
