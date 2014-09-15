@@ -8,6 +8,8 @@ Ext.define('monitoring.view.tabs.Services', {
             clicksToEdit: 2,
             clicksToMoveEditor: 1,
             autoCancel: false
+            
+            
         })],
     initComponent: function() {
         this.columns = [
