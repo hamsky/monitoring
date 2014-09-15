@@ -10,7 +10,9 @@ Ext.define('monitoring.view.tabs.Subdivisions', {
         Ext.create('Ext.grid.plugin.RowEditing', {
             clicksToEdit: 2,
             clicksToMoveEditor: 1,
-            autoCancel: false})
+            autoCancel: false
+        
+        })
     ],
     initComponent: function() {
         this.columns = [
