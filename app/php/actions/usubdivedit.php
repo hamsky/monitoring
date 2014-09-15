@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require '../../inc/dbc.php';
+require '../../../inc/dbc.php';
 $subdiv = $_POST['subdiv'];
 $id = $_POST['id'];
 
