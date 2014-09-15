@@ -10,8 +10,24 @@ Ext.define('monitoring.view.tabs.Subdivisions', {
         Ext.create('Ext.grid.plugin.RowEditing', {
             clicksToEdit: 2,
             clicksToMoveEditor: 1,
-            autoCancel: false
-        
+            autoCancel: false,
+            listeners: {
+                canceledit: function(editor, e, eOpts) {
+                    console.log('cancel edit');
+                },
+                edit: function(editor, e, eOpts) {
+                    Ext.Ajax.request({
+                        url: 'monitoring/actions/subdivedit.php',
+                        params: e.record.getData(),
+                        success: function(response, options) {
+                            // e.record.commit();
+                            Ext.ComponentQuery.query('#subdivGrid')[0].getStore().reload();
+                        }
+
+                    });
+                }
+            }
+
         })
     ],
     initComponent: function() {
