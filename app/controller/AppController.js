@@ -41,23 +41,21 @@ Ext.define('monitoring.controller.AppController', {
     ],
     init: function() {
 
- 
-     Ext.Ajax.request({
-        url: 'inc/functions.php',
-        method: 'POST',
-        params: {action: 'getorgname'},
-        success: function(result, request) {
-            var json = Ext.decode(result.responseText);
-            
-            //Ext.ComponentQuery.query('#orgName')[0].setText('<b>' + json.name + '</b>', false);
-            
-        }, 
-        failure: function(result, request) {
 
-        }
-    });
- 
- 
+        Ext.Ajax.request({
+            url: 'inc/functions.php',
+            method: 'POST',
+            params: {action: 'getorgname'},
+            success: function(result, request) {
+                var json = Ext.decode(result.responseText);
+                Ext.ComponentQuery.query('#orgName')[0].setText('<b>' + json.name + '</b>', false);
+            },
+            failure: function(result, request) {
+
+            }
+        });
+
+
 
         this.control({
             'actionlist': {
@@ -110,12 +108,11 @@ Ext.define('monitoring.controller.AppController', {
             }
 
         }
-///
-        var acc = Ext.ComponentQuery.query('#accord')[0];
-        acc.add([{title: 'Информация', html: 'dddd'}]);
-        console.log(acc);
-
-
+        /*
+         var acc = Ext.ComponentQuery.query('#accord')[0];
+         acc.add([{title: 'Информация', html: 'dddd'}]);
+         console.log(acc);
+         */
         console.log(tabPanel);
     },
     subdivOnClick: function() {

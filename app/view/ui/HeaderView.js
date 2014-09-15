@@ -10,7 +10,7 @@ Ext.define('monitoring.view.ui.HeaderView', {
             style: {
                 float: 'left',
                 'font-size': '17px',
-                top: '15px',
+               // top: '15px',
                 margin: '11px 0 0 5px',
                 heigt: '50px'
 
