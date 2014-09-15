@@ -17,7 +17,7 @@ Ext.define('monitoring.view.tabs.Subdivisions', {
                 },
                 edit: function(editor, e, eOpts) {
                     Ext.Ajax.request({
-                        url: 'monitoring/actions/subdivedit.php',
+                        url: 'app/php/actions/editsubdiv.php',
                         params: e.record.getData(),
                         success: function(response, options) {
                             // e.record.commit();
