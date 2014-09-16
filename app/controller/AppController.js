@@ -12,7 +12,8 @@ Ext.define('monitoring.controller.AppController', {
         'OmsuStore@monitoring.store',
         'IogvStore@monitoring.store',
         'AllSubdivStore@monitoring.store',
-        'ServicesStore@monitoring.store'
+        'ServicesStore@monitoring.store',
+        'ReportStore@monitoring.store'
 
     ],
     views: [
@@ -206,7 +207,7 @@ Ext.define('monitoring.controller.AppController', {
         alert('viewReports');
 
         Ext.create('Ext.window.Window', {
-            title: 'Услуги',
+            title: 'Оказанные услуги',
             width: 900,
             height: 400,
             autoShow: true,
