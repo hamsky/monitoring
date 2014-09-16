@@ -201,7 +201,127 @@ Ext.define('monitoring.controller.AppController', {
         });
     },
     addReportClick: function() {
-        alert('addReport');
+        // 
+        Ext.create('Ext.window.Window', {
+            title: 'Отчитаться',
+            width: 500,
+            autoShow: true,
+            iconCls: 'report_add',
+            modal: true,
+            border: false,
+            closable: true,
+            items: [
+                {
+                    xtype: 'form',
+                    url: 'inc/report.php',
+                    frame: false,
+                    bodyPadding: 15,
+                    defaults: {
+                        xtype: 'textfield',
+                        anchor: '100%',
+                        labelWidth: 60
+                    },
+                    items: [
+                        {
+                            xtype: 'combobox',
+                            name: 'serv',
+                            store: 'ServicesStore',
+                            valueField: 'id',
+                            displayField: 'service',
+                            fieldLabel: "Услуга",
+                            allowBlank: false,
+                            listConfig: {
+                                getInnerTpl: function() {
+                                    return '<b>{service}</b>';
+                                }
+                            }
+                        },
+                        {
+                            xtype: 'datefield',
+                            name: 'date',
+                            fieldLabel: 'Дата',
+                            anchor: '50%',
+                            allowBlank: false
+                        },
+                        {
+                            xtype: 'numberfield',
+                            name: 'val',
+                            fieldLabel: 'Предоставлено',
+                            anchor: '50%',
+                            minValue: 0,
+                            value: 0,
+                            allowBlank: false,
+                            labelWidth: 100
+                        }, {
+                            xtype: 'numberfield',
+                            name: 'jval',
+                            fieldLabel: 'Подано жалоб',
+                            anchor: '50%',
+                            minValue: 0,
+                            value: 0,
+                            allowBlank: false,
+                            labelWidth: 100,
+                            listeners: {
+                                change: function(field, value) {
+                                    var fm = this.up('form').getForm().findField('jst');
+                                    if (value !== 0) {
+                                        fm.setDisabled(false);
+                                    } else {
+                                        fm.setDisabled(true);
+                                        fm.setValue('');
+                                    }
+                                    console.log(fm);
+                                }
+                            }
+                        },
+                        {
+                            xtype: 'fieldset',
+                            title: '<b>Суть поданых жалоб:</b>',
+                            defaultType: 'textfield',
+                            defaults: {
+                                anchor: '100%'
+                            },
+                            layout: 'anchor',
+                            items: [
+                                {
+                                    xtype: 'textarea',
+                                    height: 70,
+                                    name: 'jst',
+                                    disabled: true
+                                }
+                            ]}
+
+                    ],
+                    dockedItems: [
+                        {
+                            xtype: 'toolbar',
+                            dock: 'bottom'
+                            , items: [
+                                {
+                                    xtype: 'tbfill'
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'submit',
+                                    formBind: true,
+                                    iconCls: 'table_go',
+                                    text: "Отправить",
+                                    handler: function() {
+                                        var form = this.up('form').getForm();
+                                        form.submit({
+                                            success: function(form, action) {
+                                                form.reset();
+                                            }
+                                        });
+
+                                    }
+                                }]}
+                    ]
+
+                }]
+
+        });
+        //
     },
     viewReportsClick: function() {
         alert('viewReports');
