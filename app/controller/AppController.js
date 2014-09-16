@@ -37,7 +37,8 @@ Ext.define('monitoring.controller.AppController', {
         'Org@monitoring.model',
         'UserType@monitoring.model',
         'SubdivServ@monitoring.model',
-        'AllServices@monitoring.model'
+        'AllServices@monitoring.model',
+        'Reports@monitoring.model'
     ],
     init: function() {
 
@@ -203,6 +204,49 @@ Ext.define('monitoring.controller.AppController', {
     },
     viewReportsClick: function() {
         alert('viewReports');
+
+        Ext.create('Ext.window.Window', {
+            title: 'Услуги',
+            width: 900,
+            height: 400,
+            autoShow: true,
+            iconCls: 'chart_bar',
+            modal: true,
+            border: false,
+            frame: false,
+            closable: true,
+            layout: 'fit',
+            items: [
+                Ext.create('Ext.grid.Panel', {
+                    layout: 'fit',
+                    store: ReportStore,
+                    features: [
+                        Ext.create('Ext.grid.feature.Grouping', {
+                            groupHeaderTpl: '{name}'
+                        })
+                    ],
+                    columns: [
+                        {
+                            text: 'Дата',
+                            flex: 1,
+                            dataIndex: 'date'
+                        },
+                        {
+                            text: 'Количество предоставленных услуг',
+                            flex: 1,
+                            dataIndex: 'value'
+                        },
+                        {
+                            text: 'Количество жалоб',
+                            flex: 1,
+                            dataIndex: 'complaints'
+                        }
+                    ]
+                })
+
+            ]
+        });
+
     },
     addServiceUClick: function() {
         var sm = Ext.create('Ext.selection.CheckboxModel');
