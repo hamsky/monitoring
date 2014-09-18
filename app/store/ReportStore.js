@@ -1,7 +1,7 @@
-Ext.extend('moniroring.store.ReportStore', {
+Ext.define('moniroring.store.ReportStore', {
     extend: 'Ext.data.Store',
     autoLoad: true,
-    model: 'Report',
+    model: 'monitoring.model.Report',
     fields: ['id', 'date', 'service', 'value', 'complaints'],
     groupField: 'service',
     proxy: {

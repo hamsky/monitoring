@@ -12,8 +12,8 @@ Ext.define('monitoring.controller.AppController', {
         'OmsuStore@monitoring.store',
         'IogvStore@monitoring.store',
         'AllSubdivStore@monitoring.store',
-        'ServicesStore@monitoring.store',
-        'ReportStore@monitoring.store'
+        'ServicesStore@monitoring.store'//,
+       // 'ReportStore@monitoring.store'
 
     ],
     views: [
@@ -38,8 +38,8 @@ Ext.define('monitoring.controller.AppController', {
         'Org@monitoring.model',
         'UserType@monitoring.model',
         'SubdivServ@monitoring.model',
-        'AllServices@monitoring.model',
-        'Reports@monitoring.model'
+        'AllServices@monitoring.model'//,
+      //  'Report@monitoring.model'
     ],
     init: function() {
 

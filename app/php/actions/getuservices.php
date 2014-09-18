@@ -1,8 +1,9 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 session_start();
 
-require '../../inc/dbc.php';
+require '../../../inc/dbc.php';
 
 $iogv = $_SESSION['iogv'];
 $query = "select reports.id, reports.date, reports.value, reports.complaints, services.service from reports, services where org=$iogv and services.id=reports.service ";
