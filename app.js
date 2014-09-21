@@ -12,7 +12,5 @@ Ext.application({
     launch: function() {
         Ext.tip.QuickTipManager.init();
         console.log('Application started');
-      //  var i = Ext.create('moniroring.store.ReportStore');
-        //i.load();
     }
 });
