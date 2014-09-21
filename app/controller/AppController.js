@@ -12,8 +12,9 @@ Ext.define('monitoring.controller.AppController', {
         'OmsuStore@monitoring.store',
         'IogvStore@monitoring.store',
         'AllSubdivStore@monitoring.store',
-        'ServicesStore@monitoring.store'//,
-       // 'ReportStore@monitoring.store'
+        'ServicesStore@monitoring.store',
+        'RepSrvStore@monitoring.store',
+        'ReportStore@monitoring.store'
 
     ],
     views: [
@@ -39,20 +40,20 @@ Ext.define('monitoring.controller.AppController', {
         'UserType@monitoring.model',
         'SubdivServ@monitoring.model',
         'AllServices@monitoring.model'//,
-      //  'Report@monitoring.model'
+                //  'Report@monitoring.model'
     ],
-    init: function() {
+    init: function () {
 
 
         Ext.Ajax.request({
             url: 'inc/functions.php',
             method: 'POST',
             params: {action: 'getorgname'},
-            success: function(result, request) {
+            success: function (result, request) {
                 var json = Ext.decode(result.responseText);
                 Ext.ComponentQuery.query('#orgName')[0].setText('<b>' + json.name + '</b>', false);
             },
-            failure: function(result, request) {
+            failure: function (result, request) {
 
             }
         });
@@ -83,13 +84,13 @@ Ext.define('monitoring.controller.AppController', {
 
         });
     },
-    OnItemClick: function(tree, record, item, index, e, options) {
+    OnItemClick: function (tree, record, item, index, e, options) {
         var nodeText = record.data.text;
         var tabPanel = Ext.ComponentQuery.query('#workArea')[0];
         var existTab = false;
 ////
         if (record.data.leaf) {
-            tabPanel.items.each(function(tab) {
+            tabPanel.items.each(function (tab) {
                 if (nodeText === tab.title) {
                     existTab = true;
                 }
@@ -117,7 +118,7 @@ Ext.define('monitoring.controller.AppController', {
          */
         console.log(tabPanel);
     },
-    subdivOnClick: function() {
+    subdivOnClick: function () {
         Ext.create('Ext.window.Window', {
             title: 'Добавить подразделение',
             width: 450,
@@ -163,7 +164,7 @@ Ext.define('monitoring.controller.AppController', {
                                     itemId: 'close',
                                     iconCls: 'cancel',
                                     text: "Закрыть",
-                                    handler: function() {
+                                    handler: function () {
                                         this.up('window').close();
                                     }
                                 },
@@ -174,10 +175,10 @@ Ext.define('monitoring.controller.AppController', {
                                     iconCls: 'accept',
                                     text: "Добавить",
                                     listeners: {
-                                        click: function() {
+                                        click: function () {
                                             var form = this.up('form').getForm();
                                             form.submit({
-                                                success: function(form, action) {
+                                                success: function (form, action) {
                                                     Ext.ComponentQuery.query('#subdivGrid')[0].getStore().reload();
                                                     form.reset();
                                                 }
@@ -191,16 +192,16 @@ Ext.define('monitoring.controller.AppController', {
             ]
         }).show();
     },
-    logoutClick: function() {
+    logoutClick: function () {
         Ext.Ajax.request({
             url: 'inc/functions.php',
             params: {action: 'logout'},
-            success: function() {
+            success: function () {
                 location.reload();
             }
         });
     },
-    addReportClick: function() {
+    addReportClick: function () {
         // 
         Ext.create('Ext.window.Window', {
             title: 'Отчитаться',
@@ -213,7 +214,7 @@ Ext.define('monitoring.controller.AppController', {
             items: [
                 {
                     xtype: 'form',
-                    url: 'inc/report.php',
+                    url: 'app/php/actions/addreport.php',
                     frame: false,
                     bodyPadding: 15,
                     defaults: {
@@ -225,13 +226,13 @@ Ext.define('monitoring.controller.AppController', {
                         {
                             xtype: 'combobox',
                             name: 'serv',
-                            store: 'ServicesStore',
+                            store: 'RepSrvStore',
                             valueField: 'id',
                             displayField: 'service',
                             fieldLabel: "Услуга",
                             allowBlank: false,
                             listConfig: {
-                                getInnerTpl: function() {
+                                getInnerTpl: function () {
                                     return '<b>{service}</b>';
                                 }
                             }
@@ -262,7 +263,7 @@ Ext.define('monitoring.controller.AppController', {
                             allowBlank: false,
                             labelWidth: 100,
                             listeners: {
-                                change: function(field, value) {
+                                change: function (field, value) {
                                     var fm = this.up('form').getForm().findField('jst');
                                     if (value !== 0) {
                                         fm.setDisabled(false);
@@ -306,10 +307,10 @@ Ext.define('monitoring.controller.AppController', {
                                     formBind: true,
                                     iconCls: 'table_go',
                                     text: "Отправить",
-                                    handler: function() {
+                                    handler: function () {
                                         var form = this.up('form').getForm();
                                         form.submit({
-                                            success: function(form, action) {
+                                            success: function (form, action) {
                                                 form.reset();
                                             }
                                         });
@@ -323,7 +324,7 @@ Ext.define('monitoring.controller.AppController', {
         });
         //
     },
-    viewReportsClick: function() {
+    viewReportsClick: function () {
         alert('viewReports');
 
         Ext.create('Ext.window.Window', {
@@ -340,7 +341,7 @@ Ext.define('monitoring.controller.AppController', {
             items: [
                 Ext.create('Ext.grid.Panel', {
                     layout: 'fit',
-                    store: ReportStore,
+                    store: 'ReportStore',
                     features: [
                         Ext.create('Ext.grid.feature.Grouping', {
                             groupHeaderTpl: '{name}'
@@ -369,7 +370,7 @@ Ext.define('monitoring.controller.AppController', {
         });
 
     },
-    addServiceUClick: function() {
+    addServiceUClick: function () {
         var sm = Ext.create('Ext.selection.CheckboxModel');
 
         Ext.create('Ext.window.Window', {
@@ -404,7 +405,7 @@ Ext.define('monitoring.controller.AppController', {
                         displayMsg: 'Показано  {0} - {1} из {2}',
                         emptyMsg: "Нет данных для отображения",
                         listeners: {
-                            change: function(pagingToolBar, changeEvent) {
+                            change: function (pagingToolBar, changeEvent) {
                                 var pz = this.store.pageSize;
                                 var pg = this.store.currentPage;
                                 var tc = this.store.getTotalCount();
@@ -426,8 +427,8 @@ Ext.define('monitoring.controller.AppController', {
                         {
                             text: 'Сохранить',
                             iconCls: 'save',
-                            handler: function() {
-                                var json = Ext.JSON.encode(sm.getSelection().map(function(e) {
+                            handler: function () {
+                                var json = Ext.JSON.encode(sm.getSelection().map(function (e) {
                                     return e.data;
                                 }));
                                 Ext.Ajax.request({
@@ -437,7 +438,7 @@ Ext.define('monitoring.controller.AppController', {
                                         services: json
                                     },
                                     method: 'POST',
-                                    success: function(response, options) {
+                                    success: function (response, options) {
                                         Ext.ComponentQuery.query('#srvAddGrid')[0].getStore().reload();
                                         Ext.ComponentQuery.query('#servGrid')[0].getStore().reload();
                                     }
@@ -447,7 +448,7 @@ Ext.define('monitoring.controller.AppController', {
                         {
                             text: 'Закрыть',
                             iconCls: 'cancel',
-                            handler: function() {
+                            handler: function () {
                                 this.up('.window').close();
 
                             }
