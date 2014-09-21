@@ -31,7 +31,7 @@ Ext.define('monitoring.view.tabs.Settings', {
                             handler: function () {
                                 var gridvalues = this.up('propertygrid').getSource();
                                 Ext.Ajax.request({
-                                    url: 'monitoring/actions/updsettings.php',
+                                    url: 'app/php/actions/saveusettings.php',
                                     params: gridvalues
                                 });
 
