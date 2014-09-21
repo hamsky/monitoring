@@ -10,6 +10,7 @@ var store = {
 Ext.define('monitoring.view.tabs.Settings', {
     extend: 'Ext.grid.property.Grid',
     alias: 'widget.usersettings',
+    itemId: 'userSettings',
     source: store,
     sortableColumns: false,
     propertyNames: {
@@ -43,7 +44,20 @@ Ext.define('monitoring.view.tabs.Settings', {
             cols[0].setText("Параметр");
             cols[1].setText("Значение");
             cols[0].setWidth(200);
-            //this.store=store1;
+
+            Ext.Ajax.request({
+                url: 'app/php/actions/getusersettings.php',
+                success: function (response, opts) {
+                    var src = Ext.decode(response.responseText);
+                    store.login = src[0].login;
+                    store.state = src[0].enabled;
+                    store.email = src[0].email;
+                    store.ved = src[0].org;
+                    Ext.ComponentQuery.query('#userSettings')[0].setSource(store);
+                }
+            });
+
+
         },
         beforeedit: function (editor, e, opts) {
             if (e.record.get('name') === 'ved' || e.record.get('name') === 'state' || e.record.get('name') === 'isadmin') {
