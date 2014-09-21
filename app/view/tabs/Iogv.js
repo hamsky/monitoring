@@ -7,9 +7,37 @@ Ext.define('monitoring.view.tabs.Iogv', {
         Ext.create('Ext.grid.plugin.RowEditing', {
             clicksToEdit: 2,
             clicksToMoveEditor: 1,
-            autoCancel: false
+            autoCancel: false,
+            listeners: {
+                canceledit: function (editor, e, eOpts) {
+                    console.log('cancel edit');
+                },
+                edit: function (editor, e, eOpts) {
+                    console.log('edit');
+
+                    if (!isFinite(e.record.data.type)) {
+                        console.log(this.lookupReference('ots'));
+                        Ext.ComponentQuery.query('#orgTypeStore')[0].each(function (record) {
+                            if (record.get('type') === e.record.data.type) {
+                                console.log('ok');
+                                e.record.data['type'] = record.get('id');
+                            }
+                        });
+                    }
+                    ;
+
+                    Ext.Ajax.request({
+                        url: 'app/php/actions/editiogv.php',
+                        params: e.record.getData(),
+                        success: function (response, options) {
+                            Ext.ComponentQuery.query('#iogvGrid')[0].getStore().reload();
+                        }
+
+                    });
+                }
+            }
         })],
-    initComponent: function() {
+    initComponent: function () {
         this.columns = [
             {xtype: 'rownumberer'},
             {
@@ -46,7 +74,7 @@ Ext.define('monitoring.view.tabs.Iogv', {
                     {
                         iconCls: 'delete',
                         tooltip: 'Удалить',
-                        handler: function(grid, rowIndex, colIndex) {
+                        handler: function (grid, rowIndex, colIndex) {
                             var rec = grid.getStore().getAt(rowIndex);
                             grid.store.remove(rec);
                             grid.store.sync();
