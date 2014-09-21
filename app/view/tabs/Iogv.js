@@ -16,8 +16,10 @@ Ext.define('monitoring.view.tabs.Iogv', {
                     console.log('edit');
 
                     if (!isFinite(e.record.data.type)) {
-                        console.log(this.lookupReference('ots'));
-                        Ext.ComponentQuery.query('#orgTypeStore')[0].each(function (record) {
+                        var str = Ext.getStore('OrgTypeStore').load();
+                                  
+                        str.each(function (record) {
+                            console.log(record.get('type'));
                             if (record.get('type') === e.record.data.type) {
                                 console.log('ok');
                                 e.record.data['type'] = record.get('id');
