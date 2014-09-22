@@ -1,9 +1,9 @@
 Ext.define('monitoring.view.tabs.AllReports', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.allreports',
-   // store: {},
+    // store: {},
     itemId: 'allReports',
-      initComponent: function() {
+    initComponent: function () {
         this.columns = [
             {
                 text: 'Дата',
@@ -48,10 +48,10 @@ Ext.define('monitoring.view.tabs.AllReports', {
             valueField: 'id',
             pageSize: 10,
             listeners: {
-                change: function(elem, newValue, oldValue) {
+                change: function (elem, newValue, oldValue) {
                     var str = Ext.create('Ext.data.JsonStore', {
                         model: 'monitoring.model.AllReports',
-                        fields: [/*'id',*/ 'date', 'service', 'value', 'complaints', 'gcompl', 'subdiv'],
+                        fields: ['id', 'date', 'service', 'value', 'complaints', 'gcompl', 'subdiv'],
                         groupField: 'service',
                         proxy: {
                             type: 'ajax',
@@ -68,24 +68,23 @@ Ext.define('monitoring.view.tabs.AllReports', {
                         }
                     }).load();
                     Ext.ComponentQuery.query('#allReports')[0].getStore().group('service');
-                    Ext.ComponentQuery.query('#allReports')[0].getView().bindStore(str);
-               
-                
+                    Ext.ComponentQuery.query('#allReports')[0].reconfigure(str);//.getView()//.bindStore(str);
+                    Ext.ComponentQuery.query('#allReports')[0].getView().features[0].collapseAll();
                 }}
         }
     ],
-      features: [
+    features: [
         Ext.create('Ext.grid.feature.Grouping', {
-            groupHeaderTpl: '{name}'
+            groupHeaderTpl: '{name}',
+            startCollapsed: true
         })
-    ]
-//    plugins: [{
-//            ptype: 'rowexpander',
-//            rowBodyTpl: new Ext.XTemplate(
-//                    '<p><b>Жалобы:</b> {complaints}</p>',
-//                    '<p><b>Суть жалоб:</b> {gcompl}</p>',
-//                    '<p><b>Подразделение оказывающее услугу:</b> {subdiv}</p>'
-//                    )
-//        }],
-    
+    ],
+    plugins: [{
+            ptype: 'rowexpander',
+            rowBodyTpl: new Ext.XTemplate(
+                    '<p><b>Суть жалоб:</b> {gcompl}</p>',
+                    '<p><b>Подразделение оказывающее услугу:</b> {subdiv}</p>'
+                    )
+        }]
+
 });
