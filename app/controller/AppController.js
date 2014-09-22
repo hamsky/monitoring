@@ -39,8 +39,7 @@ Ext.define('monitoring.controller.AppController', {
         'Org@monitoring.model',
         'UserType@monitoring.model',
         'SubdivServ@monitoring.model',
-        'AllServices@monitoring.model'//,
-                //  'Report@monitoring.model'
+        'AllServices@monitoring.model'
     ],
     init: function () {
 
@@ -78,6 +77,9 @@ Ext.define('monitoring.controller.AppController', {
             },
             '#addServiceU': {
                 click: this.addServiceUClick
+            },
+            '#addOrgType':{
+                click: this.addOrgtype
             }
 
 
@@ -111,11 +113,7 @@ Ext.define('monitoring.controller.AppController', {
             }
 
         }
-        /*
-         var acc = Ext.ComponentQuery.query('#accord')[0];
-         acc.add([{title: 'Информация', html: 'dddd'}]);
-         console.log(acc);
-         */
+
         console.log(tabPanel);
     },
     subdivOnClick: function () {
@@ -459,7 +457,12 @@ Ext.define('monitoring.controller.AppController', {
         }).show();
 
         //eof 
+    },
+    addOrgType:function(){
+        
     }
+
+
 
 });
 

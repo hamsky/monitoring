@@ -63,6 +63,7 @@ Ext.define('monitoring.view.tabs.Iogv', {
                 flex: 5 / 100,
                 editor: {
                     xtype: 'combo',
+                    itemId:'cType',
                     store: 'OrgTypeStore',
                     displayField: 'name',
                     valueField: 'id'

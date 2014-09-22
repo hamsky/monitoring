@@ -20,7 +20,6 @@ Ext.define('monitoring.view.tabs.Subdivisions', {
                         url: 'app/php/actions/editsubdiv.php',
                         params: e.record.getData(),
                         success: function(response, options) {
-                            // e.record.commit();
                             Ext.ComponentQuery.query('#subdivGrid')[0].getStore().reload();
                         }
 
