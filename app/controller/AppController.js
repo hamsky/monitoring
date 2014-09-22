@@ -30,7 +30,8 @@ Ext.define('monitoring.controller.AppController', {
         'Omsu@monitoring.view.tabs',
         'Iogv@monitoring.view.tabs',
         'AllSubdivisions@monitoring.view.tabs',
-        'Viewport@monitoring.view'
+        'Viewport@monitoring.view',
+        'AllReports@monitoring.view.tabs'
     ],
     models: [
         'Subdivisions@monitoring.model',
@@ -39,7 +40,8 @@ Ext.define('monitoring.controller.AppController', {
         'Org@monitoring.model',
         'UserType@monitoring.model',
         'SubdivServ@monitoring.model',
-        'AllServices@monitoring.model'
+        'AllServices@monitoring.model',
+        'AllReports@monitoring.model'
     ],
     init: function() {
 
