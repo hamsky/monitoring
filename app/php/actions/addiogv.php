@@ -4,8 +4,8 @@ session_start();
 require '../../../inc/dbc.php';
 $iogv = $_POST['iogv'];
 $manage = $_POST['manage'];
-$id = $_POST['id'];
 $type = $_POST['type'];
+
 if (!is_numeric($type)) {
     $queryt = "SELECT id FROM org_type WHERE name = '$type' LIMIT 1";
     $resultt = mysql_query($queryt);
@@ -15,11 +15,11 @@ if (!is_numeric($type)) {
     }
 }
 
-$query = "UPDATE iogv SET iogv ='$iogv' , manage ='$manage', type ='$type' WHERE id = $id";
-
-if (mysql_query($query)) {
+$request = "INSERT INTO iogv(iogv,manage,type) VALUES('$iogv','$manage','$type')";
+if (mysql_query($request)) {
     echo "{success:true}";
 } else {
-    echo "{success:false, error: " . mysql_error() . "}";
+    echo "{success:false" . mysql_error() . "}";
 }
 ?>
+

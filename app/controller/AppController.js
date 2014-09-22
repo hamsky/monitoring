@@ -41,18 +41,18 @@ Ext.define('monitoring.controller.AppController', {
         'SubdivServ@monitoring.model',
         'AllServices@monitoring.model'
     ],
-    init: function () {
+    init: function() {
 
 
         Ext.Ajax.request({
             url: 'inc/functions.php',
             method: 'POST',
             params: {action: 'getorgname'},
-            success: function (result, request) {
+            success: function(result, request) {
                 var json = Ext.decode(result.responseText);
                 Ext.ComponentQuery.query('#orgName')[0].setText('<b>' + json.name + '</b>', false);
             },
-            failure: function (result, request) {
+            failure: function(result, request) {
 
             }
         });
@@ -78,21 +78,34 @@ Ext.define('monitoring.controller.AppController', {
             '#addServiceU': {
                 click: this.addServiceUClick
             },
-            '#addOrgType':{
-                click: this.addOrgtype
+            '#addOrgType': {
+                click: this.addOrgType
+            },
+            '#addServiceA': {
+                click: this.addServiceAClick
+            },
+            '#omsuAdd': {
+                click: this.addOMSU
+            },
+            '#iogvAdd': {
+                click: this.addIOGV
+            },
+            '#userAdd': {
+                click: this.addUser
             }
+
 
 
 
         });
     },
-    OnItemClick: function (tree, record, item, index, e, options) {
+    OnItemClick: function(tree, record, item, index, e, options) {
         var nodeText = record.data.text;
         var tabPanel = Ext.ComponentQuery.query('#workArea')[0];
         var existTab = false;
 ////
         if (record.data.leaf) {
-            tabPanel.items.each(function (tab) {
+            tabPanel.items.each(function(tab) {
                 if (nodeText === tab.title) {
                     existTab = true;
                 }
@@ -116,7 +129,7 @@ Ext.define('monitoring.controller.AppController', {
 
         console.log(tabPanel);
     },
-    subdivOnClick: function () {
+    subdivOnClick: function() {
         Ext.create('Ext.window.Window', {
             title: 'Добавить подразделение',
             width: 450,
@@ -162,7 +175,7 @@ Ext.define('monitoring.controller.AppController', {
                                     itemId: 'close',
                                     iconCls: 'cancel',
                                     text: "Закрыть",
-                                    handler: function () {
+                                    handler: function() {
                                         this.up('window').close();
                                     }
                                 },
@@ -173,10 +186,10 @@ Ext.define('monitoring.controller.AppController', {
                                     iconCls: 'accept',
                                     text: "Добавить",
                                     listeners: {
-                                        click: function () {
+                                        click: function() {
                                             var form = this.up('form').getForm();
                                             form.submit({
-                                                success: function (form, action) {
+                                                success: function(form, action) {
                                                     Ext.ComponentQuery.query('#subdivGrid')[0].getStore().reload();
                                                     form.reset();
                                                 }
@@ -190,16 +203,16 @@ Ext.define('monitoring.controller.AppController', {
             ]
         }).show();
     },
-    logoutClick: function () {
+    logoutClick: function() {
         Ext.Ajax.request({
             url: 'inc/functions.php',
             params: {action: 'logout'},
-            success: function () {
+            success: function() {
                 location.reload();
             }
         });
     },
-    addReportClick: function () {
+    addReportClick: function() {
         // 
         Ext.create('Ext.window.Window', {
             title: 'Отчитаться',
@@ -230,7 +243,7 @@ Ext.define('monitoring.controller.AppController', {
                             fieldLabel: "Услуга",
                             allowBlank: false,
                             listConfig: {
-                                getInnerTpl: function () {
+                                getInnerTpl: function() {
                                     return '<b>{service}</b>';
                                 }
                             }
@@ -261,7 +274,7 @@ Ext.define('monitoring.controller.AppController', {
                             allowBlank: false,
                             labelWidth: 100,
                             listeners: {
-                                change: function (field, value) {
+                                change: function(field, value) {
                                     var fm = this.up('form').getForm().findField('jst');
                                     if (value !== 0) {
                                         fm.setDisabled(false);
@@ -305,10 +318,10 @@ Ext.define('monitoring.controller.AppController', {
                                     formBind: true,
                                     iconCls: 'table_go',
                                     text: "Отправить",
-                                    handler: function () {
+                                    handler: function() {
                                         var form = this.up('form').getForm();
                                         form.submit({
-                                            success: function (form, action) {
+                                            success: function(form, action) {
                                                 form.reset();
                                             }
                                         });
@@ -322,9 +335,8 @@ Ext.define('monitoring.controller.AppController', {
         });
         //
     },
-    viewReportsClick: function () {
-        alert('viewReports');
-
+    viewReportsClick: function() {
+        Ext.getStore('ReportStore').reload();
         Ext.create('Ext.window.Window', {
             title: 'Оказанные услуги',
             width: 900,
@@ -368,7 +380,7 @@ Ext.define('monitoring.controller.AppController', {
         });
 
     },
-    addServiceUClick: function () {
+    addServiceUClick: function() {
         var sm = Ext.create('Ext.selection.CheckboxModel');
 
         Ext.create('Ext.window.Window', {
@@ -403,7 +415,7 @@ Ext.define('monitoring.controller.AppController', {
                         displayMsg: 'Показано  {0} - {1} из {2}',
                         emptyMsg: "Нет данных для отображения",
                         listeners: {
-                            change: function (pagingToolBar, changeEvent) {
+                            change: function(pagingToolBar, changeEvent) {
                                 var pz = this.store.pageSize;
                                 var pg = this.store.currentPage;
                                 var tc = this.store.getTotalCount();
@@ -425,8 +437,8 @@ Ext.define('monitoring.controller.AppController', {
                         {
                             text: 'Сохранить',
                             iconCls: 'save',
-                            handler: function () {
-                                var json = Ext.JSON.encode(sm.getSelection().map(function (e) {
+                            handler: function() {
+                                var json = Ext.JSON.encode(sm.getSelection().map(function(e) {
                                     return e.data;
                                 }));
                                 Ext.Ajax.request({
@@ -436,7 +448,7 @@ Ext.define('monitoring.controller.AppController', {
                                         services: json
                                     },
                                     method: 'POST',
-                                    success: function (response, options) {
+                                    success: function(response, options) {
                                         Ext.ComponentQuery.query('#srvAddGrid')[0].getStore().reload();
                                         Ext.ComponentQuery.query('#servGrid')[0].getStore().reload();
                                     }
@@ -446,7 +458,7 @@ Ext.define('monitoring.controller.AppController', {
                         {
                             text: 'Закрыть',
                             iconCls: 'cancel',
-                            handler: function () {
+                            handler: function() {
                                 this.up('.window').close();
 
                             }
@@ -458,10 +470,471 @@ Ext.define('monitoring.controller.AppController', {
 
         //eof 
     },
-    addOrgType:function(){
-        
-    }
+    addOrgType: function() {
+        Ext.create('Ext.window.Window', {
+            title: 'Добавить тип ведомства',
+            iconCls: 'page_white_add',
+            width: 450,
+            layout: 'fit',
+            modal: true,
+            border: false,
+            items: [
+                new Ext.widget('form', {
+                    frame: false,
+                    url: 'app/php/actions/addorgtype.php',
+                    bodyPadding: 10,
+                    bodyBorder: false,
+                    defaults: {
+                        anchor: '100%'
+                    },
+                    fieldDefaults: {
+                        labelAlign: 'left'
+                    },
+                    items: [{
+                            xtype: 'hidden',
+                            name: 'action',
+                            value: 'addvtype'
+                        }, {
+                            xtype: 'textfield',
+                            name: 'vtype',
+                            fieldLabel: 'Тип',
+                            allowBlank: false
 
+                        }
+
+                    ],
+                    dockedItems: [
+                        {
+                            xtype: 'toolbar',
+                            dock: 'bottom',
+                            items: [
+                                {
+                                    xtype: 'tbfill'
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'close',
+                                    iconCls: 'cancel',
+                                    text: "Закрыть",
+                                    handler: function() {
+                                        this.up('.window').close();
+                                    }
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'submit',
+                                    formBind: true,
+                                    iconCls: 'accept',
+                                    text: "Добавить",
+                                    listeners: {
+                                        click: function() {
+                                            var form = this.up('form').getForm();
+                                            form.submit({
+                                                success: function(form, action) {
+                                                    Ext.ComponentQuery.query('#orgTypeGrid')[0].getStore().reload()
+                                                    form.reset();
+                                                }
+                                            });
+                                        }
+                                    }
+
+                                }
+                            ]}]
+                })
+            ]
+
+        }).show();
+    },
+    addServiceAClick: function() {
+        Ext.create('Ext.window.Window', {
+            title: 'Добавить услугу',
+            width: 550,
+            layout: 'fit',
+            modal: true,
+            border: false,
+            items: [
+                new Ext.widget('form', {
+                    frame: false,
+                    url: 'inc/functions.php',
+                    bodyPadding: 10,
+                    bodyBorder: false,
+                    defaults: {
+                        anchor: '100%'
+                    },
+                    fieldDefaults: {
+                        labelAlign: 'left'
+                    },
+                    items: [{
+                            xtype: 'hidden',
+                            name: 'action',
+                            value: 'addservice'
+                        },
+                        {
+                            xtype: 'textarea',
+                            name: 'servicename',
+                            fieldLabel: 'Наименование',
+                            height: 130,
+                            allowBlank: false
+
+                        }],
+                    dockedItems: [
+                        {
+                            xtype: 'toolbar',
+                            dock: 'bottom',
+                            items: [
+                                {
+                                    xtype: 'tbfill'
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'close',
+                                    iconCls: 'cancel',
+                                    text: "Закрыть",
+                                    handler: function() {
+                                        this.up('.window').close();
+                                    }
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'submit',
+                                    formBind: true,
+                                    iconCls: 'accept',
+                                    text: "Добавить",
+                                    listeners: {
+                                        click: function() {
+                                            var form = this.up('form').getForm();
+                                            form.submit({
+                                                success: function(form, action) {
+                                                    Ext.ComponentQuery.query('#AllServices')[0].getStore().reload();
+                                                    form.reset();
+                                                }
+                                            });
+                                        }
+                                    }
+
+                                }
+                            ]}]
+                })
+
+            ]
+
+        }).show();
+
+    },
+    addOMSU: function() {
+        Ext.create('Ext.window.Window', {
+            title: 'Добавить ОМСУ',
+            width: 550,
+            layout: 'fit',
+            modal: true,
+            border: false,
+            items: [
+                new Ext.widget('form', {
+                    frame: false,
+                    url: 'app/php/actions/addomsu.php',
+                    bodyPadding: 10,
+                    bodyBorder: false,
+                    defaults: {
+                        anchor: '100%'
+                    },
+                    fieldDefaults: {
+                        labelAlign: 'left'
+                    },
+                    items: [{
+                            xtype: 'hidden',
+                            name: 'action',
+                            value: 'addiogv'
+                        },
+                        {
+                            xtype: 'textarea',
+                            name: 'iogv',
+                            fieldLabel: 'Наименование',
+                            height: 50,
+                            allowBlank: false
+
+                        },
+                        {
+                            xtype: 'textfield',
+                            name: 'manage',
+                            fieldLabel: 'Руководитель',
+                            allowBlank: false
+                        },
+                        {
+                            xtype: 'hidden',
+                            name: 'type',
+                            value: 'ОМСУ'
+                        }
+                    ],
+                    dockedItems: [
+                        {
+                            xtype: 'toolbar',
+                            dock: 'bottom',
+                            items: [
+                                {
+                                    xtype: 'tbfill'
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'close',
+                                    iconCls: 'cancel',
+                                    text: "Закрыть",
+                                    handler: function() {
+                                        this.up('.window').close();
+                                    }
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'submit',
+                                    formBind: true,
+                                    iconCls: 'accept',
+                                    text: "Добавить",
+                                    listeners: {
+                                        click: function() {
+                                            var form = this.up('form').getForm();
+                                            form.submit({
+                                                success: function(form, action) {
+                                                    Ext.ComponentQuery.query('#omsuGrid')[0].getStore().reload();
+                                                    form.reset();
+                                                }
+                                            });
+                                        }
+                                    }
+
+                                }
+                            ]}]
+
+
+                })
+
+
+            ]}).show();
+
+    },
+    addIOGV: function() {
+
+        Ext.create('Ext.window.Window', {
+            title: 'Добавить ИОГВ',
+            width: 550,
+            layout: 'fit',
+            modal: true,
+            border: false,
+            items: [
+                new Ext.widget('form', {
+                    frame: false,
+                    url: 'app/php/actions/addiogv.php',
+                    bodyPadding: 10,
+                    bodyBorder: false,
+                    defaults: {
+                        anchor: '100%'
+                    },
+                    fieldDefaults: {
+                        labelAlign: 'left'
+                    },
+                    items: [{
+                            xtype: 'hidden',
+                            name: 'action',
+                            value: 'addiogv'
+                        },
+                        {
+                            xtype: 'textarea',
+                            name: 'iogv',
+                            fieldLabel: 'Наименование',
+                            height: 50,
+                            allowBlank: false
+
+                        },
+                        {
+                            xtype: 'textfield',
+                            name: 'manage',
+                            fieldLabel: 'Руководитель',
+                            allowBlank: false
+                        },
+                        {
+                            xtype: 'hidden',
+                            name: 'type',
+                            value: 'ИОГВ'
+                        }
+                    ],
+                    dockedItems: [
+                        {
+                            xtype: 'toolbar',
+                            dock: 'bottom',
+                            items: [
+                                {
+                                    xtype: 'tbfill'
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'close',
+                                    iconCls: 'cancel',
+                                    text: "Закрыть",
+                                    handler: function() {
+                                        this.up('.window').close();
+                                    }
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'submit',
+                                    formBind: true,
+                                    iconCls: 'accept',
+                                    text: "Добавить",
+                                    listeners: {
+                                        click: function() {
+                                            var form = this.up('form').getForm();
+                                            form.submit({
+                                                success: function(form, action) {
+                                                    Ext.ComponentQuery.query('#iogvGrid')[0].getStore().reload();
+                                                    form.reset();
+                                                }
+                                            });
+                                        }
+                                    }
+
+                                }
+                            ]}]
+
+
+                })
+
+
+            ]}).show();
+
+
+
+    },
+    addUser: function() {
+        Ext.create('Ext.window.Window', {
+            title: 'Добавить пользователя',
+            iconCls: 'userAdd',
+            width: 450,
+            layout: 'fit',
+            modal: true,
+            border: false,
+            items: [
+                new Ext.widget('form', {
+                    frame: false,
+                    url: 'app/php/actions/adduser.php',
+                    bodyPadding: 10,
+                    bodyBorder: false,
+                    defaults: {
+                        anchor: '100%'
+                    },
+                    fieldDefaults: {
+                        labelAlign: 'left'
+                    },
+                    items: [{
+                            xtype: 'hidden',
+                            name: 'action',
+                            value: 'adduser'
+                        }, {
+                            xtype: 'textfield',
+                            name: 'login',
+                            fieldLabel: 'Логин',
+                            allowBlank: false
+
+                        }, {
+                            xtype: 'textfield',
+                            name: 'password',
+                            fieldLabel: 'Пароль',
+                            allowBlank: false
+                        }, {
+                            xtype: 'textfield',
+                            name: 'email',
+                            fieldLabel: 'E-mail',
+                            allowBlank: false
+                        }, {
+                            xtype: 'checkbox',
+                            name: 'active',
+                            fieldLabel: 'Активно'
+                        }, {
+                            xtype: 'combobox',
+                            name: 'iogv',
+                            fieldLabel: 'ИОГВ',
+                            allowBlank: false,
+                            store: Ext.create('Ext.data.Store', {
+                                fields: ['id', 'iogv'],
+                                pageSize: 10,
+                                proxy: {
+                                    type: 'ajax',
+                                    url: 'app/php/actions/getiogvua.php',
+                                    reader: {
+                                        type: 'json',
+                                        rootProperty: 'iogvs'
+                                    }
+                                }}),
+                            displayField: 'iogv',
+                            valueField: 'id',
+                            pageSize: 10,
+                            listConfig: {
+                                getInnerTpl: function() {
+                                    return '<div class="rate"><b>[{id}]</b> {iogv}</div>';
+                                }
+                            }
+                        }, {
+                            xtype: 'combobox',
+                            name: 'utype',
+                            fieldLabel: 'Тип',
+                            allowBlank: false,
+                            store: Ext.create('Ext.data.Store', {
+                                fields: ['id', 'name'],
+                                proxy: {
+                                    type: 'ajax',
+                                    url: 'app/php/actions/getutype.php',
+                                    reader: {
+                                        type: 'json',
+                                        rootProperty: 'utypes'
+                                    }
+                                }}),
+                            displayField: 'name',
+                            valueField: 'id'
+
+                        }
+
+                    ],
+                    dockedItems: [
+                        {
+                            xtype: 'toolbar',
+                            dock: 'bottom',
+                            items: [
+                                {
+                                    xtype: 'tbfill'
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'close',
+                                    iconCls: 'cancel',
+                                    text: "Закрыть",
+                                    handler: function() {
+                                        this.up('.window').close();
+                                    }
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'submit',
+                                    formBind: true,
+                                    iconCls: 'accept',
+                                    text: "Добавить",
+                                    listeners: {
+                                        click: function() {
+                                            var form = this.up('form').getForm();
+                                            form.submit({
+                                                success: function(form, action) {
+                                                    Ext.ComponentQuery.query('#userGrid')[0].getStore().reload();
+                                                    form.reset();
+                                                }
+                                            });
+                                        }
+                                    }
+
+                                }
+                            ]}]
+                })
+            ]
+
+        }).show();
+
+
+    }
 
 
 });

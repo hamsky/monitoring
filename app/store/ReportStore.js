@@ -1,6 +1,7 @@
 Ext.define('monitoring.store.ReportStore', {
     extend: 'Ext.data.Store',
     autoLoad: true,
+    itemId:'reportStore',
     model: 'monitoring.model.Report',
     fields: [/*'id',*/ 'date', 'service', 'value', 'complaints'],
     groupField: 'service',

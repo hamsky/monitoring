@@ -9,29 +9,15 @@ Ext.define('monitoring.view.tabs.Iogv', {
             clicksToMoveEditor: 1,
             autoCancel: false,
             listeners: {
-                canceledit: function (editor, e, eOpts) {
+                canceledit: function(editor, e, eOpts) {
                     console.log('cancel edit');
                 },
-                edit: function (editor, e, eOpts) {
+                edit: function(editor, e, eOpts) {
                     console.log('edit');
-
-                    if (!isFinite(e.record.data.type)) {
-                        var str = Ext.getStore('OrgTypeStore').load();
-                                  
-                        str.each(function (record) {
-                            console.log(record.get('type'));
-                            if (record.get('type') === e.record.data.type) {
-                                console.log('ok');
-                                e.record.data['type'] = record.get('id');
-                            }
-                        });
-                    }
-                    ;
-
                     Ext.Ajax.request({
                         url: 'app/php/actions/editiogv.php',
                         params: e.record.getData(),
-                        success: function (response, options) {
+                        success: function(response, options) {
                             Ext.ComponentQuery.query('#iogvGrid')[0].getStore().reload();
                         }
 
@@ -39,7 +25,7 @@ Ext.define('monitoring.view.tabs.Iogv', {
                 }
             }
         })],
-    initComponent: function () {
+    initComponent: function() {
         this.columns = [
             {xtype: 'rownumberer'},
             {
@@ -63,10 +49,12 @@ Ext.define('monitoring.view.tabs.Iogv', {
                 flex: 5 / 100,
                 editor: {
                     xtype: 'combo',
-                    itemId:'cType',
+                    itemId: 'cType',
                     store: 'OrgTypeStore',
                     displayField: 'name',
-                    valueField: 'id'
+                    valueField: 'id',
+                    loadMask: true,
+                    typeAhead: true
                 }
             },
             {
@@ -77,7 +65,7 @@ Ext.define('monitoring.view.tabs.Iogv', {
                     {
                         iconCls: 'delete',
                         tooltip: 'Удалить',
-                        handler: function (grid, rowIndex, colIndex) {
+                        handler: function(grid, rowIndex, colIndex) {
                             var rec = grid.getStore().getAt(rowIndex);
                             grid.store.remove(rec);
                             grid.store.sync();
@@ -92,9 +80,9 @@ Ext.define('monitoring.view.tabs.Iogv', {
     tbar: [
         {
             xtype: 'button',
-            tooltip: 'Добавить ОМСУ',
+            tooltip: 'Добавить ИОГВ',
             iconCls: 'page_white_add',
-            itemId: 'omsuAdd'
+            itemId: 'iogvAdd'
         }
     ],
     bbar: {

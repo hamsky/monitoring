@@ -2,20 +2,21 @@
 
 session_start();
 require '../../../inc/dbc.php';
-$iogv = $_POST['iogv'];
-$manage = $_POST['manage'];
 $id = $_POST['id'];
-$type = $_POST['type'];
-if (!is_numeric($type)) {
-    $queryt = "SELECT id FROM org_type WHERE name = '$type' LIMIT 1";
+$subdiv = $_POST['subdiv'];
+$org = $_POST['org'];
+
+
+if (!is_numeric($org)) {
+    $queryt = "SELECT id FROM iogv WHERE iogv = '$org' LIMIT 1";
     $resultt = mysql_query($queryt);
 
     while ($rowt = mysql_fetch_array($resultt, MYSQL_ASSOC)) {
-        $type = $rowt['id'];
+        $org = $rowt['id'];
     }
 }
 
-$query = "UPDATE iogv SET iogv ='$iogv' , manage ='$manage', type ='$type' WHERE id = $id";
+$query = "UPDATE orgsubdiv SET name ='$subdiv', orgId=$org WHERE id = $id";
 
 if (mysql_query($query)) {
     echo "{success:true}";

@@ -14,17 +14,6 @@ Ext.define('monitoring.view.tabs.Omsu', {
                 },
                 edit: function (editor, e, eOpts) {
                     console.log('edit');
-
-                    if (!isFinite(e.record.data.type)) {
-                        Ext.ComponentQuery.query('#OrgTypeStore')[0].getStore().each(function (record) {
-                            if (record.get('type') === e.record.data.type) {
-                                console.log('ok');
-                                e.record.data['type'] = record.get('id');
-                            }
-                        });
-                    }
-                    ;
-
                     Ext.Ajax.request({
                         url: 'app/php/actions/editomsu.php',
                         params: e.record.getData(),
