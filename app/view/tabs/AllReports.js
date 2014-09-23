@@ -69,14 +69,14 @@ Ext.define('monitoring.view.tabs.AllReports', {
                     }).load();
                     Ext.ComponentQuery.query('#allReports')[0].getStore().group('service');
                     Ext.ComponentQuery.query('#allReports')[0].reconfigure(str);//.getView()//.bindStore(str);
-                    Ext.ComponentQuery.query('#allReports')[0].getView().features[0].collapseAll();
+                    //Ext.ComponentQuery.query('#allReports')[0].getView().features[0].collapseAll();
                 }}
         }
     ],
     features: [
         Ext.create('Ext.grid.feature.Grouping', {
-            groupHeaderTpl: '{name}',
-            startCollapsed: true
+            groupHeaderTpl: '{name}'//,
+         //   startCollapsed: true
         })
     ],
     plugins: [{

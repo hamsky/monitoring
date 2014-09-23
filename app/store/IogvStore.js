@@ -10,7 +10,7 @@ Ext.define('monitoring.store.IogvStore', {
             rootProperty: 'orglist'
         }, api: {
             read: 'app/php/actions/getiogv.php',
-            destroy: 'app/php/actions/deleteiogv.php'
+            destroy: 'app/php/actions/deleteomsu.php'
         },
         writer: {
             type: 'json',

@@ -76,26 +76,26 @@ Ext.define('js.monapp.RegFormView', {
                             itemId: 'submit',
                             formBind: true,
                             iconCls: 'accept',
-                            text: "Регистрация"//,
-//                            handler: function() {
-//                                var form = this.up('form').getForm();
-/////
-//                                form.submit({
-//                                    success: function(form, action) {
-//                                        Ext.Msg.alert('Информация', 'Пользователь успешно зарегистрирован', function(btn, text) {
-//                                            if (btn == 'ok') {
-//
-//                                                var redirect = 'index.php';
-//                                                window.location = redirect;
-//                                            }
-//                                        }
-//                                        );
-//
-//
-//
-//                                    }
-//                                });
-//                            }
+                            text: "Регистрация",
+                            handler: function() {
+                                var form = this.up('form').getForm();
+///
+                                form.submit({
+                                    success: function(form, action) {
+                                        Ext.Msg.alert('Информация', 'Пользователь успешно зарегистрирован', function(btn, text) {
+                                            if (btn == 'ok') {
+
+                                                var redirect = 'index.php';
+                                                window.location = redirect;
+                                            }
+                                        }
+                                        );
+
+
+
+                                    }
+                                });
+                            }
 
 
 
@@ -106,12 +106,7 @@ Ext.define('js.monapp.RegFormView', {
 
         }
     ]//   ,
-//    listeners: {
-//        close: function() {
-//
-//                   //    console.log(this.down('form').remove());
-//        }
-//    }
+ 
 
 });
 

@@ -6,10 +6,22 @@ Ext.define('monitoring.store.OrgTypeStore', {
     pageSize: 50,
     proxy: {
         type: 'ajax',
-        url: 'app/php/actions/getorgtype.php',
+        // url: 'app/php/actions/getorgtype.php',
         reader: {
             type: 'json',
             rootProperty: 'orgtypes'
+        }, api: {
+            read: 'app/php/actions/getorgtype.php',
+            destroy: 'app/php/actions/deleteorgtype.php'
+        },
+        writer: {
+            type: 'json',
+            writeAllFields: false,
+            allowSingle: false,
+            encode: true,
+            rootProperty: 'orgtypes'
         }
+
+
     }
 });

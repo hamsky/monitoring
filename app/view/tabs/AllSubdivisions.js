@@ -69,5 +69,12 @@ Ext.define('monitoring.view.tabs.AllSubdivisions', {
         ];
 
         this.callParent(arguments);
+    },
+    bbar: {
+        xtype: 'pagingtoolbar',
+        store: 'AllSubdivStore',
+        displayInfo: true,
+        displayMsg: 'Показано  {0} - {1} из {2}',
+        emptyMsg: "Нет данных для отображения"
     }
 });

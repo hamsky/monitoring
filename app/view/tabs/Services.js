@@ -18,7 +18,6 @@ Ext.define('monitoring.view.tabs.Services', {
                         url: 'app/php/actions/usubdivedit.php',
                         params: e.record.getData(),
                         success: function(response, options) {
-                           // e.record.commit();
                             Ext.ComponentQuery.query('#servGrid')[0].getStore().reload();
                         }
 
