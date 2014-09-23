@@ -19,6 +19,7 @@ Ext.define('monitoring.view.tabs.Iogv', {
                         params: e.record.getData(),
                         success: function(response, options) {
                             Ext.ComponentQuery.query('#iogvGrid')[0].getStore().reload();
+                         //   Ext.ComponentQuery.query('#omsuGrid')[0].getStore().reload();
                         }
 
                     });

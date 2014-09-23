@@ -9,23 +9,24 @@ Ext.define('monitoring.view.tabs.Omsu', {
             clicksToMoveEditor: 1,
             autoCancel: false,
             listeners: {
-                canceledit: function (editor, e, eOpts) {
+                canceledit: function(editor, e, eOpts) {
                     console.log('cancel edit');
                 },
-                edit: function (editor, e, eOpts) {
+                edit: function(editor, e, eOpts) {
                     console.log('edit');
                     Ext.Ajax.request({
                         url: 'app/php/actions/editomsu.php',
                         params: e.record.getData(),
-                        success: function (response, options) {
+                        success: function(response, options) {
                             Ext.ComponentQuery.query('#omsuGrid')[0].getStore().reload();
+                       //     Ext.ComponentQuery.query('#iogvGrid')[0].getView().refresh();
                         }
 
                     });
                 }
             }
         })],
-    initComponent: function () {
+    initComponent: function() {
         this.columns = [
             {xtype: 'rownumberer'},
             {
@@ -62,7 +63,7 @@ Ext.define('monitoring.view.tabs.Omsu', {
                     {
                         iconCls: 'delete',
                         tooltip: 'Удалить',
-                        handler: function (grid, rowIndex, colIndex) {
+                        handler: function(grid, rowIndex, colIndex) {
                             var rec = grid.getStore().getAt(rowIndex);
                             grid.store.remove(rec);
                             grid.store.sync();
