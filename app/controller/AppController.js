@@ -94,6 +94,9 @@ Ext.define('monitoring.controller.AppController', {
             },
             '#userAdd': {
                 click: this.addUser
+            },
+            '#repPeriod': {
+                click: this.repPeriodClick
             }
 
 
@@ -934,6 +937,156 @@ Ext.define('monitoring.controller.AppController', {
             ]
 
         }).show();
+
+
+    },
+    repPeriodClick: function() {
+
+        Ext.create('Ext.window.Window', {
+            title: 'Выбрать отчётный период',
+            width: 350,
+            layout: 'fit',
+            modal: true,
+            border: false,
+            items: [
+                new Ext.widget('form', {
+                    frame: false,
+                    url: 'app/php/actions/getreportp.php',
+                    bodyPadding: 10,
+                    bodyBorder: false,
+                    defaults: {
+                        anchor: '100%'
+                    },
+                    fieldDefaults: {
+                        labelAlign: 'left'
+                    },
+                    items: [
+                        {
+                            xtype: 'hidden',
+                            name: 'org',
+                            value: Ext.ComponentQuery.query('#orgRep')[0].getValue()
+                        },
+                        {
+                            xtype: 'datefield',
+                            name: 'date',
+                            fieldLabel: 'Период',
+                            format: 'm/Y',
+                            startDay: 1,
+                            allowBlank: false
+
+                        },
+                        {
+                            xtype: 'combobox',
+                            name: 'subdiv',
+                            store: Ext.create('Ext.data.Store', {
+                                fields: ['id', 'name'],
+                                pageSize: 10,
+                                actionMethods: {create: "POST", read: "POST", update: "POST", destroy: "POST"},
+                                proxy: {
+                                    type: 'ajax',
+                                    url: 'app/php/actions/getrepsubdiv.php',
+                                    extraParams: {
+                                        org: Ext.ComponentQuery.query('#orgRep')[0].getValue()
+                                    },
+                                    reader: {
+                                        type: 'json',
+                                        rootProperty: 'subdivs'
+                                    }
+                                }}).load(),
+                            displayField: 'name',
+                            valueField: 'id',
+                            pageSize: 10,
+                            fieldLabel: 'Подразделение',
+                            allowBlank: false
+                        }
+
+                    ],
+                    dockedItems: [
+                        {
+                            xtype: 'toolbar',
+                            dock: 'bottom',
+                            items: [
+                                {
+                                    xtype: 'tbfill'
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'close',
+                                    iconCls: 'cancel',
+                                    text: "Закрыть",
+                                    handler: function() {
+                                        this.up('.window').close();
+                                    }
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'submit',
+                                    formBind: true,
+                                    iconCls: 'search',
+                                    text: "Искать",
+                                    listeners: {
+                                        click: function() {
+                                            var form = this.up('form').getForm();
+                                            console.log(form.getValues());
+
+                                            Ext.Ajax.request({
+                                                url: 'app/php/actions/getreportp.php',
+                                                method: 'POST',
+                                                params: form.getValues(),
+                                                success: function(response, options) {
+
+                                                    var objAjax = Ext.decode(response.responseText);
+                                                    console.log(objAjax);
+
+                                                    var str = Ext.create('Ext.data.JsonStore', {
+                                                        model: 'monitoring.model.AllReports',
+                                                        fields: ['id', 'date', 'service', 'value', 'complaints', 'gcompl', 'subdiv'],
+                                                        groupField: 'service',
+                                                        proxy: {
+                                                            type: 'ajax',
+                                                            url: objAjax,
+                                                            //actionMethods: {create: "POST", read: "POST", update: "POST", destroy: "POST"},
+//                                                            extraParams: {
+//                                                                org: newValue,
+//                                                                action: 'getuserv'
+//                                                            },
+                                                            reader: {
+                                                                type: 'json',
+                                                                rootProperty: 'services'
+                                                            }
+                                                        }
+                                                    }).load();
+                                                    Ext.ComponentQuery.query('#allReports')[0].getStore().group('service');
+                                                    Ext.ComponentQuery.query('#allReports')[0].reconfigure(str);
+
+
+                                                },
+                                                failure: function(response, options) {
+                                                    console.log('Запрос не удалось выполнить.');
+                                                }
+                                            });
+
+
+
+//                                            form.submit({
+//                                                success: function(form, action) {
+//                                                    var decodedString = Ext.decode(action.response.responseText);
+//                                                    Ext.ComponentQuery.query('#allReports')[0].getStore().loadData(decodedStrin);
+//
+//                                                }
+//                                            });
+                                        }
+                                    }
+
+                                }
+                            ]}]
+
+
+                })
+
+
+            ]}).show();
+
 
 
     }

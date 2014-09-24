@@ -1,7 +1,6 @@
 Ext.define('monitoring.view.tabs.AllReports', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.allreports',
-    // store: {},
     itemId: 'allReports',
     initComponent: function () {
         this.columns = [
@@ -31,6 +30,7 @@ Ext.define('monitoring.view.tabs.AllReports', {
         },
         {
             xtype: 'combobox',
+            itemId:'orgRep',
             margin: '0 0 0 10px',
             width: '400px',
             store: Ext.create('Ext.data.Store', {
@@ -68,9 +68,15 @@ Ext.define('monitoring.view.tabs.AllReports', {
                         }
                     }).load();
                     Ext.ComponentQuery.query('#allReports')[0].getStore().group('service');
-                    Ext.ComponentQuery.query('#allReports')[0].reconfigure(str);//.getView()//.bindStore(str);
+                    Ext.ComponentQuery.query('#allReports')[0].reconfigure(str);
                     //Ext.ComponentQuery.query('#allReports')[0].getView().features[0].collapseAll();
                 }}
+        },
+        {
+            xtype:'button',
+            iconCls:'report-per',
+            itemId:'repPeriod',
+            tooltip:'Выбрать период'
         }
     ],
     features: [

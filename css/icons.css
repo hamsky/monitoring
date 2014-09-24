@@ -117,4 +117,10 @@
    background-image: url('icons/chart_curve.png')  !important;  
 }
 
+.report-per{
+    background: url('icons/report_magnify.png') no-repeat center center !important;    
+}
 
+.search{
+    background: url('icons/magnifier.png') no-repeat center center !important;    
+}
