@@ -81,8 +81,7 @@ Ext.define('monitoring.view.tabs.AllReports', {
     ],
     features: [
         Ext.create('Ext.grid.feature.Grouping', {
-            groupHeaderTpl: '{name}'//,
-         //   startCollapsed: true
+            groupHeaderTpl: '{name}'
         })
     ],
     plugins: [{
