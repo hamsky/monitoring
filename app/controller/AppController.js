@@ -1027,54 +1027,26 @@ Ext.define('monitoring.controller.AppController', {
                                     listeners: {
                                         click: function() {
                                             var form = this.up('form').getForm();
-                                            console.log(form.getValues());
 
-                                            Ext.Ajax.request({
-                                                url: 'app/php/actions/getreportp.php',
-                                                method: 'POST',
-                                                params: form.getValues(),
-                                                success: function(response, options) {
-
-                                                    var objAjax = Ext.decode(response.responseText);
-                                                    console.log(objAjax);
-
-                                                    var str = Ext.create('Ext.data.JsonStore', {
-                                                        model: 'monitoring.model.AllReports',
-                                                        fields: ['id', 'date', 'service', 'value', 'complaints', 'gcompl', 'subdiv'],
-                                                        groupField: 'service',
-                                                        proxy: {
-                                                            type: 'ajax',
-                                                            url: objAjax,
-                                                            //actionMethods: {create: "POST", read: "POST", update: "POST", destroy: "POST"},
-//                                                            extraParams: {
-//                                                                org: newValue,
-//                                                                action: 'getuserv'
-//                                                            },
-                                                            reader: {
-                                                                type: 'json',
-                                                                rootProperty: 'services'
-                                                            }
-                                                        }
-                                                    }).load();
-                                                    Ext.ComponentQuery.query('#allReports')[0].getStore().group('service');
-                                                    Ext.ComponentQuery.query('#allReports')[0].reconfigure(str);
-
-
-                                                },
-                                                failure: function(response, options) {
-                                                    console.log('Запрос не удалось выполнить.');
+                                            var fstore = Ext.create("Ext.data.Store", {
+                                                fields: ['id', 'date', 'service', 'value', 'complaints', 'gcompl', 'subdiv'],
+                                                groupField: 'service',
+                                                proxy: {
+                                                    type: 'ajax',
+                                                    actionMethods: {create: "POST", read: "POST", update: "POST", destroy: "POST"},
+                                                    url: 'app/php/actions/getreportp.php',
+                                                    reader: {
+                                                        type: 'json',
+                                                        rootProperty: 'services'
+                                                    }
                                                 }
+
                                             });
 
-
-
-//                                            form.submit({
-//                                                success: function(form, action) {
-//                                                    var decodedString = Ext.decode(action.response.responseText);
-//                                                    Ext.ComponentQuery.query('#allReports')[0].getStore().loadData(decodedStrin);
-//
-//                                                }
-//                                            });
+                                            fstore.load({params: form.getValues()});
+                                            Ext.ComponentQuery.query('#allReports')[0].getStore().group('service');
+                                            Ext.ComponentQuery.query('#allReports')[0].reconfigure(fstore);
+                                            this.up('.window').close();
                                         }
                                     }
 
@@ -1086,9 +1058,6 @@ Ext.define('monitoring.controller.AppController', {
 
 
             ]}).show();
-
-
-
     }
 
 
