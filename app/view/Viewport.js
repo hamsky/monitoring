@@ -20,7 +20,7 @@ Ext.define('monitoring.view.Viewport', {
                     xtype: 'panel',
                     itemId: 'accord',
                     layout: {
-                        type:'accordion',
+                        type: 'accordion',
                         autoWidth: true,
                         animate: true,
                         autoScroll: true
@@ -29,9 +29,9 @@ Ext.define('monitoring.view.Viewport', {
                         {
                             xtype: 'actionlist',
                             //iconCls: 'monlogo',
-                            title: '<b>Мониторинг</b>'   
+                            title: '<b>Мониторинг</b>'
                         }
-                    ]             
+                    ]
                 }
             ]
         },
