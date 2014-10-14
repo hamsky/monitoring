@@ -45,6 +45,15 @@ Ext.define('monitoring.controller.AppController', {
     ],
     init: function() {
 
+        if (Ext.grid.RowEditor) {
+            Ext.apply(Ext.grid.RowEditor.prototype, {
+                saveBtnText: 'Сохранить',
+                cancelBtnText: 'Отмена',
+                errorsText: 'Ошибка',
+                dirtyText: 'You need to commit or cancel your changes'
+            });
+        }
+        ;
 
         Ext.Ajax.request({
             url: 'inc/functions.php',
