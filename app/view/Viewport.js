@@ -16,22 +16,7 @@ Ext.define('monitoring.view.Viewport', {
             collapsible: true,
             items: [
                 {
-                    //  xtype: 'actionlist'
-                    xtype: 'panel',
-                    itemId: 'accord',
-                    layout: {
-                        type: 'accordion',
-                        autoWidth: true,
-                        animate: true,
-                        autoScroll: true
-                    },
-                    items: [
-                        {
-                            xtype: 'actionlist',
-                            //iconCls: 'monlogo',
-                            title: '<b>Мониторинг</b>'
-                        }
-                    ]
+                    xtype: 'actionlist'
                 }
             ]
         },
