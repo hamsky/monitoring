@@ -14,7 +14,10 @@ Ext.define('monitoring.controller.AppController', {
         'AllSubdivStore@monitoring.store',
         'ServicesStore@monitoring.store',
         'RepSrvStore@monitoring.store',
-        'ReportStore@monitoring.store'
+        'ReportStore@monitoring.store',
+        'CategoryStore@monitoring.store',
+        'VariantStore@monitoring.store',
+        'FoivStore@monitoring.store'
 
     ],
     views: [
@@ -31,7 +34,10 @@ Ext.define('monitoring.controller.AppController', {
         'Iogv@monitoring.view.tabs',
         'AllSubdivisions@monitoring.view.tabs',
         'Viewport@monitoring.view',
-        'AllReports@monitoring.view.tabs'
+        'AllReports@monitoring.view.tabs',
+        'Category@monitoring.view.tabs',
+        'Variants@monitoring.view.tabs',
+        'Foiv@monitoring.view.tabs'
     ],
     models: [
         'Subdivisions@monitoring.model',
