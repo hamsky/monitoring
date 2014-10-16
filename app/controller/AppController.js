@@ -17,7 +17,8 @@ Ext.define('monitoring.controller.AppController', {
         'ReportStore@monitoring.store',
         'CategoryStore@monitoring.store',
         'VariantStore@monitoring.store',
-        'FoivStore@monitoring.store'
+        'FoivStore@monitoring.store',
+        'InfStore@monitoring.store'
 
     ],
     views: [
@@ -37,7 +38,8 @@ Ext.define('monitoring.controller.AppController', {
         'AllReports@monitoring.view.tabs',
         'Category@monitoring.view.tabs',
         'Variants@monitoring.view.tabs',
-        'Foiv@monitoring.view.tabs'
+        'Foiv@monitoring.view.tabs',
+        'Information@monitoring.view.tabs'
     ],
     models: [
         'Subdivisions@monitoring.model',

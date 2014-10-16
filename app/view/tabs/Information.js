@@ -1,13 +1,13 @@
-Ext.define('monitoring.view.tabs.Foiv', {
+Ext.define('monitoring.view.tabs.Information', {
     extend: 'Ext.grid.Panel',
-    alias: 'widget.foivs',
-    store: 'FoivStore',
-    itemId: 'foivsGrid',
+    alias: 'widget.information',
+    store: 'InfStore',
+    itemId: 'infoGrid',
     initComponent: function() {
         this.columns = [
             {xtype: 'rownumberer'},
             {
-                header: 'ФОИВ',
+                header: 'Наименование сведений/документа',
                 dataIndex: 'name',
                 flex: 70 / 100,
                 editor: {
@@ -39,15 +39,15 @@ Ext.define('monitoring.view.tabs.Foiv', {
     tbar: [
         {
             xtype: 'button',
-            tooltip: 'Добавить новый ФОИВ',
-            text: 'Добавить ФОИВ',
+            tooltip: 'Добавить новое сведение/документ',
+            text: 'Добавить сведение',
             iconCls: 'page_white_add',
-            itemId: 'addFoiv'
+            itemId: 'addInformation'
         }
     ],
     bbar: {
         xtype: 'pagingtoolbar',
-        store: 'FoivStore',
+        store: 'InfStore',
         displayInfo: true,
         displayMsg: 'Показано  {0} - {1} из {2}',
         emptyMsg: "Нет данных для отображения"
