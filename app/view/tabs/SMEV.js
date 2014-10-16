@@ -1,31 +1,40 @@
-Ext.define('monitoring.view.tabs.SMEV',{
- extend:'Ext.grid.Panel',
- store:'',
- alias:'widget.smev',
- itemId:'smevGrid',
-     initComponent: function() {
+Ext.define('monitoring.view.tabs.SMEV', {
+    extend: 'Ext.grid.Panel',
+    alias: 'widget.smev',
+    store: 'SmevStore',
+    itemId: 'smevGrid',
+    initComponent: function() {
         this.columns = [
             {xtype: 'rownumberer'},
             {
-                header: 'Услуга',
-                dataIndex: 'service',
-                flex: 60 / 100,
+                header: 'Наименование сведений/документа',
+                dataIndex: 'name',
+                flex: 30 / 100,
                 editor: {
-                    xtype: 'textfield',
-                    readOnly: true
+                    xtype: 'textfield'
                 }
             },
             {
-                header: 'Подразделение предоставляющее услугу',
-                dataIndex: 'subdiv',
-                flex: 25 / 100,
+                header: 'ФОИВ, определяющие требования к формату предоставления сведений',
+                dataIndex: 'name',
+                flex: 30 / 100,
                 editor: {
-                    xtype: 'combo',
-                    store: 'SubdivisionsStore',
-                    displayField: 'subdiv',
-                    valueField: 'id',
-                    pageSize: 10
-
+                    xtype: 'textfield'
+                }
+            }, {
+                header: 'Категория сведений',
+                dataIndex: 'name',
+                flex: 30 / 100,
+                editor: {
+                    xtype: 'textfield'
+                }
+            },
+            {
+                header: 'Возможность предоставления в электронном виде',
+                dataIndex: 'name',
+                flex: 30 / 100,
+                editor: {
+                    xtype: 'textfield'
                 }
             },
             {
@@ -49,7 +58,22 @@ Ext.define('monitoring.view.tabs.SMEV',{
 
         ];
         this.callParent(arguments);
+    },
+    tbar: [
+        {
+            xtype: 'button',
+            tooltip: 'Добавить новое сведение/документ',
+            text: 'Добавить сведение',
+            iconCls: 'page_white_add',
+            itemId: 'addInformation'
+        }
+    ],
+    bbar: {
+        xtype: 'pagingtoolbar',
+        store: 'InfStore',
+        displayInfo: true,
+        displayMsg: 'Показано  {0} - {1} из {2}',
+        emptyMsg: "Нет данных для отображения"
     }
 });
-
 
