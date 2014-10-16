@@ -124,3 +124,10 @@
 .search{
     background: url('icons/magnifier.png') no-repeat center center !important;    
 }
+
+
+.settings-dir{
+     background: url('icons/folder_wrench.png') no-repeat center center !important;   
+}
+
+
