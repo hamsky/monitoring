@@ -1081,7 +1081,103 @@ Ext.define('monitoring.controller.AppController', {
             ]}).show();
     },
     addSmevInformation: function() {
-        alert('smev inf');
+
+        Ext.create('Ext.window.Window', {
+            title: 'Добавить сведение/документ',
+            iconCls: 'page_add',
+            width: 450,
+            layout: 'fit',
+            modal: true,
+            border: false,
+            items: [
+                new Ext.widget('form', {
+                    frame: false,
+                    url: 'app/php/actions/addinfsmev.php',
+                    bodyPadding: 10,
+                    bodyBorder: false,
+                    defaults: {
+                        anchor: '100%'
+                    },
+                    fieldDefaults: {
+                        labelAlign: 'left'
+                    },
+                    items: [{
+                            xtype: 'combobox',
+                            name: 'inf',
+                            fieldLabel: 'Наименование',
+                            allowBlank: false,
+                            store: 'InfStore',
+                            displayField: 'name',
+                            valueField: 'id'
+                        }, {
+                            xtype: 'combobox',
+                            name: 'foiv',
+                            fieldLabel: 'ФОИВ',
+                            allowBlank: false,
+                            store: 'FoivStore',
+                            displayField: 'name',
+                            valueField: 'id'
+                        }, {
+                            xtype: 'combobox',
+                            name: 'category',
+                            fieldLabel: 'Категория',
+                            allowBlank: false,
+                            store: 'CategoryStore',
+                            displayField: 'category',
+                            valueField: 'id'
+                        }, {
+                            xtype: 'combobox',
+                            name: 'rejim',
+                            fieldLabel: 'Режим',
+                            allowBlank: false,
+                            store: 'VariantStore',
+                            displayField: 'type_',
+                            valueField: 'id'
+                        }
+                    ],
+                    dockedItems: [
+                        {
+                            xtype: 'toolbar',
+                            dock: 'bottom',
+                            items: [
+                                {
+                                    xtype: 'tbfill'
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'close',
+                                    iconCls: 'cancel',
+                                    text: "Закрыть",
+                                    handler: function() {
+                                        this.up('.window').close();
+                                    }
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'submit',
+                                    formBind: true,
+                                    iconCls: 'accept',
+                                    text: "Добавить",
+                                    listeners: {
+                                        click: function() {
+                                            var form = this.up('form').getForm();
+                                            form.submit({
+                                                success: function(form, action) {
+                                                    Ext.ComponentQuery.query('#smevGrid')[0].getStore().reload();
+                                                    form.reset();
+                                                }
+                                            });
+                                        }
+                                    }
+
+                                }
+                            ]}]
+                })
+            ]
+
+        }).show();
+
+
     }
 
 });
