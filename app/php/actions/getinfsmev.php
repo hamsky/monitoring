@@ -1,18 +1,20 @@
 <?php
-
+session_start();
 require '../../../inc/dbc.php';
 
-$query = "SELECT id, type_ from smev,varp,foiv,svname,catsv";
+$org = $_SESSION['iogv'];
+
+$query = "select smev.id as sid_, svname.name as sname, foiv.name as sfoiv, catsv.category as cat, varp.type_ as stype from smev,svname,foiv,catsv,varp WHERE  smev.org =$org and svname.id =smev.name and foiv.id=smev.foiv and catsv.id =smev.category and varp.id= smev.type_";
 $result = mysql_query($query);
 
 
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     $data[] = array(
-        'id' => $row['id'],
-        'name'=>$row['name'],
-        'foiv'=>$row['foiv'],
-        'category'=>$row['category'],
-        'type_' => $row['type_']
+        'id' => $row['sid_'],
+        'name'=>$row['sname'],
+        'foiv'=>$row['sfoiv'],
+        'category'=>$row['cat'],
+        'type_' => $row['stype']
        
     );
 }
