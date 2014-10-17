@@ -16,14 +16,14 @@ Ext.define('monitoring.view.tabs.SMEV', {
             },
             {
                 header: 'ФОИВ, определяющие требования к формату предоставления сведений',
-                dataIndex: 'name',
+                dataIndex: 'foiv',
                 flex: 30 / 100,
                 editor: {
                     xtype: 'textfield'
                 }
             }, {
                 header: 'Категория сведений',
-                dataIndex: 'name',
+                dataIndex: 'category',
                 flex: 30 / 100,
                 editor: {
                     xtype: 'textfield'
@@ -31,7 +31,7 @@ Ext.define('monitoring.view.tabs.SMEV', {
             },
             {
                 header: 'Возможность предоставления в электронном виде',
-                dataIndex: 'name',
+                dataIndex: 'type_',
                 flex: 30 / 100,
                 editor: {
                     xtype: 'textfield'
@@ -62,15 +62,15 @@ Ext.define('monitoring.view.tabs.SMEV', {
     tbar: [
         {
             xtype: 'button',
-            tooltip: 'Добавить новое сведение/документ',
-            text: 'Добавить сведение',
+            tooltip: 'Отметьте сведения/документы, которые организация может предоставить',
+            text: 'Добавить сведение/документ',
             iconCls: 'page_white_add',
             itemId: 'addInformation'
         }
     ],
     bbar: {
         xtype: 'pagingtoolbar',
-        store: 'InfStore',
+        store: 'SmevStore',
         displayInfo: true,
         displayMsg: 'Показано  {0} - {1} из {2}',
         emptyMsg: "Нет данных для отображения"
