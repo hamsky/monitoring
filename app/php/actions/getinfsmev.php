@@ -2,8 +2,7 @@
 
 require '../../../inc/dbc.php';
 
-$query = "SELECT id, type_ from varp";
-
+$query = "SELECT id, type_ from smev,varp,foiv,svname,catsv";
 $result = mysql_query($query);
 
 
