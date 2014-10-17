@@ -1081,7 +1081,7 @@ Ext.define('monitoring.controller.AppController', {
             ]}).show();
     },
     addSmevInformation: function() {
-
+        alert('smev inf');
     }
 
 });
