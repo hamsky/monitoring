@@ -115,6 +115,9 @@ Ext.define('monitoring.controller.AppController', {
             },
             '#repPeriod': {
                 click: this.repPeriodClick
+            },
+            '#addInfSmev': {
+                click: this.addSmevInformation
             }
 
 
@@ -1076,8 +1079,10 @@ Ext.define('monitoring.controller.AppController', {
 
 
             ]}).show();
-    }
+    },
+    addSmevInformation: function() {
 
+    }
 
 });
 

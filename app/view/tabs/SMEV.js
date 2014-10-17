@@ -65,7 +65,7 @@ Ext.define('monitoring.view.tabs.SMEV', {
             tooltip: 'Отметьте сведения/документы, которые организация может предоставить',
             text: 'Добавить сведение/документ',
             iconCls: 'page_white_add',
-            itemId: 'addInformation'
+            itemId: 'addInfSmev'
         }
     ],
     bbar: {
