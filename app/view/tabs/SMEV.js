@@ -9,7 +9,7 @@ Ext.define('monitoring.view.tabs.SMEV', {
             {
                 header: 'Наименование сведений/документа',
                 dataIndex: 'name',
-                flex: 30 / 100,
+                flex: 50 / 100,
                 editor: {
                     xtype: 'textfield'
                 }
@@ -17,14 +17,14 @@ Ext.define('monitoring.view.tabs.SMEV', {
             {
                 header: 'ФОИВ, определяющие требования к формату предоставления сведений',
                 dataIndex: 'foiv',
-                flex: 30 / 100,
+                flex: 15 / 100,
                 editor: {
                     xtype: 'textfield'
                 }
             }, {
                 header: 'Категория сведений',
                 dataIndex: 'category',
-                flex: 30 / 100,
+                flex: 15 / 100,
                 editor: {
                     xtype: 'textfield'
                 }
@@ -32,7 +32,7 @@ Ext.define('monitoring.view.tabs.SMEV', {
             {
                 header: 'Возможность предоставления в электронном виде',
                 dataIndex: 'type_',
-                flex: 30 / 100,
+                flex: 15 / 100,
                 editor: {
                     xtype: 'textfield'
                 }
