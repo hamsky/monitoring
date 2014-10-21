@@ -118,6 +118,9 @@ Ext.define('monitoring.controller.AppController', {
             },
             '#addInfSmev': {
                 click: this.addSmevInformation
+            },
+            '#usersView':{
+                click: this.usersView
             }
 
 
@@ -1178,8 +1181,10 @@ Ext.define('monitoring.controller.AppController', {
         }).show();
 
 
+    },
+    usersView:function(){
+        alert('uv');
     }
-
 });
 
 
