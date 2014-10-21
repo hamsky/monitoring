@@ -9,7 +9,7 @@ Ext.define('monitoring.view.tabs.SMEV', {
             {
                 header: 'Наименование сведений/документа',
                 dataIndex: 'name',
-                flex: 50 / 100,
+                flex: 45 / 100,
                 editor: {
                     xtype: 'textfield'
                 }
@@ -39,7 +39,7 @@ Ext.define('monitoring.view.tabs.SMEV', {
             },
             {
                 xtype: 'actioncolumn',
-                flex: 5 / 100,
+                flex: 10 / 100,
                 header: 'Действия',
                 items: [
                     {
