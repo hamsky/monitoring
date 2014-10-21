@@ -1183,7 +1183,18 @@ Ext.define('monitoring.controller.AppController', {
 
     },
     usersView:function(){
-        alert('uv');
+  
+    Ext.create('Ext.window.Window', {
+            title: 'Ответственные лица',
+            iconCls: 'users',
+            width: 450,
+            layout: 'fit',
+            modal: true,
+            border: false,
+            items: [
+                
+            ]});
+  
     }
 });
 
