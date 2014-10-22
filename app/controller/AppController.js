@@ -119,7 +119,7 @@ Ext.define('monitoring.controller.AppController', {
             '#addInfSmev': {
                 click: this.addSmevInformation
             },
-            '#usersView':{
+            '#usersView': {
                 click: this.usersView
             }
 
@@ -1182,19 +1182,25 @@ Ext.define('monitoring.controller.AppController', {
 
 
     },
-    usersView:function(){
-  
-    Ext.create('Ext.window.Window', {
+    usersView: function() {
+
+        Ext.create('Ext.window.Window', {
             title: 'Ответственные лица',
-            iconCls: 'users',
+          //  iconCls: 'users',
             width: 450,
             layout: 'fit',
             modal: true,
             border: false,
-            items: [
-                
-            ]});
-  
+            items: [{
+                    xtype: 'button',
+                    itemId: 'close',
+                    iconCls: 'cancel',
+                    text: "Закрыть"
+                }]
+        });
+
+        alert('00');
+
     }
 });
 
