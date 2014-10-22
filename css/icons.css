@@ -137,3 +137,21 @@
 .users{
      background: url('icons/users.png') no-repeat center center !important;   
 }
+
+
+#img-chooser-view .thumb {
+    padding: 3px;
+}
+
+#img-chooser-view .thumb-wrap {
+    float: left;
+    margin: 4px;
+    margin-right: 0;
+    padding: 5px;
+}
+
+#img-chooser-view .thumb-wrap span {
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}

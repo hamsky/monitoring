@@ -1186,20 +1186,40 @@ Ext.define('monitoring.controller.AppController', {
 
         Ext.create('Ext.window.Window', {
             title: 'Ответственные лица',
-          //  iconCls: 'users',
-            width: 450,
-            layout: 'fit',
+            width: 700,
+            height:400,
+            autoShow: true,
+            iconCls: 'users',
             modal: true,
-            border: false,
-            items: [{
-                    xtype: 'button',
-                    itemId: 'close',
-                    iconCls: 'cancel',
-                    text: "Закрыть"
-                }]
+            border: true,
+            closable: true,
+            layout: 'border',
+            items: [
+                {
+                    xtype: 'panel',
+                    region: 'center',
+                    layout: 'fit',
+                    items: {
+                        xtype: 'dataview',
+                        autoScroll: true,
+                        itemSelector: 'div.thumb-wrap',
+                        tpl: [
+                            '<tpl for=".">',
+                            '<div class="thumb-wrap">',
+                            '<div class="thumb">',
+                            '<img src="img/{thumb}" />',
+                            '</div>',
+                            '<span>{name}</span>',
+                            '</div>',
+                            '</tpl>'
+                        ]
+                    }
+
+                }
+            ]
+
         });
 
-        alert('00');
 
     }
 });
