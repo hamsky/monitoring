@@ -27,7 +27,7 @@
 }
 
 .smev {
-  background: url('icons/docs.png') no-repeat center center !important;
+    background: url('icons/docs.png') no-repeat center center !important;
 }
 
 .userAdd {
@@ -114,7 +114,7 @@
 }
 
 .monlogo{
-   background-image: url('icons/chart_curve.png')  !important;  
+    background-image: url('icons/chart_curve.png')  !important;  
 }
 
 .report-per{
@@ -125,17 +125,16 @@
     background: url('icons/magnifier.png') no-repeat center center !important;    
 }
 
-
 .settings-dir{
-     background: url('icons/folder_wrench.png') no-repeat center center !important;   
+    background: url('icons/folder_wrench.png') no-repeat center center !important;   
 }
 
 .page_add{
-     background: url('icons/page_add.png') no-repeat center center !important;   
+    background: url('icons/page_add.png') no-repeat center center !important;   
 }
 
 .users{
-     background: url('icons/users.png') no-repeat center center !important;   
+    background: url('icons/users.png') no-repeat center center !important;   
 }
 
 
@@ -148,10 +147,36 @@
     margin: 4px;
     margin-right: 0;
     padding: 5px;
+    word-wrap: break-word;
+    width:100px;
 }
 
 #img-chooser-view .thumb-wrap span {
     display: block;
     overflow: hidden;
     text-align: center;
+}
+
+#img-chooser-view .x-view-over {
+    border:1px solid #dddddd;
+    background-color: #efefef;
+    padding: 4px;
+}
+
+#img-chooser-view .x-item-selected {
+    background: #DFEDFF;
+    border: 1px solid #6593cf;
+    padding: 4px;
+}
+
+#img-chooser-view .x-item-selected .thumb {
+    background:transparent;
+}
+
+#img-chooser-view .x-item-selected span {
+    color:#1A4D8F;
+}
+
+#images img {
+    margin: 20px;
 }

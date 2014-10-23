@@ -63,7 +63,6 @@ Ext.define('monitoring.controller.AppController', {
             });
         }
         ;
-
         Ext.Ajax.request({
             url: 'inc/functions.php',
             method: 'POST',
@@ -76,9 +75,6 @@ Ext.define('monitoring.controller.AppController', {
 
             }
         });
-
-
-
         this.control({
             'actionlist': {
                 itemclick: this.OnItemClick
@@ -354,7 +350,6 @@ Ext.define('monitoring.controller.AppController', {
                                                 form.reset();
                                             }
                                         });
-
                                     }
                                 }]}
                     ]
@@ -407,11 +402,9 @@ Ext.define('monitoring.controller.AppController', {
 
             ]
         });
-
     },
     addServiceUClick: function() {
         var sm = Ext.create('Ext.selection.CheckboxModel');
-
         Ext.create('Ext.window.Window', {
             title: 'Добавить услуги для ИОГВ',
             width: 750,
@@ -489,14 +482,12 @@ Ext.define('monitoring.controller.AppController', {
                             iconCls: 'cancel',
                             handler: function() {
                                 this.up('.window').close();
-
                             }
                         }
                     ]
                 })
             ]
         }).show();
-
         //eof 
     },
     addOrgType: function() {
@@ -648,7 +639,6 @@ Ext.define('monitoring.controller.AppController', {
             ]
 
         }).show();
-
     },
     addOMSU: function() {
         Ext.create('Ext.window.Window', {
@@ -737,7 +727,6 @@ Ext.define('monitoring.controller.AppController', {
 
 
             ]}).show();
-
     },
     addIOGV: function() {
 
@@ -827,9 +816,6 @@ Ext.define('monitoring.controller.AppController', {
 
 
             ]}).show();
-
-
-
     },
     addUser: function() {
         Ext.create('Ext.window.Window', {
@@ -961,8 +947,6 @@ Ext.define('monitoring.controller.AppController', {
             ]
 
         }).show();
-
-
     },
     repPeriodClick: function() {
 
@@ -1051,7 +1035,6 @@ Ext.define('monitoring.controller.AppController', {
                                     listeners: {
                                         click: function() {
                                             var form = this.up('form').getForm();
-
                                             var fstore = Ext.create("Ext.data.Store", {
                                                 fields: ['id', 'date', 'service', 'value', 'complaints', 'gcompl', 'subdiv'],
                                                 groupField: 'service',
@@ -1066,7 +1049,6 @@ Ext.define('monitoring.controller.AppController', {
                                                 }
 
                                             });
-
                                             fstore.load({params: form.getValues()});
                                             Ext.ComponentQuery.query('#allReports')[0].getStore().group('service');
                                             Ext.ComponentQuery.query('#allReports')[0].reconfigure(fstore);
@@ -1179,8 +1161,6 @@ Ext.define('monitoring.controller.AppController', {
             ]
 
         }).show();
-
-
     },
     usersView: function() {
 
@@ -1201,6 +1181,7 @@ Ext.define('monitoring.controller.AppController', {
                     layout: 'fit',
                     items: {
                         xtype: 'dataview',
+                        itemId:'ib',
                         autoScroll: true,
                         store: Ext.create("Ext.data.Store", {
                             autoLoad: true,
@@ -1226,15 +1207,22 @@ Ext.define('monitoring.controller.AppController', {
                             '<span>{initials}</span>',
                             '</div>',
                             '</tpl>'
-                        ]
+                        ],
+                        listeners: {
+                            itemdblclick: function() {
+                                var selectedImage = Ext.ComponentQuery.query('#ib')[0].selModel.getSelection()[0];
+                                if (selectedImage) {
+                                    this.fireEvent('selected', selectedImage);
+                                   // this.hide();
+                                }
+                            }
+                        }
                     }
 
                 }
             ]
 
         });
-
-
     }
 });
 
