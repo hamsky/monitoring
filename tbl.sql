@@ -1,8 +1,10 @@
 CREATE DATABASE IF NOT EXISTS persons(
 id INTEGER AUTO_INCREMENT,
 org INTEGER,
+initials VARCHAR(100),
 date_ DATE,
 email VARCHAR(255),
 phone VARCHAR(12),
-skype VARCHAR(50)
+skype VARCHAR(50),
+PRIMARY KEY (id)
 );
