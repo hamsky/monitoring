@@ -1187,7 +1187,7 @@ Ext.define('monitoring.controller.AppController', {
         Ext.create('Ext.window.Window', {
             title: 'Ответственные лица',
             width: 700,
-            height:400,
+            height: 400,
             autoShow: true,
             iconCls: 'users',
             modal: true,
@@ -1202,14 +1202,28 @@ Ext.define('monitoring.controller.AppController', {
                     items: {
                         xtype: 'dataview',
                         autoScroll: true,
+                        store: Ext.create("Ext.data.Store", {
+                            autoLoad: true,
+                            fields: ['id', 'initials'],
+                            remoteSort: false,
+                            sorters: 'initials',
+                            proxy: {
+                                type: 'ajax',
+                                url: 'app/php/actions/getpersons.php',
+                                reader: {
+                                    type: 'json',
+                                    rootProperty: 'persons'
+                                }
+                            }
+                        }),
                         itemSelector: 'div.thumb-wrap',
                         tpl: [
                             '<tpl for=".">',
                             '<div class="thumb-wrap">',
                             '<div class="thumb">',
-                            '<img src="img/{thumb}" />',
+                            '<img src="img/user64.png" />',
                             '</div>',
-                            '<span>{name}</span>',
+                            '<span>{initials}</span>',
                             '</div>',
                             '</tpl>'
                         ]
