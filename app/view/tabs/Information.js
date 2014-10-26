@@ -1,45 +1,22 @@
-Ext.define('monitoring.view.tabs.SMEV', {
+Ext.define('monitoring.view.tabs.Information', {
     extend: 'Ext.grid.Panel',
-    alias: 'widget.smev',
-    store: 'SmevStore',
-    itemId: 'smevGrid',
+    alias: 'widget.information',
+    store: 'InfStore',
+    itemId: 'infoGrid',
     initComponent: function() {
         this.columns = [
             {xtype: 'rownumberer'},
             {
                 header: 'Наименование сведений/документа',
                 dataIndex: 'name',
-                flex: 45 / 100,
-                editor: {
-                    xtype: 'textfield'
-                }
-            },
-            {
-                header: 'ФОИВ, определяющие требования к формату предоставления сведений',
-                dataIndex: 'foiv',
-                flex: 15 / 100,
-                editor: {
-                    xtype: 'textfield'
-                }
-            }, {
-                header: 'Категория сведений',
-                dataIndex: 'category',
-                flex: 15 / 100,
-                editor: {
-                    xtype: 'textfield'
-                }
-            },
-            {
-                header: 'Возможность предоставления в электронном виде',
-                dataIndex: 'type_',
-                flex: 15 / 100,
+                flex: 70 / 100,
                 editor: {
                     xtype: 'textfield'
                 }
             },
             {
                 xtype: 'actioncolumn',
-                flex: 10 / 100,
+                flex: 5 / 100,
                 header: 'Действия',
                 items: [
                     {
@@ -62,18 +39,21 @@ Ext.define('monitoring.view.tabs.SMEV', {
     tbar: [
         {
             xtype: 'button',
-            tooltip: 'Отметьте сведения/документы, которые организация может предоставить',
-            text: 'Добавить сведение/документ',
+            tooltip: 'Добавить новое сведение/документ',
+            text: 'Добавить сведение',
             iconCls: 'page_white_add',
-            itemId: 'addInfSmev'
+            itemId: 'addInformation'
         }
     ],
     bbar: {
         xtype: 'pagingtoolbar',
-        store: 'SmevStore',
+        store: 'InfStore',
         displayInfo: true,
         displayMsg: 'Показано  {0} - {1} из {2}',
         emptyMsg: "Нет данных для отображения"
     }
 });
+
+
+
 

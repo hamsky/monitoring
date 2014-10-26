@@ -25,7 +25,13 @@ Ext.define('monitoring.view.tabs.Settings', {
             [{
                     xtype: 'toolbar',
                     dock: 'bottom',
-                    items: ['->', {
+                    items: [{
+                            text:'Ответственные лица',
+                            iconCls:'users',
+                            itemId:'usersView'
+                    },
+                        
+                '->', {
                             iconCls: 'save',
                             text: 'Сохранить',
                             handler: function () {

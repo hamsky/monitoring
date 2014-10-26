@@ -14,8 +14,12 @@ Ext.define('monitoring.controller.AppController', {
         'AllSubdivStore@monitoring.store',
         'ServicesStore@monitoring.store',
         'RepSrvStore@monitoring.store',
-        'ReportStore@monitoring.store'
-
+        'ReportStore@monitoring.store',
+        'CategoryStore@monitoring.store',
+        'VariantStore@monitoring.store',
+        'FoivStore@monitoring.store',
+        'InfStore@monitoring.store',
+        'SmevStore@monitoring.store'
     ],
     views: [
         'ActionsListView@monitoring.view.ui',
@@ -31,7 +35,12 @@ Ext.define('monitoring.controller.AppController', {
         'Iogv@monitoring.view.tabs',
         'AllSubdivisions@monitoring.view.tabs',
         'Viewport@monitoring.view',
-        'AllReports@monitoring.view.tabs'
+        'AllReports@monitoring.view.tabs',
+        'Category@monitoring.view.tabs',
+        'Variants@monitoring.view.tabs',
+        'Foiv@monitoring.view.tabs',
+        'Information@monitoring.view.tabs',
+        'SMEV@monitoring.view.tabs'
     ],
     models: [
         'Subdivisions@monitoring.model',
@@ -54,7 +63,6 @@ Ext.define('monitoring.controller.AppController', {
             });
         }
         ;
-
         Ext.Ajax.request({
             url: 'inc/functions.php',
             method: 'POST',
@@ -67,9 +75,6 @@ Ext.define('monitoring.controller.AppController', {
 
             }
         });
-
-
-
         this.control({
             'actionlist': {
                 itemclick: this.OnItemClick
@@ -106,6 +111,12 @@ Ext.define('monitoring.controller.AppController', {
             },
             '#repPeriod': {
                 click: this.repPeriodClick
+            },
+            '#addInfSmev': {
+                click: this.addSmevInformation
+            },
+            '#usersView': {
+                click: this.usersView
             }
 
 
@@ -339,7 +350,6 @@ Ext.define('monitoring.controller.AppController', {
                                                 form.reset();
                                             }
                                         });
-
                                     }
                                 }]}
                     ]
@@ -392,11 +402,9 @@ Ext.define('monitoring.controller.AppController', {
 
             ]
         });
-
     },
     addServiceUClick: function() {
         var sm = Ext.create('Ext.selection.CheckboxModel');
-
         Ext.create('Ext.window.Window', {
             title: 'Добавить услуги для ИОГВ',
             width: 750,
@@ -474,14 +482,12 @@ Ext.define('monitoring.controller.AppController', {
                             iconCls: 'cancel',
                             handler: function() {
                                 this.up('.window').close();
-
                             }
                         }
                     ]
                 })
             ]
         }).show();
-
         //eof 
     },
     addOrgType: function() {
@@ -633,7 +639,6 @@ Ext.define('monitoring.controller.AppController', {
             ]
 
         }).show();
-
     },
     addOMSU: function() {
         Ext.create('Ext.window.Window', {
@@ -722,7 +727,6 @@ Ext.define('monitoring.controller.AppController', {
 
 
             ]}).show();
-
     },
     addIOGV: function() {
 
@@ -812,9 +816,6 @@ Ext.define('monitoring.controller.AppController', {
 
 
             ]}).show();
-
-
-
     },
     addUser: function() {
         Ext.create('Ext.window.Window', {
@@ -946,8 +947,6 @@ Ext.define('monitoring.controller.AppController', {
             ]
 
         }).show();
-
-
     },
     repPeriodClick: function() {
 
@@ -1036,7 +1035,6 @@ Ext.define('monitoring.controller.AppController', {
                                     listeners: {
                                         click: function() {
                                             var form = this.up('form').getForm();
-
                                             var fstore = Ext.create("Ext.data.Store", {
                                                 fields: ['id', 'date', 'service', 'value', 'complaints', 'gcompl', 'subdiv'],
                                                 groupField: 'service',
@@ -1051,7 +1049,6 @@ Ext.define('monitoring.controller.AppController', {
                                                 }
 
                                             });
-
                                             fstore.load({params: form.getValues()});
                                             Ext.ComponentQuery.query('#allReports')[0].getStore().group('service');
                                             Ext.ComponentQuery.query('#allReports')[0].reconfigure(fstore);
@@ -1067,9 +1064,166 @@ Ext.define('monitoring.controller.AppController', {
 
 
             ]}).show();
+    },
+    addSmevInformation: function() {
+
+        Ext.create('Ext.window.Window', {
+            title: 'Добавить сведение/документ',
+            iconCls: 'page_add',
+            width: 450,
+            layout: 'fit',
+            modal: true,
+            border: false,
+            items: [
+                new Ext.widget('form', {
+                    frame: false,
+                    url: 'app/php/actions/addinfsmev.php',
+                    bodyPadding: 10,
+                    bodyBorder: false,
+                    defaults: {
+                        anchor: '100%'
+                    },
+                    fieldDefaults: {
+                        labelAlign: 'left'
+                    },
+                    items: [{
+                            xtype: 'combobox',
+                            name: 'inf',
+                            fieldLabel: 'Наименование',
+                            allowBlank: false,
+                            store: 'InfStore',
+                            displayField: 'name',
+                            valueField: 'id'
+                        }, {
+                            xtype: 'combobox',
+                            name: 'foiv',
+                            fieldLabel: 'ФОИВ',
+                            allowBlank: false,
+                            store: 'FoivStore',
+                            displayField: 'name',
+                            valueField: 'id'
+                        }, {
+                            xtype: 'combobox',
+                            name: 'category',
+                            fieldLabel: 'Категория',
+                            allowBlank: false,
+                            store: 'CategoryStore',
+                            displayField: 'category',
+                            valueField: 'id'
+                        }, {
+                            xtype: 'combobox',
+                            name: 'rejim',
+                            fieldLabel: 'Режим',
+                            allowBlank: false,
+                            store: 'VariantStore',
+                            displayField: 'type_',
+                            valueField: 'id'
+                        }
+                    ],
+                    dockedItems: [
+                        {
+                            xtype: 'toolbar',
+                            dock: 'bottom',
+                            items: [
+                                {
+                                    xtype: 'tbfill'
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'close',
+                                    iconCls: 'cancel',
+                                    text: "Закрыть",
+                                    handler: function() {
+                                        this.up('.window').close();
+                                    }
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'submit',
+                                    formBind: true,
+                                    iconCls: 'accept',
+                                    text: "Добавить",
+                                    listeners: {
+                                        click: function() {
+                                            var form = this.up('form').getForm();
+                                            form.submit({
+                                                success: function(form, action) {
+                                                    Ext.ComponentQuery.query('#smevGrid')[0].getStore().reload();
+                                                    form.reset();
+                                                }
+                                            });
+                                        }
+                                    }
+
+                                }
+                            ]}]
+                })
+            ]
+
+        }).show();
+    },
+    usersView: function() {
+
+        Ext.create('Ext.window.Window', {
+            title: 'Ответственные лица',
+            width: 700,
+            height: 400,
+            autoShow: true,
+            iconCls: 'users',
+            modal: true,
+            border: true,
+            closable: true,
+            layout: 'border',
+            items: [
+                {
+                    xtype: 'panel',
+                    region: 'center',
+                    layout: 'fit',
+                    items: {
+                        xtype: 'dataview',
+                        itemId:'ib',
+                        autoScroll: true,
+                        store: Ext.create("Ext.data.Store", {
+                            autoLoad: true,
+                            fields: ['id', 'initials'],
+                            remoteSort: false,
+                            sorters: 'initials',
+                            proxy: {
+                                type: 'ajax',
+                                url: 'app/php/actions/getpersons.php',
+                                reader: {
+                                    type: 'json',
+                                    rootProperty: 'persons'
+                                }
+                            }
+                        }),
+                        itemSelector: 'div.thumb-wrap',
+                        tpl: [
+                            '<tpl for=".">',
+                            '<div class="thumb-wrap">',
+                            '<div class="thumb">',
+                            '<img src="img/user64.png" />',
+                            '</div>',
+                            '<span>{initials}</span>',
+                            '</div>',
+                            '</tpl>'
+                        ],
+                        listeners: {
+                            itemdblclick: function() {
+                                var selectedImage = Ext.ComponentQuery.query('#ib')[0].selModel.getSelection()[0];
+                                if (selectedImage) {
+                                    this.fireEvent('selected', selectedImage);
+                                   // this.hide();
+                                }
+                            }
+                        }
+                    }
+
+                }
+            ]
+
+        });
     }
-
-
 });
 
 
