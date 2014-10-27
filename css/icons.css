@@ -137,46 +137,16 @@
     background: url('icons/users.png') no-repeat center center !important;   
 }
 
-
-#img-chooser-view .thumb {
-    padding: 3px;
+.folder_user{
+    background: url('icons/folder_user.png') no-repeat center center !important;   
 }
 
-#img-chooser-view .thumb-wrap {
-    float: left;
-    margin: 4px;
-    margin-right: 0;
-    padding: 5px;
-    word-wrap: break-word;
-    width:100px;
+.user_delete{
+    background: url('icons/user_delete.png') no-repeat center center !important;  
+    margin: 0 3px 0 3px;
 }
 
-#img-chooser-view .thumb-wrap span {
-    display: block;
-    overflow: hidden;
-    text-align: center;
-}
-
-#img-chooser-view .x-view-over {
-    border:1px solid #dddddd;
-    background-color: #efefef;
-    padding: 4px;
-}
-
-#img-chooser-view .x-item-selected {
-    background: #DFEDFF;
-    border: 1px solid #6593cf;
-    padding: 4px;
-}
-
-#img-chooser-view .x-item-selected .thumb {
-    background:transparent;
-}
-
-#img-chooser-view .x-item-selected span {
-    color:#1A4D8F;
-}
-
-#images img {
-    margin: 20px;
+.user_edit{
+    background: url('icons/user_edit.png') no-repeat center center !important;
+    margin: 0 3px 0 3px;
 }
