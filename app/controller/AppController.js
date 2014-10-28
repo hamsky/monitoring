@@ -1182,6 +1182,15 @@ Ext.define('monitoring.controller.AppController', {
                     items: {
                         xtype: 'grid',
                         itemId: 'personsGrid',
+                        selModel: new Ext.grid.RowSelectionModel({
+                        singleSelect: true,
+//                        listeners: {
+//                            rowselect: function (sm, row, rec) {
+//                                // form.getForm().loadRecord(rec);
+//                                //   Ext.ComponentQuery.query('#fPersons')[0].loadRecord(rec);
+//                            }
+//                        }
+                    }),
                         columns: [
                             {xtype: 'rownumberer'},
                             {
@@ -1216,7 +1225,9 @@ Ext.define('monitoring.controller.AppController', {
                             }
 
 
-                        ],
+                        ]
+
+                        ,
                         tbar: [
                             {
                                 xtype: 'button',
@@ -1244,6 +1255,47 @@ Ext.define('monitoring.controller.AppController', {
 
                     }
 
+                }, //grid panel end
+                {
+                    xtype: 'form',
+                    region: 'south',
+                    itemId: 'fPersons',
+                    layout: 'fit',
+                    items: [
+                        {
+                            xtype: 'fieldset',
+                            title: 'Данные ответственного лица',
+                            defaultType: 'textfield',
+                            layout: 'anchor',
+                            defaults: {
+                                anchor: '100%'
+                            },
+                            items: [
+                                {
+                                    xtype: 'container',
+                                    layout: 'hbox',
+                                    defaultType: 'textfield',
+                                    margin: '0 0 5 0',
+                                    items: [{
+                                            fieldLabel: 'Ф.И.О',
+                                            name: 'initials',
+                                            flex: 1//,
+                                                    // allowBlank: false
+                                        }, {
+                                            fieldLabel: 'Phone Number',
+                                            labelWidth: 100,
+                                            name: 'phone',
+                                            width: 200,
+                                            emptyText: 'xxx-xxx-xxxx',
+                                            maskRe: /[\d\-]/,
+                                            regex: /^\d{3}-\d{3}-\d{4}$/,
+                                            regexText: 'Must be in the format xxx-xxx-xxxx'
+                                        }]
+                                }
+                            ]
+                        }
+
+                    ]
                 }
             ]
 
