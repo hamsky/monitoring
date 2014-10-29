@@ -1275,17 +1275,13 @@ Ext.define('monitoring.controller.AppController', {
                                     items: [{
                                             fieldLabel: 'Ф.И.О',
                                             name: 'initials',
-                                            flex: 1//,
-                                                    // allowBlank: false
+                                            flex: 1
                                         }, {
-                                            fieldLabel: 'Phone Number',
-                                            labelWidth: 100,
-                                            name: 'phone',
-                                            width: 200,
-                                            emptyText: 'xxx-xxx-xxxx',
-                                            maskRe: /[\d\-]/,
-                                            regex: /^\d{3}-\d{3}-\d{4}$/,
-                                            regexText: 'Must be in the format xxx-xxx-xxxx'
+                                            fieldLabel: 'Должность',
+                                            name: '',
+                                            flex:1,
+                                             margin: '0 0 5 0'
+                                          
                                         }]
                                 }
                             ]
