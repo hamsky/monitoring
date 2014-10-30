@@ -1278,9 +1278,9 @@ Ext.define('monitoring.controller.AppController', {
                                             flex: 1
                                         }, {
                                             fieldLabel: 'Должность',
-                                            name: '',
+                                            name: 'email',
                                             flex:1,
-                                             margin: '0 0 5 0'
+                                             padding: '0 0 5 0'
                                           
                                         }]
                                 }
@@ -1288,6 +1288,7 @@ Ext.define('monitoring.controller.AppController', {
                         }
 
                     ]
+                    
                 }
             ]
 
