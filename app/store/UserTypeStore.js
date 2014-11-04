@@ -5,7 +5,7 @@ Ext.define('monitoring.store.UserTypeStore', {
     autoLoad:true,
     proxy: {
         type: 'ajax',
-        url: 'app/php/actions/getutype.php',//!!
+        url: 'app/php/actions/getutype.php',
         reader: {
             type: 'json',
             rootProperty: 'utypes'
