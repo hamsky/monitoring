@@ -6,7 +6,6 @@ Ext.define('monitoring.store.OrgTypeStore', {
     pageSize: 50,
     proxy: {
         type: 'ajax',
-        // url: 'app/php/actions/getorgtype.php',
         reader: {
             type: 'json',
             rootProperty: 'orgtypes'
