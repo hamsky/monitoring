@@ -1166,8 +1166,8 @@ Ext.define('monitoring.controller.AppController', {
 
         Ext.create('Ext.window.Window', {
             title: 'Ответственные лица',
-            width: 700,
-            height: 400,
+            width: 600,
+            height: 470,
             autoShow: true,
             iconCls: 'folder_user',
             modal: true,
@@ -1178,7 +1178,7 @@ Ext.define('monitoring.controller.AppController', {
                 stores: {
                     persons: {
                         autoLoad: true,
-                        fields: ['id', 'initials', 'date_', 'email'],
+                        fields: ['id', 'initials', 'date_', 'email','skype'],
                         remoteSort: false,
                         sorters: 'initials',
                         proxy: {
@@ -1345,11 +1345,14 @@ Ext.define('monitoring.controller.AppController', {
                             dock: 'bottom',
                             items: [
                                 {
+                                    xtype: 'tbfill'
+                                },
+                                {
                                     xtype: 'button',
                                     itemId: 'submit',
                                     formBind: true,
-                                    iconCls: 'enter',
-                                    text: "Войти"
+                                    iconCls: 'accept',
+                                    text: "Применить"
                                 }
                             ]
                         }]
