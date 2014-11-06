@@ -2,13 +2,14 @@
 
 require '../../../inc/dbc.php';
 
-$query = "select id,initials from persons";
+$query = "select * from persons";
 $result = mysql_query($query);
 
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     $data[] = array(
         'id' => $row['id'],
-        'initials' => $row['initials']
+        'initials' => $row['initials'],
+        'date_'=>$row['date_']
     );
 }
 
