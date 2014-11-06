@@ -1264,7 +1264,6 @@ Ext.define('monitoring.controller.AppController', {
                     title: 'Изменить данные ответственного',
                     layout: 'form',
                     defaultType: 'textfield',
-                    margin: '0 0 5 0',
                     items: [{
                             fieldLabel: 'Ф.И.О',
                             name: 'initials',
@@ -1339,7 +1338,22 @@ Ext.define('monitoring.controller.AppController', {
                         }
 
 ///
-                    ]
+                    ],
+                    dockedItems: [
+                        {
+                            xtype: 'toolbar',
+                            dock: 'bottom',
+                            items: [
+                                {
+                                    xtype: 'button',
+                                    itemId: 'submit',
+                                    formBind: true,
+                                    iconCls: 'enter',
+                                    text: "Войти"
+                                }
+                            ]
+                        }]
+
 
                 }
 
