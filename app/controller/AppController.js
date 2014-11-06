@@ -1178,7 +1178,7 @@ Ext.define('monitoring.controller.AppController', {
                 stores: {
                     persons: {
                         autoLoad: true,
-                        fields: ['id', 'initials', 'date_'],
+                        fields: ['id', 'initials', 'date_', 'email'],
                         remoteSort: false,
                         sorters: 'initials',
                         proxy: {
@@ -1214,6 +1214,21 @@ Ext.define('monitoring.controller.AppController', {
                             hidden: true
                         },
                         {
+                            header: 'E-mail',
+                            dataIndex: 'email',
+                            hidden: true
+                        },
+                        {
+                            header: 'Телефон',
+                            dataIndex: 'phone',
+                            hidden: true
+                        },
+                        {
+                            header: 'Skype',
+                            dataIndex: 'skype',
+                            hidden: true
+                        },
+                        {
                             xtype: 'actioncolumn',
                             flex: 20 / 100,
                             header: 'Действия',
@@ -1227,13 +1242,8 @@ Ext.define('monitoring.controller.AppController', {
                                             fieldLabel: 'Ф.И.О',
                                             name: 'initials',
                                             flex: 1
-                                        }, {
-                                            fieldLabel: 'Должность',
-                                            name: 'email',
-                                            flex: 1,
-                                            padding: '0 0 5 0'
-
-                                        }]
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -1265,8 +1275,70 @@ Ext.define('monitoring.controller.AppController', {
                             name: 'date_',
                             bind: '{allPersons.selection.date_}',
                             flex: 1
+                        },
+                        {
+                            fieldLabel: 'E-mail',
+                            name: 'email',
+                            bind: '{allPersons.selection.email}',
+                            flex: 1
+                        },
+                        {
+                            fieldLabel: 'Телефон',
+                            name: 'phone',
+                            bind: '{allPersons.selection.phone}',
+                            flex: 1
+                        },
+                        {
+                            fieldLabel: 'Skype',
+                            name: 'skype',
+                            bind: '{allPersons.selection.skype}',
+                            flex: 1
+                        },
+                        {
+                            xtype: 'fieldcontainer',
+                            fieldLabel: 'Сфера ответственности',
+                            defaultType: 'checkboxfield',
+                            items: [{
+                                    boxLabel: 'Представитель руководства, курирующий работы по информатизации',
+                                    name: 'sphere',
+                                    inputValue: '1',
+                                    id: 'checkbox1'
+                                }, {
+                                    boxLabel: 'Ответственный за работу единой системы документооборота',
+                                    name: 'topping',
+                                    inputValue: '2',
+                                    checked: true,
+                                    id: 'checkbox2'
+                                }, {
+                                    boxLabel: 'Ответственный за работу с СМЭВ',
+                                    name: 'topping',
+                                    inputValue: '3',
+                                    id: 'checkbox3'
+                                }, {
+                                    boxLabel: 'Ответственный за техническую защиту информации',
+                                    name: 'topping',
+                                    inputValue: '4',
+                                    id: 'checkbox4'
+                                }, {
+                                    boxLabel: 'Ответственный за заполнение реестра государственных услуг',
+                                    name: 'topping',
+                                    inputValue: '5',
+                                    id: 'checkbox5'
+                                }, {
+                                    boxLabel: 'Ответственный за административную реформу',
+                                    name: 'topping',
+                                    inputValue: '6',
+                                    id: 'checkbox6'
+                                }, {
+                                    boxLabel: 'Администратор информационной системы',
+                                    name: 'topping',
+                                    inputValue: '7',
+                                    id: 'checkbox7'
+                                }
+                            ]
                         }
 
+///
                     ]
 
                 }

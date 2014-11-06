@@ -9,7 +9,10 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     $data[] = array(
         'id' => $row['id'],
         'initials' => $row['initials'],
-        'date_'=>$row['date_']
+        'date_'=>$row['date_'],
+        'email'=>$row['email'],
+        'phone'=>$row['phone'],
+        'skype'=>$row['skype']
     );
 }
 
