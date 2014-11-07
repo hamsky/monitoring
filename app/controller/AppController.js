@@ -1178,7 +1178,7 @@ Ext.define('monitoring.controller.AppController', {
                 stores: {
                     persons: {
                         autoLoad: true,
-                        fields: ['id', 'initials', 'date_', 'email','skype'],
+                        fields: ['id', 'initials', 'date_', 'email', 'skype'],
                         remoteSort: false,
                         sorters: 'initials',
                         proxy: {
@@ -1264,6 +1264,7 @@ Ext.define('monitoring.controller.AppController', {
                     title: 'Изменить данные ответственного',
                     layout: 'form',
                     defaultType: 'textfield',
+                    itemId: 'personsForm',
                     items: [{
                             fieldLabel: 'Ф.И.О',
                             name: 'initials',
@@ -1349,10 +1350,19 @@ Ext.define('monitoring.controller.AppController', {
                                 },
                                 {
                                     xtype: 'button',
-                                    itemId: 'submit',
+                                    itemId: 'subm',
                                     formBind: true,
                                     iconCls: 'accept',
-                                    text: "Применить"
+                                    text: "Применить",
+                                    listeners: {
+                                        click: function() {
+                                            var active = Ext.ComponentQuery.query('#personsGrid')[0].getSelectionModel().getSelection()[0];
+                                            Ext.ComponentQuery.query('#personsGrid')[0].getStore().sync();
+                                            //var form = Ext.ComponentQuery.query('#personsForm')[0].getForm();
+                                            // form.updateRecord(active);
+                                            //  form.onReset();
+                                        }
+                                    }
                                 }
                             ]
                         }]
