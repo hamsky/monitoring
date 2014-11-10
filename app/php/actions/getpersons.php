@@ -16,8 +16,13 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     );
 }
 
-$res = array_slice($data, $_GET['limit'] * ($_GET['page'] - 1), $_GET['limit']);
-$myData = array('total' => count($data), 'persons' => $res);
-$d = json_encode($myData);
+//$res = array_slice($data, $_GET['limit'] * ($_GET['page'] - 1), $_GET['limit']);
+//$myData = array('total' => count($data), 'persons' => $res);
+//$d = json_encode($myData);
+//echo $d;
+
+$res = array('persons' => $data);
+$d = json_encode($res);
 echo $d;
+
 ?>
