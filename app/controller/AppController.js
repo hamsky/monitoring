@@ -1285,7 +1285,7 @@ Ext.define('monitoring.controller.AppController', {
                         {
                            xtype:'hidden',
                             name: 'id',
-                            bind: '{allPersons.selection.id}',
+                            bind: '{allPersons.selection.id}'
                     
                         },                        
                         {
