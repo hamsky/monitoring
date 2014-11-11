@@ -1,5 +1,5 @@
 Ext.define("monitoring.view.tabs.AllPersons",{
-    extend:''
+    extend:'Ext.panel.Grid'
     
 });
 
