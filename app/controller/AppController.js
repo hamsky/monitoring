@@ -1196,6 +1196,9 @@ Ext.define('monitoring.controller.AppController', {
                             },
                             writer: {
                                 type: 'json',
+                                writeAllFields: false,
+                                allowSingle: false,
+                                encode: true,
                                 rootProperty: 'persons'
                             }
                         }
