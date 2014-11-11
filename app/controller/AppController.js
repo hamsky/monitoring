@@ -1323,18 +1323,18 @@ Ext.define('monitoring.controller.AppController', {
                             defaultType: 'checkboxfield',
                             items: [{
                                     boxLabel: 'Представитель руководства, курирующий работы по информатизации',
-                                    name: 'sphere',
+                                    name: 'inform',
                                     inputValue: '1',
                                     id: 'checkbox1'
                                 }, {
                                     boxLabel: 'Ответственный за работу единой системы документооборота',
-                                    name: 'topping',
+                                    name: 'sed',
                                     inputValue: '2',
                                     checked: true,
                                     id: 'checkbox2'
                                 }, {
                                     boxLabel: 'Ответственный за работу с СМЭВ',
-                                    name: 'topping',
+                                    name: 'smev',
                                     inputValue: '3',
                                     id: 'checkbox3'
                                 }, {
@@ -1354,7 +1354,7 @@ Ext.define('monitoring.controller.AppController', {
                                     id: 'checkbox6'
                                 }, {
                                     boxLabel: 'Администратор информационной системы',
-                                    name: 'topping',
+                                    name: 'admin',
                                     inputValue: '7',
                                     id: 'checkbox7'
                                 }
