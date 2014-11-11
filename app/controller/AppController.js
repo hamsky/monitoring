@@ -1186,17 +1186,17 @@ Ext.define('monitoring.controller.AppController', {
                             type: 'ajax',
                             api: {
                                 read: 'app/php/actions/getpersons.php',
-                               // create: 'app.php/users/create',
-                               // update: 'app/php/actions/updateperson.php',
-                               // destroy: 'app.php/users/destroy'
+                                // create: 'app.php/users/create',
+                                // update: 'app/php/actions/updateperson.php',
+                                destroy: 'app/php/actions/deleteperson.php'
                             },
                             reader: {
                                 type: 'json',
                                 rootProperty: 'persons'
                             },
                             writer: {
-                                type: 'json'//,
-                                        //   rootProperty: 'persons'
+                                type: 'json',
+                                rootProperty: 'persons'
                             }
                         }
                     }
@@ -1283,11 +1283,11 @@ Ext.define('monitoring.controller.AppController', {
                     itemId: 'personsForm',
                     items: [
                         {
-                           xtype:'hidden',
+                            xtype: 'hidden',
                             name: 'id',
                             bind: '{allPersons.selection.id}'
-                    
-                        },                        
+
+                        },
                         {
                             fieldLabel: 'Ф.И.О',
                             name: 'initials',
@@ -1380,7 +1380,7 @@ Ext.define('monitoring.controller.AppController', {
                                     listeners: {
                                         click: function () {
                                             //var active = Ext.ComponentQuery.query('#personsGrid')[0].getSelectionModel().getSelection()[0];
-                                          //  Ext.ComponentQuery.query('#personsGrid')[0].getStore().sync();
+                                            //  Ext.ComponentQuery.query('#personsGrid')[0].getStore().sync();
                                             var form = Ext.ComponentQuery.query('#personsForm')[0].getForm();
                                             ///
 
@@ -1413,7 +1413,7 @@ Ext.define('monitoring.controller.AppController', {
 
 
                                             ///
-                                          //  form.reset();
+                                            //  form.reset();
                                             // form.updateRecord(active);
                                             //  form.reset();
                                         }
