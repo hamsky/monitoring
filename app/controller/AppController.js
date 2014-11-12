@@ -1186,8 +1186,6 @@ Ext.define('monitoring.controller.AppController', {
                             type: 'ajax',
                             api: {
                                 read: 'app/php/actions/getpersons.php',
-                                // create: 'app.php/users/create',
-                                // update: 'app/php/actions/updateperson.php',
                                 destroy: 'app/php/actions/deleteperson.php'
                             },
                             reader: {
@@ -1208,7 +1206,6 @@ Ext.define('monitoring.controller.AppController', {
             items: [{
                     title: 'Перечень ответственных лиц',
                     xtype: 'grid',
-                    // bind: '{persons}',
                     bind: {
                         store: '{persons}'
                     },
@@ -1363,8 +1360,6 @@ Ext.define('monitoring.controller.AppController', {
                                 }
                             ]
                         }
-
-///
                     ],
                     dockedItems: [
                         {
@@ -1408,17 +1403,6 @@ Ext.define('monitoring.controller.AppController', {
                                                 }
                                             });
 
-
-
-
-
-
-
-
-                                            ///
-                                            //  form.reset();
-                                            // form.updateRecord(active);
-                                            //  form.reset();
                                         }
                                     }
                                 }
