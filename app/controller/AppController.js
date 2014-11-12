@@ -1377,11 +1377,7 @@ Ext.define('monitoring.controller.AppController', {
                                     text: "Применить",
                                     listeners: {
                                         click: function () {
-                                            //var active = Ext.ComponentQuery.query('#personsGrid')[0].getSelectionModel().getSelection()[0];
-                                            //  Ext.ComponentQuery.query('#personsGrid')[0].getStore().sync();
                                             var form = Ext.ComponentQuery.query('#personsForm')[0].getForm();
-                                            ///
-
 
                                             form.submit({
                                                 success: function (form, action) {
@@ -1390,16 +1386,7 @@ Ext.define('monitoring.controller.AppController', {
                                                 },
                                                 failure: function (form, action) {
 //                                                    var decodedString = Ext.decode(action.response.responseText);
-//                                                    Ext.MessageBox.show({
-//                                                        title: 'Ошибка',
-//                                                        msg: decodedString.text,
-//                                                        buttons: Ext.MessageBox.OK,
-//                                                        icon: Ext.MessageBox.ERROR,
-//                                                        width: 350,
-//                                                        closable: false
-//                                                    });
-
-
+//                                                        msg: decodedString.text
                                                 }
                                             });
 
