@@ -1283,7 +1283,7 @@ Ext.define('monitoring.controller.AppController', {
                                     defaultType: 'textfield',
                                     items: [{
                                             xtype: 'form',
-                                            url: 'inc/auth.php',
+                                            url: 'app/php/actions/createperson.php',
                                             frame: false,
                                             bodyPadding: 15,
                                             itemId: 'personAdd',
@@ -1315,7 +1315,18 @@ Ext.define('monitoring.controller.AppController', {
                                                     iconCls: 'add',
                                                     text: "Добавить",
                                                     handler: function() {
-                                                        alert('');
+                                                        var form = Ext.ComponentQuery.query('#personAdd')[0].getForm();
+                                                        form.submit({
+                                                            success: function(form, action) {
+                                                                Ext.ComponentQuery.query('#personsGrid')[0].getStore().reload();
+                                                            },
+                                                            failure: function(form, action) {
+//                                                    var decodedString = Ext.decode(action.response.responseText);
+//                                                        msg: decodedString.text
+                                                            }
+                                                        });
+
+
                                                     }
                                                 }
                                             ]}]
