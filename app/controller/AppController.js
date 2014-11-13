@@ -52,7 +52,7 @@ Ext.define('monitoring.controller.AppController', {
         'AllServices@monitoring.model',
         'AllReports@monitoring.model'
     ],
-    init: function () {
+    init: function() {
 
         if (Ext.grid.RowEditor) {
             Ext.apply(Ext.grid.RowEditor.prototype, {
@@ -67,11 +67,11 @@ Ext.define('monitoring.controller.AppController', {
             url: 'inc/functions.php',
             method: 'POST',
             params: {action: 'getorgname'},
-            success: function (result, request) {
+            success: function(result, request) {
                 var json = Ext.decode(result.responseText);
                 Ext.ComponentQuery.query('#orgName')[0].setText('<b>' + json.name + '</b>', false);
             },
-            failure: function (result, request) {
+            failure: function(result, request) {
 
             }
         });
@@ -124,13 +124,13 @@ Ext.define('monitoring.controller.AppController', {
 
         });
     },
-    OnItemClick: function (tree, record, item, index, e, options) {
+    OnItemClick: function(tree, record, item, index, e, options) {
         var nodeText = record.data.text;
         var tabPanel = Ext.ComponentQuery.query('#workArea')[0];
         var existTab = false;
 ////
         if (record.data.leaf) {
-            tabPanel.items.each(function (tab) {
+            tabPanel.items.each(function(tab) {
                 if (nodeText === tab.title) {
                     existTab = true;
                 }
@@ -154,7 +154,7 @@ Ext.define('monitoring.controller.AppController', {
 
         console.log(tabPanel);
     },
-    subdivOnClick: function () {
+    subdivOnClick: function() {
         Ext.create('Ext.window.Window', {
             title: 'Добавить подразделение',
             width: 450,
@@ -200,7 +200,7 @@ Ext.define('monitoring.controller.AppController', {
                                     itemId: 'close',
                                     iconCls: 'cancel',
                                     text: "Закрыть",
-                                    handler: function () {
+                                    handler: function() {
                                         this.up('window').close();
                                     }
                                 },
@@ -211,10 +211,10 @@ Ext.define('monitoring.controller.AppController', {
                                     iconCls: 'accept',
                                     text: "Добавить",
                                     listeners: {
-                                        click: function () {
+                                        click: function() {
                                             var form = this.up('form').getForm();
                                             form.submit({
-                                                success: function (form, action) {
+                                                success: function(form, action) {
                                                     Ext.ComponentQuery.query('#subdivGrid')[0].getStore().reload();
                                                     form.reset();
                                                 }
@@ -228,16 +228,16 @@ Ext.define('monitoring.controller.AppController', {
             ]
         }).show();
     },
-    logoutClick: function () {
+    logoutClick: function() {
         Ext.Ajax.request({
             url: 'inc/functions.php',
             params: {action: 'logout'},
-            success: function () {
+            success: function() {
                 location.reload();
             }
         });
     },
-    addReportClick: function () {
+    addReportClick: function() {
         // 
         Ext.create('Ext.window.Window', {
             title: 'Отчитаться',
@@ -268,7 +268,7 @@ Ext.define('monitoring.controller.AppController', {
                             fieldLabel: "Услуга",
                             allowBlank: false,
                             listConfig: {
-                                getInnerTpl: function () {
+                                getInnerTpl: function() {
                                     return '<b>{service}</b>';
                                 }
                             }
@@ -299,7 +299,7 @@ Ext.define('monitoring.controller.AppController', {
                             allowBlank: false,
                             labelWidth: 100,
                             listeners: {
-                                change: function (field, value) {
+                                change: function(field, value) {
                                     var fm = this.up('form').getForm().findField('jst');
                                     if (value !== 0) {
                                         fm.setDisabled(false);
@@ -343,10 +343,10 @@ Ext.define('monitoring.controller.AppController', {
                                     formBind: true,
                                     iconCls: 'table_go',
                                     text: "Отправить",
-                                    handler: function () {
+                                    handler: function() {
                                         var form = this.up('form').getForm();
                                         form.submit({
-                                            success: function (form, action) {
+                                            success: function(form, action) {
                                                 form.reset();
                                             }
                                         });
@@ -359,7 +359,7 @@ Ext.define('monitoring.controller.AppController', {
         });
         //
     },
-    viewReportsClick: function () {
+    viewReportsClick: function() {
         Ext.getStore('ReportStore').reload();
         Ext.create('Ext.window.Window', {
             title: 'Оказанные услуги',
@@ -403,7 +403,7 @@ Ext.define('monitoring.controller.AppController', {
             ]
         });
     },
-    addServiceUClick: function () {
+    addServiceUClick: function() {
         var sm = Ext.create('Ext.selection.CheckboxModel');
         Ext.create('Ext.window.Window', {
             title: 'Добавить услуги для ИОГВ',
@@ -437,7 +437,7 @@ Ext.define('monitoring.controller.AppController', {
                         displayMsg: 'Показано  {0} - {1} из {2}',
                         emptyMsg: "Нет данных для отображения",
                         listeners: {
-                            change: function (pagingToolBar, changeEvent) {
+                            change: function(pagingToolBar, changeEvent) {
                                 var pz = this.store.pageSize;
                                 var pg = this.store.currentPage;
                                 var tc = this.store.getTotalCount();
@@ -459,8 +459,8 @@ Ext.define('monitoring.controller.AppController', {
                         {
                             text: 'Сохранить',
                             iconCls: 'save',
-                            handler: function () {
-                                var json = Ext.JSON.encode(sm.getSelection().map(function (e) {
+                            handler: function() {
+                                var json = Ext.JSON.encode(sm.getSelection().map(function(e) {
                                     return e.data;
                                 }));
                                 Ext.Ajax.request({
@@ -470,7 +470,7 @@ Ext.define('monitoring.controller.AppController', {
                                         services: json
                                     },
                                     method: 'POST',
-                                    success: function (response, options) {
+                                    success: function(response, options) {
                                         Ext.ComponentQuery.query('#srvAddGrid')[0].getStore().reload();
                                         Ext.ComponentQuery.query('#servGrid')[0].getStore().reload();
                                     }
@@ -480,7 +480,7 @@ Ext.define('monitoring.controller.AppController', {
                         {
                             text: 'Закрыть',
                             iconCls: 'cancel',
-                            handler: function () {
+                            handler: function() {
                                 this.up('.window').close();
                             }
                         }
@@ -490,7 +490,7 @@ Ext.define('monitoring.controller.AppController', {
         }).show();
         //eof 
     },
-    addOrgType: function () {
+    addOrgType: function() {
         Ext.create('Ext.window.Window', {
             title: 'Добавить тип ведомства',
             iconCls: 'page_white_add',
@@ -536,7 +536,7 @@ Ext.define('monitoring.controller.AppController', {
                                     itemId: 'close',
                                     iconCls: 'cancel',
                                     text: "Закрыть",
-                                    handler: function () {
+                                    handler: function() {
                                         this.up('.window').close();
                                     }
                                 },
@@ -547,10 +547,10 @@ Ext.define('monitoring.controller.AppController', {
                                     iconCls: 'accept',
                                     text: "Добавить",
                                     listeners: {
-                                        click: function () {
+                                        click: function() {
                                             var form = this.up('form').getForm();
                                             form.submit({
-                                                success: function (form, action) {
+                                                success: function(form, action) {
                                                     Ext.ComponentQuery.query('#orgTypeGrid')[0].getStore().reload()
                                                     form.reset();
                                                 }
@@ -565,7 +565,7 @@ Ext.define('monitoring.controller.AppController', {
 
         }).show();
     },
-    addServiceAClick: function () {
+    addServiceAClick: function() {
         Ext.create('Ext.window.Window', {
             title: 'Добавить услугу',
             width: 550,
@@ -610,7 +610,7 @@ Ext.define('monitoring.controller.AppController', {
                                     itemId: 'close',
                                     iconCls: 'cancel',
                                     text: "Закрыть",
-                                    handler: function () {
+                                    handler: function() {
                                         this.up('.window').close();
                                     }
                                 },
@@ -621,10 +621,10 @@ Ext.define('monitoring.controller.AppController', {
                                     iconCls: 'accept',
                                     text: "Добавить",
                                     listeners: {
-                                        click: function () {
+                                        click: function() {
                                             var form = this.up('form').getForm();
                                             form.submit({
-                                                success: function (form, action) {
+                                                success: function(form, action) {
                                                     Ext.ComponentQuery.query('#AllServices')[0].getStore().reload();
                                                     form.reset();
                                                 }
@@ -640,7 +640,7 @@ Ext.define('monitoring.controller.AppController', {
 
         }).show();
     },
-    addOMSU: function () {
+    addOMSU: function() {
         Ext.create('Ext.window.Window', {
             title: 'Добавить ОМСУ',
             width: 550,
@@ -697,7 +697,7 @@ Ext.define('monitoring.controller.AppController', {
                                     itemId: 'close',
                                     iconCls: 'cancel',
                                     text: "Закрыть",
-                                    handler: function () {
+                                    handler: function() {
                                         this.up('.window').close();
                                     }
                                 },
@@ -708,10 +708,10 @@ Ext.define('monitoring.controller.AppController', {
                                     iconCls: 'accept',
                                     text: "Добавить",
                                     listeners: {
-                                        click: function () {
+                                        click: function() {
                                             var form = this.up('form').getForm();
                                             form.submit({
-                                                success: function (form, action) {
+                                                success: function(form, action) {
                                                     Ext.ComponentQuery.query('#omsuGrid')[0].getStore().reload();
                                                     form.reset();
                                                 }
@@ -728,7 +728,7 @@ Ext.define('monitoring.controller.AppController', {
 
             ]}).show();
     },
-    addIOGV: function () {
+    addIOGV: function() {
 
         Ext.create('Ext.window.Window', {
             title: 'Добавить ИОГВ',
@@ -786,7 +786,7 @@ Ext.define('monitoring.controller.AppController', {
                                     itemId: 'close',
                                     iconCls: 'cancel',
                                     text: "Закрыть",
-                                    handler: function () {
+                                    handler: function() {
                                         this.up('.window').close();
                                     }
                                 },
@@ -797,10 +797,10 @@ Ext.define('monitoring.controller.AppController', {
                                     iconCls: 'accept',
                                     text: "Добавить",
                                     listeners: {
-                                        click: function () {
+                                        click: function() {
                                             var form = this.up('form').getForm();
                                             form.submit({
-                                                success: function (form, action) {
+                                                success: function(form, action) {
                                                     Ext.ComponentQuery.query('#iogvGrid')[0].getStore().reload();
                                                     form.reset();
                                                 }
@@ -817,7 +817,7 @@ Ext.define('monitoring.controller.AppController', {
 
             ]}).show();
     },
-    addUser: function () {
+    addUser: function() {
         Ext.create('Ext.window.Window', {
             title: 'Добавить пользователя',
             iconCls: 'userAdd',
@@ -881,7 +881,7 @@ Ext.define('monitoring.controller.AppController', {
                             valueField: 'id',
                             pageSize: 10,
                             listConfig: {
-                                getInnerTpl: function () {
+                                getInnerTpl: function() {
                                     return '<div class="rate"><b>[{id}]</b> {iogv}</div>';
                                 }
                             }
@@ -919,7 +919,7 @@ Ext.define('monitoring.controller.AppController', {
                                     itemId: 'close',
                                     iconCls: 'cancel',
                                     text: "Закрыть",
-                                    handler: function () {
+                                    handler: function() {
                                         this.up('.window').close();
                                     }
                                 },
@@ -930,10 +930,10 @@ Ext.define('monitoring.controller.AppController', {
                                     iconCls: 'accept',
                                     text: "Добавить",
                                     listeners: {
-                                        click: function () {
+                                        click: function() {
                                             var form = this.up('form').getForm();
                                             form.submit({
-                                                success: function (form, action) {
+                                                success: function(form, action) {
                                                     Ext.ComponentQuery.query('#userGrid')[0].getStore().reload();
                                                     form.reset();
                                                 }
@@ -948,7 +948,7 @@ Ext.define('monitoring.controller.AppController', {
 
         }).show();
     },
-    repPeriodClick: function () {
+    repPeriodClick: function() {
 
         Ext.create('Ext.window.Window', {
             title: 'Выбрать отчётный период',
@@ -1022,7 +1022,7 @@ Ext.define('monitoring.controller.AppController', {
                                     itemId: 'close',
                                     iconCls: 'cancel',
                                     text: "Закрыть",
-                                    handler: function () {
+                                    handler: function() {
                                         this.up('.window').close();
                                     }
                                 },
@@ -1033,7 +1033,7 @@ Ext.define('monitoring.controller.AppController', {
                                     iconCls: 'search',
                                     text: "Искать",
                                     listeners: {
-                                        click: function () {
+                                        click: function() {
                                             var form = this.up('form').getForm();
                                             var fstore = Ext.create("Ext.data.Store", {
                                                 fields: ['id', 'date', 'service', 'value', 'complaints', 'gcompl', 'subdiv'],
@@ -1065,7 +1065,7 @@ Ext.define('monitoring.controller.AppController', {
 
             ]}).show();
     },
-    addSmevInformation: function () {
+    addSmevInformation: function() {
 
         Ext.create('Ext.window.Window', {
             title: 'Добавить сведение/документ',
@@ -1133,7 +1133,7 @@ Ext.define('monitoring.controller.AppController', {
                                     itemId: 'close',
                                     iconCls: 'cancel',
                                     text: "Закрыть",
-                                    handler: function () {
+                                    handler: function() {
                                         this.up('.window').close();
                                     }
                                 },
@@ -1144,10 +1144,10 @@ Ext.define('monitoring.controller.AppController', {
                                     iconCls: 'accept',
                                     text: "Добавить",
                                     listeners: {
-                                        click: function () {
+                                        click: function() {
                                             var form = this.up('form').getForm();
                                             form.submit({
-                                                success: function (form, action) {
+                                                success: function(form, action) {
                                                     Ext.ComponentQuery.query('#smevGrid')[0].getStore().reload();
                                                     form.reset();
                                                 }
@@ -1162,7 +1162,7 @@ Ext.define('monitoring.controller.AppController', {
 
         }).show();
     },
-    usersView: function () {
+    usersView: function() {
 
         Ext.create('Ext.window.Window', {
             title: 'Ответственные лица',
@@ -1249,7 +1249,7 @@ Ext.define('monitoring.controller.AppController', {
                                 {
                                     iconCls: 'user_delete',
                                     tooltip: 'Удалить',
-                                    handler: function (grid, rowIndex, colIndex) {
+                                    handler: function(grid, rowIndex, colIndex) {
                                         var rec = grid.getStore().getAt(rowIndex);
                                         grid.store.remove(rec);
                                         grid.store.sync();
@@ -1269,7 +1269,47 @@ Ext.define('monitoring.controller.AppController', {
                             tooltip: 'Добавить новое ответственное лицо',
                             text: 'Добавить ответственное лицо',
                             iconCls: 'userAdd',
-                            itemId: 'addPerson'
+                            itemId: 'addPerson',
+                            handler: function() {
+                                Ext.create('Ext.window.Window', {
+                                    title: 'Добавить',
+                                    width: 600,
+                                    height: 470,
+                                    iconCls: 'userAdd',
+                                    modal: true,
+                                    border: true,
+                                    closable: true,
+                                    layout: 'form',
+                                    items: [
+                                        {
+                                            fieldLabel: 'Ф.И.О',
+                                            name: 'initials',
+                                            flex: 1,
+                                            allowBlank: false
+                                        }
+                                    ],
+                                    dockedItems: [
+                                        {
+                                            xtype: 'toolbar',
+                                            dock: 'bottom',
+                                            items: [
+                                                {
+                                                    xtype: 'tbfill'
+                                                },
+                                                {
+                                                    xtype: 'button',
+                                                    itemId: 'submit',
+                                                    formBind: true,
+                                                    iconCls: 'add',
+                                                    text: "Войти",
+                                                    handler: function() {
+                                                        alert('');
+                                                    }
+                                                }
+                                            ]}]
+                                });
+
+                            }
                         }
                     ],
                     autoScroll: true
@@ -1330,7 +1370,7 @@ Ext.define('monitoring.controller.AppController', {
                                     boxLabel: 'Ответственный за работу единой системы документооборота',
                                     name: 'sed',
                                     inputValue: '2',
-                                   // checked: true,
+                                    // checked: true,
                                     id: 'checkbox2'
                                 }, {
                                     boxLabel: 'Ответственный за работу с СМЭВ',
@@ -1376,15 +1416,15 @@ Ext.define('monitoring.controller.AppController', {
                                     iconCls: 'accept',
                                     text: "Применить",
                                     listeners: {
-                                        click: function () {
+                                        click: function() {
                                             var form = Ext.ComponentQuery.query('#personsForm')[0].getForm();
 
                                             form.submit({
-                                                success: function (form, action) {
+                                                success: function(form, action) {
 //                                                    var redirect = 'index.php';
 //                                                    window.location = redirect;
                                                 },
-                                                failure: function (form, action) {
+                                                failure: function(form, action) {
 //                                                    var decodedString = Ext.decode(action.response.responseText);
 //                                                        msg: decodedString.text
                                                 }
