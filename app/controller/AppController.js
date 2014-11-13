@@ -1269,7 +1269,7 @@ Ext.define('monitoring.controller.AppController', {
                             tooltip: 'Добавить новое ответственное лицо',
                             text: 'Добавить ответственное лицо',
                             iconCls: 'userAdd',
-                            itemId: 'addCategory'
+                            itemId: 'addPerson'
                         }
                     ],
                     autoScroll: true
