@@ -1255,11 +1255,11 @@ Ext.define('monitoring.controller.AppController', {
                                         grid.store.sync();
                                         grid.store.reload();
                                     }
-                                },
-                                {
-                                    iconCls: 'user_edit',
-                                    tooltip: 'Изменить'
-                                }
+                                }//,
+//                                {
+//                                    iconCls: 'user_edit',
+//                                    tooltip: 'Изменить'
+//                                }
                             ]
                         }
                     ],
