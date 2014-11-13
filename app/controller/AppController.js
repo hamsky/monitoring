@@ -20,7 +20,7 @@ Ext.define('monitoring.controller.AppController', {
         'FoivStore@monitoring.store',
         'InfStore@monitoring.store',
         'SmevStore@monitoring.store',
-        'PersonStore@monitoring.store'
+        'PersonsStore@monitoring.store'
     ],
     views: [
         'ActionsListView@monitoring.view.ui',

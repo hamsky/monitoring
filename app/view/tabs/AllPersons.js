@@ -1,5 +1,5 @@
 Ext.define("monitoring.view.tabs.AllPersons", {
-    extend: 'Ext.panel.Grid',
+    extend: 'Ext.grid.Panel',
     alias: 'widget.allpersons',
     itemId: 'allPersonsGrid',
     store: 'PersonsStore',
