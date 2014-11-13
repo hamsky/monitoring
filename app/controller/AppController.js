@@ -1330,7 +1330,7 @@ Ext.define('monitoring.controller.AppController', {
                                     boxLabel: 'Ответственный за работу единой системы документооборота',
                                     name: 'sed',
                                     inputValue: '2',
-                                    checked: true,
+                                   // checked: true,
                                     id: 'checkbox2'
                                 }, {
                                     boxLabel: 'Ответственный за работу с СМЭВ',
