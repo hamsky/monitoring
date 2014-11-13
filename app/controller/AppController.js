@@ -1273,21 +1273,33 @@ Ext.define('monitoring.controller.AppController', {
                             handler: function() {
                                 Ext.create('Ext.window.Window', {
                                     title: 'Добавить',
-                                    width: 600,
-                                    height: 470,
+                                    width: 300,
+                                    height: 110,
                                     iconCls: 'userAdd',
                                     modal: true,
                                     border: true,
                                     closable: true,
-                                    layout: 'form',
-                                    items: [
-                                        {
-                                            fieldLabel: 'Ф.И.О',
-                                            name: 'initials',
-                                            flex: 1,
-                                            allowBlank: false
-                                        }
-                                    ],
+                                    layout: 'fit',
+                                    defaultType: 'textfield',
+                                    items: [{
+                                            xtype: 'form',
+                                            url: 'inc/auth.php',
+                                            frame: false,
+                                            bodyPadding: 15,
+                                            itemId: 'personAdd',
+                                            defaults: {
+                                                xtype: 'textfield',
+                                                anchor: '100%',
+                                                labelWidth: 60
+                                            },
+                                            items: [
+                                                {
+                                                    fieldLabel: 'Ф.И.О',
+                                                    name: 'initials',
+                                                    flex: 1,
+                                                    allowBlank: false
+                                                }]
+                                        }],
                                     dockedItems: [
                                         {
                                             xtype: 'toolbar',
@@ -1301,13 +1313,13 @@ Ext.define('monitoring.controller.AppController', {
                                                     itemId: 'submit',
                                                     formBind: true,
                                                     iconCls: 'add',
-                                                    text: "Войти",
+                                                    text: "Добавить",
                                                     handler: function() {
                                                         alert('');
                                                     }
                                                 }
                                             ]}]
-                                });
+                                }).show();
 
                             }
                         }
