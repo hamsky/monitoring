@@ -17,39 +17,46 @@ Ext.define("monitoring.view.tabs.AllPersons", {
                         //url: 'app/php/actions/editsubdiva.php',
                         params: e.record.getData(),
                         success: function(response, options) {
-                           // Ext.ComponentQuery.query('#allsubdivGrid')[0].getStore().reload();
+                            // Ext.ComponentQuery.query('#allsubdivGrid')[0].getStore().reload();
                         }
 
                     });
                 }
             }
         })],
+    //['id', 'org', 'initials', 'date_', 'email', 'phone', 'skype']
     initComponent: function() {
         this.columns = [
             {xtype: 'rownumberer'},
             {
-                header: 'Подразделение',
-                dataIndex: 'subdiv',
+                header: 'Ф.И.О',
+                dataIndex: 'initials',
                 editor: {
                     xtype: 'textfield'
                 },
-                flex: 45 / 100
+                flex: 35 / 100
             },
             {
-                header: 'Ведомство',
-                dataIndex: 'org',
-                editor: {
-                    xtype: 'combo',
-                    queryMode: 'remote',
-                    store: 'OrgStore',
-                    editable: false,
-                    displayField: 'org',
-                    valueField: 'id',
-                    listeners: {
-                    }
-                },
-                flex: 50 / 100
-            }, {
+                header: 'Принят от',
+                dataIndex: 'date_',
+                flex: 25 / 100
+            },
+            {
+                header: 'Email',
+                dataIndex: 'email',
+                flex: 20 / 100
+            },
+            {
+                header: 'Телефон',
+                dataIndex: 'phone',
+                flex: 10 / 100
+            },
+            {
+                header: 'Skype',
+                dataIndex: 'skype',
+                flex: 10 / 100
+            },
+            {
                 xtype: 'actioncolumn',
                 flex: 5 / 100,
                 header: 'Действия',
@@ -71,7 +78,7 @@ Ext.define("monitoring.view.tabs.AllPersons", {
     },
     bbar: {
         xtype: 'pagingtoolbar',
-        store: 'AllSubdivStore',
+        store: 'PersonsStore',
         displayInfo: true,
         displayMsg: 'Показано  {0} - {1} из {2}',
         emptyMsg: "Нет данных для отображения"

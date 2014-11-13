@@ -19,7 +19,8 @@ Ext.define('monitoring.controller.AppController', {
         'VariantStore@monitoring.store',
         'FoivStore@monitoring.store',
         'InfStore@monitoring.store',
-        'SmevStore@monitoring.store'
+        'SmevStore@monitoring.store',
+        'PersonStore@monitoring.store'
     ],
     views: [
         'ActionsListView@monitoring.view.ui',
@@ -40,7 +41,8 @@ Ext.define('monitoring.controller.AppController', {
         'Variants@monitoring.view.tabs',
         'Foiv@monitoring.view.tabs',
         'Information@monitoring.view.tabs',
-        'SMEV@monitoring.view.tabs'
+        'SMEV@monitoring.view.tabs',
+        'AllPersons@monitoring.view.tabs'
     ],
     models: [
         'Subdivisions@monitoring.model',
